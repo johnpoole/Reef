@@ -1158,15 +1158,16 @@ let presentationReady = false;
 
 const SLIDES = [
   { num:"01", sect:"THE PROPERTY",       sub:"What is The Reef?",                                    fn: slideProperty   },
-  { num:"02", sect:"ACQUISITION TYPE",   sub:"This is a Conversion — not a Going Concern",           fn: slideConversion },
+  { num:"02", sect:"ACQUISITION TYPE",   sub:"This is a Conversion \u2014 not a Going Concern",           fn: slideConversion },
   { num:"03", sect:"THE PENCLAVE",        sub:"Domestic isolation via foreign intermediation",        fn: slidePenclave   },
   { num:"04", sect:"ADDRESSABLE MARKET", sub:"Who can actually get here?",                            fn: slideMarket     },
   { num:"05", sect:"BORDER RISK",         sub:"When the border closes, 80% of revenue disappears",   fn: slideClosure    },
   { num:"06", sect:"THE SEASON",          sub:"Revenue lives in 13 weeks",                            fn: slideSeason     },
-  { num:"07", sect:"COST STACK",          sub:"Build costs first — revenue is what covers them",     fn: slideCosts      },
-  { num:"08", sect:"BREAK-EVEN",          sub:"How many members does it take?",                       fn: slideBreakeven  },
-  { num:"09", sect:"CAPITAL REQUIRED",   sub:"Total outlay before first dollar of revenue",          fn: slideCapital    },
-  { num:"10", sect:"GO / NO-GO",          sub:"The conditions that kill the deal",                    fn: slideGoNoGo     },
+  { num:"07", sect:"COST STACK",          sub:"Build costs first \u2014 revenue is what covers them",     fn: slideCosts      },
+  { num:"08", sect:"AUTOMATION",          sub:"The penclave makes automation capital \u2014 not compromise", fn: slideAutomation },
+  { num:"09", sect:"BREAK-EVEN",          sub:"How many members does it take?",                       fn: slideBreakeven  },
+  { num:"10", sect:"CAPITAL REQUIRED",   sub:"Total outlay before first dollar of revenue",          fn: slideCapital    },
+  { num:"11", sect:"GO / NO-GO",          sub:"The conditions that kill the deal",                    fn: slideGoNoGo     },
 ];
 
 function initPresentation() {
@@ -1539,46 +1540,125 @@ function slideCosts(c) {
     .text(d=>"$"+(d.low/1000).toFixed(0)+"–"+(d.high/1000).toFixed(0)+"K");
 }
 
-/* ── Slide 8: Break-Even ── */
+/* ── Slide 8: Automation ── */
+function slideAutomation(c) {
+  const grid = sWrap("sstat-grid");
+  [{v:"$290–365K", k:"Baseline labor (no automation) [E]",   cls:"s-warn"},
+   {v:"$160–230K", k:"Automated labor model [E]",            cls:"s-ok"  },
+   {v:"$120–190K", k:"Annual saving [E]",                    cls:"s-ok"  },
+   {v:"$20–35K",   k:"Est. automation capex (in reno) [E]",  cls:""      }]
+  .forEach(s => { const d=sEl("div","sstat "+s.cls); d.innerHTML=`<div class="sv">${s.v}</div><div class="sk">${s.k}</div>`; grid.appendChild(d); });
+  c.appendChild(grid);
+
+  const cols = sWrap("s2col");
+
+  const yes = sWrap("s2col-card bright");
+  yes.innerHTML = `<h4>Automate — person adds nothing here</h4>`;
+  [
+    { t:"Member access",      n:"RFID/app gate. Works 24\u202f×\u202f7, survives no-show staff." },
+    { t:"Grounds & lawn",     n:"Robot mowers overnight. Beachfront turf is significant." },
+    { t:"Interior cleaning", n:"Commercial robot vacuums between sessions." },
+    { t:"Pool / spa chemistry",n:"Auto-dosing + robot cleaner. Liability risk if missed." },
+    { t:"Food prep",          n:"Programmable kitchen equipment, portion control, batch cooking. Reduces prep labour heavily without touching the guest experience." },
+    { t:"Security & monitoring",n:"Cameras + app alerts. Replaces overnight presence." },
+    { t:"HVAC & energy",      n:"Occupancy sensors + smart zones. 1959 envelope = huge waste." },
+    { t:"Reservations & booking",n:"Member app handles court/cabana/event slots." },
+  ].forEach(r => {
+    const d = sEl("div","s2col-row");
+    d.innerHTML = `<strong style="color:#a0d8b0">${r.t}</strong> \u2014 ${r.n}`;
+    yes.appendChild(d);
+  });
+
+  const no = sWrap("s2col-card dim");
+  no.innerHTML = `<h4 style="color:#e07840">Keep human — presence is the product</h4>`;
+  [
+    { t:"Food & drink service",n:"Table service and bar presence is a core reason members pay $6–8K/yr. A robot bringing drinks signals budget motel, not private club." },
+    { t:"Bartending",          n:"Wine and cocktail service is hospitality signal. One skilled bartender during peak hours is a feature, not a cost." },
+    { t:"Event hosting",       n:"Members at events expect a human point of contact." },
+    { t:"Membership sales",    n:"Founding members are recruited by a person they trust." },
+    { t:"Guest greeting",      n:"First impression at arrival. Especially important for Canadian members seeing a US border operation." },
+  ].forEach(r => {
+    const d = sEl("div","s2col-row");
+    d.innerHTML = `<strong style="color:#c08060">${r.t}</strong> \u2014 ${r.n}`;
+    no.appendChild(d);
+  });
+
+  cols.appendChild(yes); cols.appendChild(no); c.appendChild(cols);
+
+  const cw = sWrap("schart-wrap");
+  cw.appendChild(sEl("div","schart-title","Remaining staffing model post-automation [E]"));
+  const rows = [
+    ["Owner-operator / GM",  "1 person, lives locally or on-site. Full-time, year-round. Covers management, member relations, compliance."],
+    ["Peak seasonal staff",   "2\u20133 people \u00d7 13 weeks only (bar service + floor). ~$40\u201396K total seasonal labour."],
+    ["Year-round FTE beyond GM", "Zero. Automation covers the gap."],
+  ];
+  const tbl = sEl("table","gono-tbl");
+  rows.forEach(([role, note]) => {
+    const tr = sEl("tr");
+    tr.innerHTML = `<td class="cond-col" style="width:200px;font-size:12px">${role}</td><td class="thresh-col">${note}</td>`;
+    tbl.appendChild(tr);
+  });
+  cw.appendChild(tbl); c.appendChild(cw);
+
+  c.appendChild(sEl("div","shighlight",
+    'Break-even impact: automation capex (~$20\u201335K) is absorbed into the renovation budget. The $120\u2013190K/yr labour saving reduces the dues burden from ~$380K to <span class="sbold">~$200\u2013260K [E]</span> \u2014 shifting break-even from 52\u201375 members down to <span class="sbold">~33\u201345 members at $6K dues [E]</span>.'));
+}
+
+/* ── Slide 9: Break-Even ── */
 function slideBreakeven(c) {
   const grid = sWrap("sstat-grid");
-  [{v:"52–75",k:"Members to break even @ $6K dues [E]",cls:""},{v:"39–56",k:"Members to break even @ $8K dues [E]",cls:"s-ok"},{v:"77–113",k:"Members to break even @ $4K dues [E]",cls:""}]
+  [{v:"52–75",  k:"Baseline: members @ $6K dues [E]",          cls:"s-warn"},
+   {v:"33–45",  k:"Automated: members @ $6K dues [E]",         cls:"s-ok"  },
+   {v:"25–34",  k:"Automated: members @ $8K dues [E]",         cls:"s-ok"  },
+   {v:"$380K",  k:"Baseline dues burden (no automation) [E]",  cls:""      },
+   {v:"~$230K", k:"Automated dues burden [E]",                 cls:""      },
+   {v:"−40%",   k:"Reduction in dues burden from automation",  cls:"s-ok"  }]
   .forEach(s => { const d=sEl("div","sstat "+s.cls); d.innerHTML=`<div class="sv">${s.v}</div><div class="sk">${s.k}</div>`; grid.appendChild(d); });
   c.appendChild(grid);
   const cw = sWrap("schart-wrap");
-  cw.appendChild(sEl("div","schart-title","Annual dues required to cover cost burden vs. member count [E]"));
+  cw.appendChild(sEl("div","schart-title","Dues required per member to break even — baseline vs. automated model [E]"));
   const cd = sEl("div"); cd.id="sbe-chart"; cw.appendChild(cd);
-  cw.appendChild(sNote("[E] Dues burden = total cost stack mid (~$630K) − F&B gross contribution (~$250K) = $380K net burden on dues. Break-even = $380K ÷ member count. Green zone = realistic founding membership range (50–100 members)."));
+  cw.appendChild(sNote("[E] Baseline burden: cost stack mid $630K − F&B contribution $250K = $380K. Automated burden: $380K − $150K labour saving = ~$230K. Automation capex ~$20–35K absorbed into renovation budget. Green zone = realistic founding membership range."));
   c.appendChild(cw);
-  const burden=380000, mrng=d3.range(20,151,5), pts=mrng.map(m=>({m,d:burden/m}));
-  const W=sVizW(), H=195, ml=58, mr=20, mt=14, mb=32;
+  const burdenBase=380000, burdenAuto=230000;
+  const mrng=d3.range(20,151,5);
+  const ptsBase=mrng.map(m=>({m,d:burdenBase/m}));
+  const ptsAuto=mrng.map(m=>({m,d:burdenAuto/m}));
+  const W=sVizW(), H=210, ml=58, mr=24, mt=20, mb=32;
   const bw=W-ml-mr, bh=H-mt-mb;
   const x=d3.scaleLinear().domain([20,150]).range([0,bw]);
-  const y=d3.scaleLinear().domain([0,d3.max(pts,d=>d.d)*1.1]).range([bh,0]);
+  const y=d3.scaleLinear().domain([0,d3.max(ptsBase,d=>d.d)*1.1]).range([bh,0]);
   const svg=d3.select("#sbe-chart").append("svg").attr("width",W).attr("height",H)
     .append("g").attr("transform",`translate(${ml},${mt})`);
-  svg.append("rect").attr("x",x(50)).attr("width",x(100)-x(50)).attr("y",0).attr("height",bh).attr("fill","rgba(76,175,80,0.1)");
-  svg.append("text").attr("x",(x(50)+x(100))/2).attr("y",12).attr("text-anchor","middle").attr("fill","#4caf50").attr("font-size","9px").attr("font-weight","700").text("viable zone");
-  [[4000,"#7ab5d8"],[6000,"#f0c040"],[8000,"#4caf50"]].forEach(([dues,col]) => {
-    const m=burden/dues;
-    if (m>=20&&m<=150) {
-      svg.append("line").attr("x1",x(m)).attr("x2",x(m)).attr("y1",y(dues)).attr("y2",bh).attr("stroke","#263545").attr("stroke-dasharray","3,2");
-      svg.append("line").attr("x1",0).attr("x2",x(m)).attr("y1",y(dues)).attr("y2",y(dues)).attr("stroke","#263545").attr("stroke-dasharray","3,2");
-      svg.append("circle").attr("cx",x(m)).attr("cy",y(dues)).attr("r",4).attr("fill",col);
-      svg.append("text").attr("x",x(m)+7).attr("y",y(dues)+4).attr("fill",col).attr("font-size","10px").text("$"+(dues/1000)+"K");
-    }
-  });
+  // viable zone shading — tighter with automation
+  svg.append("rect").attr("x",x(33)).attr("width",x(75)-x(33)).attr("y",0).attr("height",bh).attr("fill","rgba(76,175,80,0.08)");
+  svg.append("text").attr("x",(x(33)+x(75))/2).attr("y",12).attr("text-anchor","middle").attr("fill","#4caf50").attr("font-size","9px").attr("font-weight","700").text("← viable zone →");
+  // baseline dotted intercepts @ $6K
+  const mb6=burdenBase/6000, ma6=burdenAuto/6000;
+  svg.append("line").attr("x1",x(mb6)).attr("x2",x(mb6)).attr("y1",y(6000)).attr("y2",bh).attr("stroke","#5a4020").attr("stroke-dasharray","3,3");
+  svg.append("line").attr("x1",x(ma6)).attr("x2",x(ma6)).attr("y1",y(6000)).attr("y2",bh).attr("stroke","#2a5030").attr("stroke-dasharray","3,3");
+  // savings arrow annotation
+  const arrowY = y(6000) - 18;
+  svg.append("line").attr("x1",x(ma6)+2).attr("x2",x(mb6)-2).attr("y1",arrowY).attr("y2",arrowY).attr("stroke","#f0c040").attr("stroke-width",1.5).attr("marker-end","none");
+  svg.append("text").attr("x",(x(ma6)+x(mb6))/2).attr("y",arrowY-4).attr("text-anchor","middle").attr("fill","#f0c040").attr("font-size","9px").attr("font-weight","700")
+    .text(`−${Math.round(mb6-ma6)} members`);
+  // baseline curve (amber, dashed)
   const lf=d3.line().x(d=>x(d.m)).y(d=>y(d.d)).curve(d3.curveCatmullRom);
-  const p=svg.append("path").datum(pts).attr("fill","none").attr("stroke","#f0c040").attr("stroke-width",2).attr("d",lf);
-  const ln=p.node().getTotalLength();
-  p.attr("stroke-dasharray",ln).attr("stroke-dashoffset",ln).transition().duration(900).attr("stroke-dashoffset",0);
+  svg.append("path").datum(ptsBase).attr("fill","none").attr("stroke","#f0c040").attr("stroke-width",1.5)
+    .attr("stroke-dasharray","5,4").attr("opacity",0.6).attr("d",lf);
+  svg.append("text").attr("x",x(30)).attr("y",y(burdenBase/30)+12).attr("fill","#a08030").attr("font-size","9px").text("baseline");
+  // automated curve (green, solid, animated)
+  const pa=svg.append("path").datum(ptsAuto).attr("fill","none").attr("stroke","#4caf50").attr("stroke-width",2.5).attr("d",lf);
+  const ln=pa.node().getTotalLength();
+  pa.attr("stroke-dasharray",ln).attr("stroke-dashoffset",ln).transition().duration(900).attr("stroke-dashoffset",0);
+  svg.append("text").attr("x",x(30)).attr("y",y(burdenAuto/30)+12).attr("fill","#4caf50").attr("font-size","9px").attr("font-weight","700").text("automated");
   svg.append("g").attr("transform",`translate(0,${bh})`).call(d3.axisBottom(x).ticks(7)).selectAll("text").attr("fill","#5a7a94").attr("font-size","10px");
   svg.append("text").attr("x",bw/2).attr("y",bh+28).attr("text-anchor","middle").attr("fill","#5a7a94").attr("font-size","10px").text("Members");
   svg.append("g").call(d3.axisLeft(y).ticks(5).tickFormat(d=>"$"+Math.round(d/1000)+"K")).selectAll("text").attr("fill","#5a7a94").attr("font-size","10px");
   svg.selectAll(".domain,.tick line").attr("stroke","#1e3048");
 }
 
-/* ── Slide 9: Capital Required ── */
+/* ── Slide 10: Capital Required ── */
 function slideCapital(c) {
   const grid = sWrap("sstat-grid");
   [{v:"$481K",   k:"Down payment (35% of $1.375M) [G]",      cls:""     },
@@ -1627,7 +1707,7 @@ function slideCapital(c) {
     '<span class="sbold">Bottom line:</span> ~$1.03M in equity required before the first membership dollar arrives — plus an $894K mortgage. If the club fails, the penclave-discounted exit at ~$800K against $1.375M paid + $375K renovation = <span class="sbold">~$950K loss [E]</span>. That is the downside you are accepting.'));
 }
 
-/* ── Slide 10: Go / No-Go ── */
+/* ── Slide 11: Go / No-Go ── */
 function slideGoNoGo(c) {
   c.appendChild(sEl("div","schart-title","Rule 5 failure list — conditions that make the deal unworkable"));
   const cw = sWrap("schart-wrap");
