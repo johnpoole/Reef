@@ -345,6 +345,22 @@
     .gono-tbl .cond-col { color: #d0e0f0; } .gono-tbl .thresh-col { color: #7a9ab5; font-size: 12px; }
     .signal-stop { color: #e05040; font-weight: 700; } .signal-warn { color: #d4b040; font-weight: 700; } .signal-pend { color: #7ab5d8; font-weight: 700; }
 
+    /* ── Photo slide ── */
+    .sphoto-hero { position: relative; width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 12px; background: #0d1621; }
+    .sphoto-hero-img { width: 100%; max-height: 260px; object-fit: cover; object-position: center 60%; display: block; }
+    .sphoto-caption { font-size: 10px; color: #5a7a94; text-transform: uppercase; letter-spacing: .6px; padding: 6px 10px; background: #0d1621; }
+    .sphoto-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 14px; }
+    .sphoto-grid a { display: block; border-radius: 5px; overflow: hidden; }
+    .sphoto-grid img { width: 100%; height: 72px; object-fit: cover; display: block; transition: opacity .2s; }
+    .sphoto-grid a:hover img { opacity: .8; }
+    .sphoto-links { background: #141e2a; border: 1px solid #1e3048; border-radius: 8px; padding: 14px 16px; }
+    .sphoto-links-title { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #5a7a94; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #1e3048; font-weight: 700; }
+    .sphoto-link-row { display: flex; align-items: baseline; gap: 10px; padding: 5px 0; border-bottom: 1px solid #1a2838; }
+    .sphoto-link-row:last-child { border-bottom: none; }
+    .sphoto-link-num { font-size: 10px; color: #4a6a80; width: 14px; flex-shrink: 0; text-align: right; }
+    .sphoto-link { font-size: 12.5px; color: #7ab5d8; text-decoration: none; word-break: break-all; }
+    .sphoto-link:hover { color: #b0d8f0; text-decoration: underline; }
+
     /* ── Stats bar ── */
     #stats-bar {
       position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
@@ -1158,16 +1174,17 @@ let presentationReady = false;
 
 const SLIDES = [
   { num:"01", sect:"THE PROPERTY",       sub:"What is The Reef?",                                    fn: slideProperty   },
-  { num:"02", sect:"ACQUISITION TYPE",   sub:"This is a Conversion \u2014 not a Going Concern",           fn: slideConversion },
-  { num:"03", sect:"THE PENCLAVE",        sub:"Domestic isolation via foreign intermediation",        fn: slidePenclave   },
-  { num:"04", sect:"ADDRESSABLE MARKET", sub:"Who can actually get here?",                            fn: slideMarket     },
-  { num:"05", sect:"BORDER RISK",         sub:"When the border closes, 80% of revenue disappears",   fn: slideClosure    },
-  { num:"06", sect:"THE SEASON",          sub:"Revenue lives in 13 weeks",                            fn: slideSeason     },
-  { num:"07", sect:"COST STACK",          sub:"Build costs first \u2014 revenue is what covers them",     fn: slideCosts      },
-  { num:"08", sect:"AUTOMATION",          sub:"The penclave makes automation capital \u2014 not compromise", fn: slideAutomation },
-  { num:"09", sect:"BREAK-EVEN",          sub:"How many members does it take?",                       fn: slideBreakeven  },
-  { num:"10", sect:"CAPITAL REQUIRED",   sub:"Total outlay before first dollar of revenue",          fn: slideCapital    },
-  { num:"11", sect:"GO / NO-GO",          sub:"The conditions that kill the deal",                    fn: slideGoNoGo     },
+  { num:"02", sect:"THE REEF — PHOTOS",  sub:"Existing building, patio & waterfront — MLS\u00ae #2477253", fn: slidePhotos     },
+  { num:"03", sect:"ACQUISITION TYPE",   sub:"This is a Conversion \u2014 not a Going Concern",           fn: slideConversion },
+  { num:"04", sect:"THE PENCLAVE",        sub:"Domestic isolation via foreign intermediation",        fn: slidePenclave   },
+  { num:"05", sect:"ADDRESSABLE MARKET", sub:"Who can actually get here?",                            fn: slideMarket     },
+  { num:"06", sect:"BORDER RISK",         sub:"When the border closes, 80% of revenue disappears",   fn: slideClosure    },
+  { num:"07", sect:"THE SEASON",          sub:"Revenue lives in 13 weeks",                            fn: slideSeason     },
+  { num:"08", sect:"COST STACK",          sub:"Build costs first \u2014 revenue is what covers them",     fn: slideCosts      },
+  { num:"09", sect:"AUTOMATION",          sub:"The penclave makes automation capital \u2014 not compromise", fn: slideAutomation },
+  { num:"10", sect:"BREAK-EVEN",          sub:"How many members does it take?",                       fn: slideBreakeven  },
+  { num:"11", sect:"CAPITAL REQUIRED",   sub:"Total outlay before first dollar of revenue",          fn: slideCapital    },
+  { num:"12", sect:"GO / NO-GO",          sub:"The conditions that kill the deal",                    fn: slideGoNoGo     },
 ];
 
 function initPresentation() {
@@ -1276,7 +1293,68 @@ function slideProperty(c) {
     .text(d=>"$"+(d.val/1000).toFixed(0)+"K");
 }
 
-/* ── Slide 2: Conversion ── */
+/* ── Slide 2: Photos ── */
+function slidePhotos(c) {
+  // Hero — featured listing photo (patio / waterfront)
+  const hero = sWrap("sphoto-hero");
+  const heroImg = document.createElement("img");
+  heroImg.src = "https://cdn.listingphotos.sierrastatic.com/pics3x/v1770342736/152/152_2477253_01.jpg";
+  heroImg.alt = "The Reef — waterfront view, 1334 Gulf Rd, Point Roberts WA";
+  heroImg.className = "sphoto-hero-img";
+  hero.appendChild(heroImg);
+  const cap = sEl("div", "sphoto-caption", "Kiniski\u2019s Reef Tavern \u00b7 1334 Gulf Rd, Point Roberts WA 98281 \u00b7 MLS\u00ae #2477253 \u00b7 Listed \u00a0 $1,375,000");
+  hero.appendChild(cap);
+  c.appendChild(hero);
+
+  // Thumbnail strip — photos 02-05 (confirmed CDN URLs)
+  const THUMBS = [
+    { n:"02", v:"v1770342768" },
+    { n:"03", v:"v1770342769" },
+    { n:"04", v:"v1770342770" },
+    { n:"05", v:"v1770342771" },
+  ];
+  const grid = sEl("div", "sphoto-grid");
+  THUMBS.forEach(t => {
+    const base = `https://cdn.listingphotos.sierrastatic.com/pics1x/${t.v}/152/152_2477253_${t.n}.jpg`;
+    const a = document.createElement("a");
+    a.href = base; a.target = "_blank"; a.rel = "noopener";
+    const img = document.createElement("img");
+    img.src = base; img.alt = `Photo ${t.n}`;
+    a.appendChild(img);
+    grid.appendChild(a);
+  });
+  c.appendChild(grid);
+
+  // Links section
+  const lw = sEl("div", "sphoto-links");
+  lw.appendChild(sEl("div", "sphoto-links-title", "Listing sources \u2014 38 photos available"));
+  const LINKS = [
+    { href: "https://www.washingtonwaterfronts.com/property/1334-gulf-rd-point-roberts-wa-98281/pid-15151627/",
+      label: "Washington Waterfronts \u2014 full gallery (38 photos), MLS\u00ae #2477253" },
+    { href: "https://www.loopnet.com/Listing/1334-Gulf-Rd-Point-Roberts-WA/32585395/",
+      label: "LoopNet commercial listing #32585395" },
+    { href: "https://www.kiniskisreef.com/",
+      label: "kiniskisreef.com \u2014 official bar website" },
+    { href: "https://www.kiniskisreef.com/private_events.html",
+      label: "kiniskisreef.com/private_events \u2014 events & patio photos" },
+    { href: "https://m.yelp.com/biz/kiniskis-reef-tavern-point-roberts",
+      label: "Yelp \u2014 Kiniski\u2019s Reef Tavern reviews & photos" },
+    { href: "https://www.tripadvisor.ca/Restaurant_Review-g58681-d4375086-Reviews-Kiniski_s_Reef_Tavern-Point_Roberts_Washington.html",
+      label: "TripAdvisor \u2014 Kiniski\u2019s Reef Tavern" },
+  ];
+  LINKS.forEach((lk, i) => {
+    const row = sEl("div", "sphoto-link-row");
+    row.appendChild(sEl("span", "sphoto-link-num", String(i + 1)));
+    const a = document.createElement("a");
+    a.href = lk.href; a.target = "_blank"; a.rel = "noopener";
+    a.className = "sphoto-link"; a.textContent = lk.label;
+    row.appendChild(a);
+    lw.appendChild(row);
+  });
+  c.appendChild(lw);
+}
+
+/* ── Slide 3: Conversion ── */
 function slideConversion(c) {
   const cols = sWrap("s2col");
   const buying = sWrap("s2col-card dim");
