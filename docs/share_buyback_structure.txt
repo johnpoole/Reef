@@ -1,0 +1,86 @@
+Yes. What you are describing is usually handled with **shareholder agreement / unanimous shareholder agreement (USA)** transfer provisions plus a **buy-sell / liquidity mechanism**.
+
+## Common agreement structures that match your goal
+
+### 1) Right of First Refusal (ROFR) + “market test” + fallback buyout
+
+**How it works**
+
+* A shareholder who wants liquidity must first try to sell to a third party (a defined “market test”: minimum time, approved broker/process, minimum price, etc.).
+* If they get a bona fide offer, the company and/or other shareholders get the right to buy **on the same terms** (ROFR). ([queenslawclinics.ca][1])
+* If no third-party sale closes by a deadline (or no acceptable offer is received), a **fallback** triggers:
+
+  * company redemption (buyback), or
+  * mandatory purchase by other shareholders, or
+  * a company-led secondary (see #4).
+
+**How you implement “based on what price they could not sell for”**
+
+* Define “Failed Sale Price” as either:
+
+  * the highest bona fide third-party offer received during the market test, or
+  * the shareholder’s minimum asking price if the process met defined requirements (often harder to justify), or
+  * an appraised/fair-market-value price via a valuator (more defensible).
+* Then the fallback buyout price is set to the “Failed Sale Price” (sometimes with a discount or cap).
+
+### 2) Put option / redemption right (seller can force liquidity)
+
+This is the cleanest “if I can’t sell, someone must buy” tool.
+
+**How it works**
+
+* After a market test (or after a holding period), the shareholder gets a **put right**: they can require the company (or other shareholders) to purchase their shares.
+* Price is set by a formula, appraisal, or a defined reference transaction.
+
+This is not unusual conceptually; it is just negotiated hard because it creates a contingent liquidity obligation for the company.
+
+### 3) Shotgun (“buy-sell”) clause (price-setting mechanism)
+
+If your core need is a **set price mechanism** that forces a transaction, the classic tool is a shotgun clause.
+
+**How it works**
+
+* One shareholder names a price per share.
+* The other side must choose to **buy** the offeror’s shares or **sell** their own shares at that same price. ([MNP.ca][2])
+
+This doesn’t require a third-party buyer at all; it creates an internal forced market. It can be adapted so the “shotgun price” is anchored to a failed external sale attempt (e.g., “price equals the highest bona fide third-party offer during the last 90 days”).
+
+### 4) Company-led tender offers / internal secondary programs (periodic liquidity windows)
+
+This is common in private companies with many holders (employees, early investors).
+
+**How it works**
+
+* The company periodically runs a **tender offer** or structured secondary transaction where eligible holders can sell a set amount at a predetermined price. ([Carta][3])
+
+This is operationally heavier, but it avoids one-off disputes about whether the shareholder “really tried” to sell.
+
+## Your specific “buy other shares at a set price if I can’t sell mine”
+
+That exact swap is not a standard default clause, but it can be drafted as a **forced internal exchange** using familiar building blocks:
+
+* Run a **market test + ROFR** first (proves the price). ([Kelly Santini LLP][4])
+* If the sale fails, trigger either:
+
+  * a **put** (company/others must buy the shares at the “Failed Sale Price”), or
+  * a **shotgun-style election** where the liquidity-seeking holder can instead buy an equivalent value of other shareholders’ shares at the same per-share price (requires careful limits + funding proof + minority protections). ([MNP.ca][2])
+
+Practically, most agreements choose “failed sale → mandatory buyout” rather than “failed sale → right to buy others,” because the latter can be coercive unless tightly constrained (who must sell, pro-rata mechanics, financing timelines, oppression/minority protections, etc.). ([Canadian Bar Association][5])
+
+## Key drafting decisions (the parts that make or break it)
+
+* **What counts as a valid market test** (time, marketing steps, offer form, arm’s-length requirement).
+* **Price definition** (highest bona fide offer vs. appraisal vs. formula). ([Virtus Group][6])
+* **Who is the buyer of last resort** (company redemption vs. pro-rata shareholders vs. specific holders).
+* **Payment terms** (cash vs. promissory note; interest; security; installment schedule).
+* **Caps/solvency limits** if the company is the buyer (corporate law constraints vary by jurisdiction).
+* **Minority protections** if using shotgun or forced sales (courts focus on fairness/reasonable expectations). ([Canadian Bar Association][5])
+
+If you tell me the jurisdiction (Canada province / US state) and whether this is a closely held operating company vs. a venture-backed cap table, I can map your requirement to a concrete clause structure (defined terms + trigger sequence + pricing waterfall) in the format typically used in a shareholder agreement.
+
+[1]: https://queenslawclinics.ca/node/80?utm_source=chatgpt.com "Shareholder Agreements - The Basics"
+[2]: https://www.mnp.ca/en/insights/directory/shareholders-beware-does-your-buy-sell-clause-set-a-fair-price?utm_source=chatgpt.com "Does Your Buy-Sell Clause Set a Fair Price?"
+[3]: https://carta.com/learn/equity/liquidity-events/tender-offer/?utm_source=chatgpt.com "What is a Tender Offer? How It Works & Tax Treatment"
+[4]: https://kellysantini.com/articles/shareholder-agreement-essentials-buy-out-clauses/?utm_source=chatgpt.com "Shareholder Agreement Essentials: Buy-Out Clauses"
+[5]: https://cba.org/sections/business-law/member-articles/s-agenforceability-considerations-for-shareholderreements/?utm_source=chatgpt.com "Enforceability considerations for shareholders' agreements"
+[6]: https://virtusgroup.ca/virtus-insights/business-valuations/shareholders-agreement-impact-on-value/?utm_source=chatgpt.com "Shareholder Agreements and their impact on value"

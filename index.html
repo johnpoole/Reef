@@ -226,6 +226,101 @@
     .legend-item { display: flex; align-items: center; gap: 7px; margin-bottom: 4px; color: #b0c4d8; }
     .legend-dot  { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
+    /* ── PRESENTATION TAB ── */
+    body.presentation-mode #sidebar { width: 100%; max-width: 100%; }
+    body.presentation-mode #map,
+    body.presentation-mode #stats-bar,
+    body.presentation-mode #legend { display: none !important; }
+
+    #presentation-panel { flex: 1; flex-direction: column; overflow: hidden; }
+
+    #slide-header {
+      padding: 18px 48px 14px;
+      border-bottom: 1px solid #1e3048;
+      flex-shrink: 0;
+    }
+    #slide-title {
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: #f0c040; font-weight: 700; margin-bottom: 5px;
+    }
+    #slide-subtitle {
+      font-size: 20px; font-weight: 700; color: #e8eaed; line-height: 1.25;
+    }
+    #slide-viz {
+      flex: 1; overflow-y: auto; padding: 20px 48px 12px;
+      transition: opacity 0.15s ease;
+      scrollbar-width: thin; scrollbar-color: #263545 transparent;
+    }
+    #slide-viz::-webkit-scrollbar { width: 5px; }
+    #slide-viz::-webkit-scrollbar-thumb { background: #263545; border-radius: 3px; }
+
+    #slide-nav {
+      height: 52px; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 48px;
+      border-top: 1px solid #1e3048; flex-shrink: 0;
+    }
+    .slide-nav-btn {
+      background: #1a2a3a; border: 1px solid #263a50; color: #7ab5d8;
+      font-size: 16px; width: 34px; height: 34px; border-radius: 6px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all .15s; flex-shrink: 0;
+    }
+    .slide-nav-btn:hover:not(:disabled) { background: #263a50; color: #e8eaed; }
+    .slide-nav-btn:disabled { opacity: 0.3; cursor: default; }
+    #slide-counter { font-size: 12px; color: #5a7a94; min-width: 44px; text-align: center; flex-shrink: 0; }
+    #slide-dots { display: flex; gap: 7px; flex: 1; justify-content: center; align-items: center; }
+    .slide-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: #263545;
+      cursor: pointer; transition: all .15s; border: none; padding: 0;
+    }
+    .slide-dot.active { background: #f0c040; transform: scale(1.5); }
+    .slide-dot:hover:not(.active) { background: #4a6a80; }
+
+    /* slide content components */
+    .sstat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 14px; }
+    .sstat { background: #141e2a; border: 1px solid #1e3048; border-radius: 8px; padding: 14px 16px; }
+    .sstat .sv { font-size: 20px; font-weight: 700; color: #e8eaed; }
+    .sstat .sk { font-size: 11px; color: #5a7a94; margin-top: 3px; }
+    .sstat.s-hi  { border-color: #f0c040; } .sstat.s-hi .sv  { color: #f0c040; }
+    .sstat.s-warn{ border-color: #e07840; } .sstat.s-warn .sv{ color: #e07840; }
+    .sstat.s-ok  { border-color: #4caf50; } .sstat.s-ok .sv  { color: #4caf50; }
+
+    .schart-wrap { background: #141e2a; border: 1px solid #1e3048; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px; }
+    .schart-title { font-size: 11px; color: #5a7a94; font-weight: 600; margin-bottom: 12px; text-transform: uppercase; letter-spacing: .6px; }
+    .snote { font-size: 12px; color: #4a6a80; margin-top: 8px; line-height: 1.6; }
+
+    .s2col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+    .s2col-card { background: #141e2a; border: 1px solid #1e3048; border-radius: 8px; padding: 14px 16px; }
+    .s2col-card h4 { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-weight: 700; padding-bottom: 6px; border-bottom: 1px solid #1e3048; }
+    .s2col-card.dim h4 { color: #4a6a80; } .s2col-card.bright { border-color: #2a5040; } .s2col-card.bright h4 { color: #4caf50; }
+    .s2col-row { padding: 5px 0; font-size: 12px; color: #8090a0; border-bottom: 1px solid #1a2838; line-height: 1.45; }
+    .s2col-row:last-child { border-bottom: none; }
+    .s2col-card.bright .s2col-row { color: #b0c8b0; }
+
+    .shighlight { background: rgba(240,192,64,.07); border: 1px solid rgba(240,192,64,.25); border-radius: 8px; padding: 12px 16px; margin: 10px 0; font-size: 13px; color: #d0a840; line-height: 1.6; }
+    .srisk      { background: rgba(224,80,64,.07);  border: 1px solid rgba(224,80,64,.25);  border-radius: 8px; padding: 12px 16px; margin: 10px 0; font-size: 13px; color: #c07060; line-height: 1.6; }
+    .sbold { color: #e8eaed; font-weight: 700; }
+
+    .penclave-diagram { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+    .pcl-side { background: #141e2a; border: 1px solid #1e3048; border-radius: 8px; padding: 16px; text-align: center; }
+    .pcl-side.us-side { border-color: #3a2818; } .pcl-side.ca-side { border-color: #1a3828; }
+    .pcl-big { font-size: 52px; font-weight: 900; line-height: 1; margin: 8px 0; }
+    .pcl-side.us-side .pcl-big { color: #e07840; } .pcl-side.ca-side .pcl-big { color: #4caf50; }
+    .pcl-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .pcl-side.us-side .pcl-label { color: #a06040; } .pcl-side.ca-side .pcl-label { color: #4a9060; }
+    .pcl-desc { font-size: 12px; color: #6080a0; line-height: 1.5; margin-top: 6px; }
+    .pcl-steps { display: flex; align-items: center; justify-content: center; gap: 4px; flex-wrap: wrap; margin: 8px 0; font-size: 11px; }
+    .pcl-node { background: #1e2f40; border: 1px solid #2a4050; border-radius: 4px; padding: 3px 8px; color: #7ab5d8; white-space: nowrap; }
+    .pcl-border { background: rgba(224,80,64,.15); border: 1px solid rgba(224,80,64,.4); border-radius: 4px; padding: 3px 8px; color: #e07070; white-space: nowrap; font-weight: 700; }
+    .pcl-arrow { color: #3a5060; font-size: 14px; }
+
+    .gono-tbl { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    .gono-tbl th { text-align: left; padding: 7px 14px; color: #5a7a94; border-bottom: 1px solid #1e3048; font-size: 10px; text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
+    .gono-tbl td { padding: 9px 14px; border-bottom: 1px solid #141e2a; vertical-align: top; }
+    .gono-tbl tr:last-child td { border-bottom: none; }
+    .gono-tbl .cond-col { color: #d0e0f0; } .gono-tbl .thresh-col { color: #7a9ab5; font-size: 12px; }
+    .signal-stop { color: #e05040; font-weight: 700; } .signal-warn { color: #d4b040; font-weight: 700; } .signal-pend { color: #7ab5d8; font-weight: 700; }
+
     /* ── Stats bar ── */
     #stats-bar {
       position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
@@ -251,6 +346,7 @@
   <div id="tab-bar">
     <button class="tab-btn active" data-tab="map-panel">Map</button>
     <button class="tab-btn" data-tab="planning-panel">Planning</button>
+    <button class="tab-btn" data-tab="presentation-panel">Present</button>
   </div>
 
   <!-- ======= MAP TAB ======= -->
@@ -405,6 +501,21 @@
 
     </div><!-- /planning-scroll -->
   </div><!-- /planning-panel -->
+
+  <!-- ======= PRESENTATION TAB ======= -->
+  <div id="presentation-panel" class="tab-panel">
+    <div id="slide-header">
+      <div id="slide-title"></div>
+      <div id="slide-subtitle"></div>
+    </div>
+    <div id="slide-viz"></div>
+    <div id="slide-nav">
+      <button class="slide-nav-btn" id="slide-prev">&#8592;</button>
+      <span id="slide-counter"></span>
+      <div id="slide-dots"></div>
+      <button class="slide-nav-btn" id="slide-next">&#8594;</button>
+    </div>
+  </div><!-- /presentation-panel -->
 
 </div><!-- /sidebar -->
 
@@ -763,12 +874,18 @@ function switchTab(panelId) {
   document.querySelector(`[data-tab="${panelId}"]`).classList.add("active");
 
   if (panelId === "planning-panel") {
-    // Rebuild charts (if container size is now known)
+    document.body.classList.remove("presentation-mode");
     setTimeout(() => {
       if (!document.querySelector("#chart-valuation svg")) buildChartValuation();
       if (!document.querySelector("#chart-fee-floor svg")) buildChartFeeFloor();
       if (!document.querySelector("#chart-revenue svg"))   buildChartRevenue();
     }, 50);
+  } else if (panelId === "presentation-panel") {
+    document.body.classList.add("presentation-mode");
+    if (!presentationReady) initPresentation();
+    else goToSlide(currentSlide);
+  } else {
+    document.body.classList.remove("presentation-mode");
   }
 }
 
@@ -1003,6 +1120,490 @@ function buildStats() {
     <div class="stat-pill">Total assessed <strong>$${(totalAssessed / 1e6).toFixed(1)}M</strong></div>
     <div class="stat-pill">Target: <strong style="color:#f0c040">The Reef $1.375M ask</strong></div>
   `;
+}
+
+/* ─────────────────────────────────────────────────────────
+   PRESENTATION
+───────────────────────────────────────────────────────── */
+let currentSlide = 0;
+let presentationReady = false;
+
+const SLIDES = [
+  { num:"01", sect:"THE PROPERTY",       sub:"What is The Reef?",                                    fn: slideProperty   },
+  { num:"02", sect:"ACQUISITION TYPE",   sub:"This is a Conversion — not a Going Concern",           fn: slideConversion },
+  { num:"03", sect:"THE PENCLAVE",        sub:"Domestic isolation via foreign intermediation",        fn: slidePenclave   },
+  { num:"04", sect:"ADDRESSABLE MARKET", sub:"Who can actually get here?",                            fn: slideMarket     },
+  { num:"05", sect:"BORDER RISK",         sub:"When the border closes, 80% of revenue disappears",   fn: slideClosure    },
+  { num:"06", sect:"THE SEASON",          sub:"Revenue lives in 13 weeks",                            fn: slideSeason     },
+  { num:"07", sect:"COST STACK",          sub:"Build costs first — revenue is what covers them",     fn: slideCosts      },
+  { num:"08", sect:"BREAK-EVEN",          sub:"How many members does it take?",                       fn: slideBreakeven  },
+  { num:"09", sect:"CAPITAL REQUIRED",   sub:"Total outlay before first dollar of revenue",          fn: slideCapital    },
+  { num:"10", sect:"GO / NO-GO",          sub:"The conditions that kill the deal",                    fn: slideGoNoGo     },
+];
+
+function initPresentation() {
+  presentationReady = true;
+  const dotsEl = document.getElementById("slide-dots");
+  dotsEl.innerHTML = "";
+  SLIDES.forEach((_, i) => {
+    const dot = document.createElement("button");
+    dot.className = "slide-dot" + (i === 0 ? " active" : "");
+    dot.addEventListener("click", () => goToSlide(i));
+    dotsEl.appendChild(dot);
+  });
+  document.getElementById("slide-prev").addEventListener("click", () => goToSlide(currentSlide - 1));
+  document.getElementById("slide-next").addEventListener("click", () => goToSlide(currentSlide + 1));
+  document.addEventListener("keydown", e => {
+    if (!document.body.classList.contains("presentation-mode")) return;
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") goToSlide(currentSlide + 1);
+    if (e.key === "ArrowLeft"  || e.key === "ArrowUp")   goToSlide(currentSlide - 1);
+  });
+  goToSlide(0);
+}
+
+function goToSlide(idx) {
+  if (idx < 0 || idx >= SLIDES.length) return;
+  currentSlide = idx;
+  const s = SLIDES[idx];
+  document.getElementById("slide-title").textContent    = s.num + " / " + s.sect;
+  document.getElementById("slide-subtitle").textContent = s.sub;
+  document.getElementById("slide-counter").textContent  = (idx + 1) + " / " + SLIDES.length;
+  document.querySelectorAll(".slide-dot").forEach((d, i) => d.classList.toggle("active", i === idx));
+  document.getElementById("slide-prev").disabled = idx === 0;
+  document.getElementById("slide-next").disabled = idx === SLIDES.length - 1;
+  const viz = document.getElementById("slide-viz");
+  viz.style.opacity = "0";
+  while (viz.firstChild) viz.removeChild(viz.firstChild);
+  d3.select("#slide-viz").selectAll("svg").remove();
+  setTimeout(() => { s.fn(viz); viz.style.opacity = "1"; }, 80);
+}
+
+// helpers
+function sEl(tag, cls, html) {
+  const e = document.createElement(tag);
+  if (cls)  e.className = cls;
+  if (html !== undefined) e.innerHTML = html;
+  return e;
+}
+function sWrap(cls)  { return sEl("div", cls); }
+function sNote(txt)  { return sEl("p",   "snote", txt); }
+function sVizW()     { return (document.getElementById("slide-viz").clientWidth - 96) || 660; }
+
+/* ── Slide 1: The Property ── */
+function slideProperty(c) {
+  const grid = sWrap("sstat-grid");
+  [{ v:"$1,375,000", k:"Asking Price",         cls:"s-hi"  },
+   { v:"$850,965",   k:"Assessed Value",        cls:""     },
+   { v:"+61.6%",     k:"Ask vs Assessed",       cls:"s-warn"},
+   { v:"≤2,500 sqft",k:"Est. Building Area [E]",cls:""     },
+   { v:"Built 1959", k:"Year Built",            cls:""     },
+   { v:"RESORT COMM",k:"Zoning",               cls:"s-ok" }]
+  .forEach(s => { const d = sEl("div","sstat "+s.cls); d.innerHTML=`<div class="sv">${s.v}</div><div class="sk">${s.k}</div>`; grid.appendChild(d); });
+  c.appendChild(grid);
+
+  const cw = sWrap("schart-wrap");
+  cw.appendChild(sEl("div","schart-title","Value component breakdown — where the money actually is"));
+  const cd = sEl("div"); cd.id="sp-chart"; cw.appendChild(cd);
+  cw.appendChild(sNote("[V] Whatcom County 2025 assessed values. Land ($669K) is the load-bearing component — improvements on a 1959 building carry minimal residual structural value. The asking price premium of $524K above assessed reflects the business value and/or seller expectations."));
+  c.appendChild(cw);
+
+  const data = [
+    { label:"Land value",       val:669526,  color:"#4caf50" },
+    { label:"Improvement value",val:181439,  color:"#7ab5d8" },
+    { label:"Total assessed",   val:850965,  color:"#5a7a94" },
+    { label:"Asking price",     val:1375000, color:"#f0c040" },
+  ];
+  const W=sVizW(), H=160, ml=165, mr=90, mt=8, mb=8;
+  const bw=W-ml-mr, bh=H-mt-mb;
+  const x=d3.scaleLinear().domain([0,1500000]).range([0,bw]);
+  const y=d3.scaleBand().domain(data.map(d=>d.label)).range([0,bh]).padding(0.32);
+  const svg=d3.select("#sp-chart").append("svg").attr("width",W).attr("height",H)
+    .append("g").attr("transform",`translate(${ml},${mt})`);
+  svg.selectAll("rect").data(data).join("rect")
+    .attr("y",d=>y(d.label)).attr("height",y.bandwidth()).attr("x",0).attr("width",0).attr("rx",4)
+    .attr("fill",d=>d.color).attr("opacity",0.85)
+    .transition().duration(600).delay((_,i)=>i*100).attr("width",d=>x(d.val));
+  svg.selectAll(".lbl").data(data).join("text").attr("class","lbl")
+    .attr("x",-6).attr("y",d=>y(d.label)+y.bandwidth()/2+4)
+    .attr("text-anchor","end").attr("fill","#8090a0").attr("font-size","11px").text(d=>d.label);
+  svg.selectAll(".val").data(data).join("text").attr("class","val")
+    .attr("x",d=>x(d.val)+6).attr("y",d=>y(d.label)+y.bandwidth()/2+4)
+    .attr("fill",d=>d.color).attr("font-size","11px").attr("font-weight","700")
+    .text(d=>"$"+(d.val/1000).toFixed(0)+"K");
+}
+
+/* ── Slide 2: Conversion ── */
+function slideConversion(c) {
+  const cols = sWrap("s2col");
+  const buying = sWrap("s2col-card dim");
+  buying.innerHTML = `<h4>What you\'re buying</h4>`;
+  ["A 1959 building assessed at $851K",
+   "A bar operating as \"DRINK PLACES\" since ~1959",
+   "Trailing bar revenue (irrelevant to club model)",
+   "Bar customers — none of whom joined a club",
+   "An on-premise liquor license (Class 12 or 14)",
+   "Owner: Nicholas C. Kiniski"
+  ].forEach(r => { const d=sEl("div","s2col-row"); d.textContent=r; buying.appendChild(d); });
+  const building = sWrap("s2col-card bright");
+  building.innerHTML = `<h4>What you\'re building</h4>`;
+  ["A private beach club — purpose-converted",
+   "Year 1: zero members, zero revenue (greenfield)",
+   "New income model: dues + F&B + events",
+   "Members must be recruited from scratch",
+   "Class 6 Private Club license (new application)",
+   "Renovation required: $250K–$500K [E]"
+  ].forEach(r => { const d=sEl("div","s2col-row"); d.textContent=r; building.appendChild(d); });
+  cols.appendChild(buying); cols.appendChild(building); c.appendChild(cols);
+  c.appendChild(sEl("div","shighlight",
+    '<span class="sbold">The bar\'s trailing revenue does not justify club revenue projections.</span> The existing business is only useful for: (a) whether the liquor license transfers to a private club use, (b) what the physical plant costs to operate, and (c) what the seller is actually selling.'));
+  c.appendChild(sEl("div","srisk",
+    '<span class="sbold">Transition risk:</span> Zero revenue during conversion. Carry costs run regardless — debt service + property tax + utilities + insurance for 15–18 months = <span class="sbold">estimated $150–200K [E]</span> before the first member walks in.'));
+}
+
+/* ── Slide 3: Penclave ── */
+function slidePenclave(c) {
+  const d = sWrap("penclave-diagram");
+  const us = sWrap("pcl-side us-side");
+  us.innerHTML = `
+    <div class="pcl-label">US Member — Bellingham WA</div>
+    <div class="pcl-big">4×</div>
+    <div class="pcl-desc">border crossings per round trip</div>
+    <div class="pcl-steps">
+      <span class="pcl-node">WA mainland</span><span class="pcl-arrow">→</span>
+      <span class="pcl-border">BORDER</span><span class="pcl-arrow">→</span>
+      <span class="pcl-node">Canada</span><span class="pcl-arrow">→</span>
+      <span class="pcl-border">BORDER</span><span class="pcl-arrow">→</span>
+      <span class="pcl-node">Point Roberts</span>
+    </div>
+    <div class="pcl-steps">
+      <span class="pcl-node">Point Roberts</span><span class="pcl-arrow">→</span>
+      <span class="pcl-border">BORDER</span><span class="pcl-arrow">→</span>
+      <span class="pcl-node">Canada</span><span class="pcl-arrow">→</span>
+      <span class="pcl-border">BORDER</span><span class="pcl-arrow">→</span>
+      <span class="pcl-node">WA mainland</span>
+    </div>
+    <div class="pcl-desc" style="margin-top:8px">2–5 hrs total travel in summer</div>`;
+  const ca = sWrap("pcl-side ca-side");
+  ca.innerHTML = `
+    <div class="pcl-label">Canadian Member — Tsawwassen BC</div>
+    <div class="pcl-big">1×</div>
+    <div class="pcl-desc">border crossing per round trip</div>
+    <div class="pcl-steps">
+      <span class="pcl-node">Tsawwassen BC</span><span class="pcl-arrow">→</span>
+      <span class="pcl-border">BORDER</span><span class="pcl-arrow">→</span>
+      <span class="pcl-node">Point Roberts</span>
+    </div>
+    <div class="pcl-steps" style="margin-top:6px">
+      <span class="pcl-node">20,933 people</span>
+      <span class="pcl-arrow">·</span>
+      <span class="pcl-node">5–10 min drive</span>
+    </div>
+    <div class="pcl-desc" style="margin-top:8px;color:#3a8060">Most accessible market = foreign nationals</div>`;
+  d.appendChild(us); d.appendChild(ca); c.appendChild(d);
+  c.appendChild(sEl("div","shighlight",
+    '<span class="sbold">Key implication:</span> US membership is a secondary market. 4 crossings per round trip + 30–90 min peak wait times each direction = up to 5 hours of travel for a beach club visit. US members will visit far less frequently than any non-penclave comparable. Do not use mainland club visit-frequency assumptions.'));
+  const cw = sWrap("schart-wrap");
+  cw.appendChild(sEl("div","schart-title","Other structural dependencies"));
+  const rows = [
+    ["Water supply",    "Sourced from Greater Vancouver Water District (Delta, BC) — confirmed [V]"],
+    ["Supply chain",    "Every delivery through Canadian customs. +8–15% COGS premium [E]"],
+    ["Fire coverage",   "Volunteer fire dept + Delta Fire Dept cross-border assistance [V]"],
+    ["Local labor",     "Year-round population: 1,191 (median age 52.7). Not a hospitality labor pool."],
+    ["Real estate exit","Buyer pool limited to penclave-accepting purchasers. Suppressed floor value."],
+  ];
+  const tbl = sEl("table","gono-tbl");
+  rows.forEach(([dep, note]) => {
+    const tr = sEl("tr");
+    tr.innerHTML = `<td class="cond-col" style="width:150px;font-size:12px">${dep}</td><td class="thresh-col">${note}</td>`;
+    tbl.appendChild(tr);
+  });
+  cw.appendChild(tbl); c.appendChild(cw);
+}
+
+/* ── Slide 4: Addressable Market ── */
+function slideMarket(c) {
+  const cw = sWrap("schart-wrap");
+  cw.appendChild(sEl("div","schart-title","Addressable market by segment — population and access friction"));
+  const cd = sEl("div"); cd.id="sm-chart"; cw.appendChild(cd);
+  cw.appendChild(sNote("[V] Statistics Canada 2021, US Census 2020. Tier 1 = directly adjacent, 1 crossing, ≤20 min. Tier 2 = 1 crossing but competing with border-free local beaches. US = 4 crossings per visit."));
+  c.appendChild(cw);
+  const segs = [
+    { label:"Metro Van (Tier 2)",   pop:1700000, type:"ca-far"  },
+    { label:"Vancouver city",       pop: 675000, type:"ca-far"  },
+    { label:"Surrey",               pop: 590000, type:"ca-far"  },
+    { label:"Whatcom Co. US",       pop: 230000, type:"us"      },
+    { label:"Richmond BC",          pop: 232000, type:"ca-far"  },
+    { label:"White Rock / S Surrey",pop: 110000, type:"ca-near" },
+    { label:"Ladner",               pop:  21112, type:"ca-near" },
+    { label:"Tsawwassen",           pop:  20933, type:"ca-near" },
+  ].sort((a,b) => b.pop - a.pop);
+  const colors = { "ca-near":"#4caf50", "ca-far":"rgba(74,175,80,0.35)", "us":"#e07840" };
+  const W=sVizW(), H=280, ml=185, mr=95, mt=12, mb=10;
+  const bw=W-ml-mr, bh=H-mt-mb;
+  const x=d3.scaleLinear().domain([0,d3.max(segs,d=>d.pop)]).range([0,bw]);
+  const y=d3.scaleBand().domain(segs.map(d=>d.label)).range([0,bh]).padding(0.3);
+  const svg=d3.select("#sm-chart").append("svg").attr("width",W).attr("height",H)
+    .append("g").attr("transform",`translate(${ml},${mt})`);
+  const nearLabels=segs.filter(d=>d.type==="ca-near").map(d=>d.label);
+  if (nearLabels.length) {
+    const y0=y(nearLabels[0]), y1=y(nearLabels[nearLabels.length-1])+y.bandwidth();
+    svg.append("rect").attr("x",-ml+8).attr("width",bw+ml-8).attr("y",y0-5).attr("height",y1-y0+10)
+      .attr("fill","rgba(76,175,80,0.07)").attr("rx",3);
+    svg.append("text").attr("x",bw+6).attr("y",(y0+y1)/2+4)
+      .attr("fill","#4caf50").attr("font-size","10px").attr("font-weight","700").text("Tier 1");
+  }
+  svg.selectAll("rect.bar").data(segs).join("rect").attr("class","bar")
+    .attr("y",d=>y(d.label)).attr("height",y.bandwidth())
+    .attr("x",0).attr("width",0).attr("rx",3)
+    .attr("fill",d=>colors[d.type]).attr("opacity",0.9)
+    .transition().duration(700).delay((_,i)=>i*70).attr("width",d=>x(d.pop));
+  svg.selectAll(".lbl").data(segs).join("text").attr("class","lbl")
+    .attr("x",-6).attr("y",d=>y(d.label)+y.bandwidth()/2+4)
+    .attr("text-anchor","end").attr("fill","#7090a8").attr("font-size","11px").text(d=>d.label);
+  svg.selectAll(".popval").data(segs).join("text").attr("class","popval")
+    .attr("x",d=>x(d.pop)+6).attr("y",d=>y(d.label)+y.bandwidth()/2+4)
+    .attr("fill",d=>colors[d.type]).attr("font-size","11px").attr("font-weight","600")
+    .text(d=>d.pop>=1e6?(d.pop/1e6).toFixed(1)+"M":(d.pop/1000).toFixed(0)+"K");
+  c.appendChild(sEl("div","shighlight",
+    '<span class="sbold">Primary realistic market:</span> ~152K people (Tier 1 Canadian) within 20 min + 1 crossing. <span class="sbold">US addressable:</span> ~30K realistic candidates from Whatcom County — highly friction-limited. Model <em>must</em> show the scenario where Canadian demand drops 30% (2025 tariff baseline, documented).'));
+}
+
+/* ── Slide 5: Border Risk ── */
+function slideClosure(c) {
+  const grid = sWrap("sstat-grid");
+  [{ v:"17 months", k:"Border closure, March 2020 – Aug 2021 [V]",   cls:"s-warn" },
+   { v:"–80%",     k:"Point Roberts business revenue lost [V]",       cls:"s-warn" },
+   { v:"–30%",     k:"Canadian visitors, 2025 tariff event [V]",      cls:"s-warn" }]
+  .forEach(s => { const d=sEl("div","sstat "+s.cls); d.innerHTML=`<div class="sv">${s.v}</div><div class="sk">${s.k}</div>`; grid.appendChild(d); });
+  c.appendChild(grid);
+  const cw = sWrap("schart-wrap");
+  cw.appendChild(sEl("div","schart-title","Point Roberts revenue capacity over time (schematic)"));
+  const cd = sEl("div"); cd.id="sc-chart"; cw.appendChild(cd);
+  cw.appendChild(sNote("[V] Border closure March 2020–August 2021 (Wikipedia, CBC News). \"Ghost town\" — 80% revenue loss (local chamber of commerce, CBC Sep 2020). Feb 2021: Canada waived COVID testing for PR residents after WA state negotiations. 2025 tariff events: Guardian June 2025."));
+  c.appendChild(cw);
+  const pts = [
+    {t:0,  rev:100},{t:1,  rev:100},
+    {t:1.24,rev:100},{t:1.26,rev:20},
+    {t:1.6, rev:22},{t:2.1, rev:26},
+    {t:2.58,rev:26},{t:2.62,rev:78},
+    {t:3,  rev:88},{t:4,  rev:100},
+    {t:5.24,rev:100},{t:5.26,rev:70},
+    {t:6,  rev:70},
+  ];
+  const W=sVizW(), H=190, ml=36, mr=16, mt=12, mb=28;
+  const bw=W-ml-mr, bh=H-mt-mb;
+  const x=d3.scaleLinear().domain([0,6]).range([0,bw]);
+  const y=d3.scaleLinear().domain([0,115]).range([bh,0]);
+  const svg=d3.select("#sc-chart").append("svg").attr("width",W).attr("height",H)
+    .append("g").attr("transform",`translate(${ml},${mt})`);
+  svg.append("rect").attr("x",x(1.24)).attr("width",x(2.62)-x(1.24)).attr("y",0).attr("height",bh).attr("fill","rgba(224,80,64,0.1)");
+  svg.append("text").attr("x",(x(1.24)+x(2.62))/2).attr("y",bh-4).attr("text-anchor","middle").attr("fill","#e05040").attr("font-size","10px").attr("font-weight","700").text("17 MONTHS CLOSED");
+  svg.append("rect").attr("x",x(5.24)).attr("width",bw-x(5.24)).attr("y",0).attr("height",bh).attr("fill","rgba(212,176,64,0.1)");
+  svg.append("text").attr("x",(x(5.24)+bw)/2-8).attr("y",14).attr("text-anchor","middle").attr("fill","#d4b040").attr("font-size","9px").text("tariffs");
+  const area=d3.area().x(d=>x(d.t)).y0(bh).y1(d=>y(d.rev)).curve(d3.curveMonotoneX);
+  svg.append("path").datum(pts).attr("fill","rgba(76,175,80,0.12)").attr("d",area);
+  const ln=d3.line().x(d=>x(d.t)).y(d=>y(d.rev)).curve(d3.curveMonotoneX);
+  const p=svg.append("path").datum(pts).attr("fill","none").attr("stroke","#4caf50").attr("stroke-width",2).attr("d",ln);
+  const len=p.node().getTotalLength();
+  p.attr("stroke-dasharray",len).attr("stroke-dashoffset",len).transition().duration(1200).attr("stroke-dashoffset",0);
+  const years=["2019","2020","2021","2022","2023","2024","2025","2026"];
+  years.forEach((yr,i) => svg.append("text").attr("x",x(i)).attr("y",bh+14).attr("text-anchor","middle").attr("fill","#5a7a94").attr("font-size","10px").text(yr));
+  svg.append("g").call(d3.axisLeft(y).ticks(4).tickFormat(d=>d+"%")).selectAll("text").attr("fill","#5a7a94").attr("font-size","10px");
+  svg.selectAll(".domain,.tick line").attr("stroke","#1e3048");
+  c.appendChild(sEl("div","srisk",
+    '<span class="sbold">This is not a tail risk — it is a documented recent event.</span> A border closure happened and lasted 17 months. Any financial model must include a closure scenario. Estimate: <span class="sbold">$700K–$1M cash reserve required [E]</span> to survive an 18-month closure at near-zero Canadian revenue.'));
+}
+
+/* ── Slide 6: The Season ── */
+function slideSeason(c) {
+  const cw = sWrap("schart-wrap");
+  cw.appendChild(sEl("div","schart-title","Monthly revenue potential vs. fixed cost floor (relative %)"));
+  const cd = sEl("div"); cd.id="ss-chart"; cw.appendChild(cd);
+  cw.appendChild(sNote("[E] Revenue profile from Delta/Tsawwassen climate normals (Environment Canada 1981–2010). Beach weather (≥19°C avg high, low rain) = mid-June through mid-September ≈ 13 weeks. Cost floor = fixed charges (debt, labor overhead, tax, insurance) as % of peak revenue capacity — runs year-round."));
+  c.appendChild(cw);
+  const mos = [{m:"Jan",r:8},{m:"Feb",r:8},{m:"Mar",r:12},{m:"Apr",r:18},{m:"May",r:32},
+               {m:"Jun",r:62},{m:"Jul",r:100},{m:"Aug",r:98},{m:"Sep",r:60},
+               {m:"Oct",r:22},{m:"Nov",r:10},{m:"Dec",r:8}];
+  const beach=["Jun","Jul","Aug","Sep"], cf=50;
+  const W=sVizW(), H=200, ml=40, mr=10, mt=14, mb=28;
+  const bw=W-ml-mr, bh=H-mt-mb;
+  const x=d3.scaleBand().domain(mos.map(d=>d.m)).range([0,bw]).padding(0.2);
+  const y=d3.scaleLinear().domain([0,115]).range([bh,0]);
+  const svg=d3.select("#ss-chart").append("svg").attr("width",W).attr("height",H)
+    .append("g").attr("transform",`translate(${ml},${mt})`);
+  const bx0=x("Jun"), bx1=x("Sep")+x.bandwidth();
+  svg.append("rect").attr("x",bx0-2).attr("width",bx1-bx0+4).attr("y",-4).attr("height",bh+4).attr("fill","rgba(240,192,64,0.07)").attr("rx",3);
+  svg.append("text").attr("x",(bx0+bx1)/2).attr("y",-1).attr("text-anchor","middle").attr("fill","#f0c040").attr("font-size","9px").attr("font-weight","700").text("← 13-week beach season →");
+  svg.selectAll("rect.bar").data(mos).join("rect").attr("class","bar")
+    .attr("x",d=>x(d.m)).attr("width",x.bandwidth())
+    .attr("y",bh).attr("height",0).attr("rx",2)
+    .attr("fill",d=>beach.includes(d.m)?"#f0c040":"#3a6080").attr("opacity",0.85)
+    .transition().duration(600).delay((_,i)=>i*50)
+    .attr("y",d=>y(d.r)).attr("height",d=>bh-y(d.r));
+  svg.append("line").attr("x1",0).attr("x2",bw).attr("y1",y(cf)).attr("y2",y(cf)).attr("stroke","#e05040").attr("stroke-width",1.5).attr("stroke-dasharray","4,3");
+  svg.append("text").attr("x",bw+4).attr("y",y(cf)+4).attr("fill","#e05040").attr("font-size","9px").text("costs");
+  svg.append("g").attr("transform",`translate(0,${bh})`).call(d3.axisBottom(x)).selectAll("text").attr("fill","#5a7a94").attr("font-size","10px");
+  svg.append("g").call(d3.axisLeft(y).ticks(4).tickFormat(d=>d+"%")).selectAll("text").attr("fill","#5a7a94").attr("font-size","10px");
+  svg.selectAll(".domain,.tick line").attr("stroke","#1e3048");
+  c.appendChild(sEl("div","shighlight",
+    '<span class="sbold">Critical structure:</span> Fixed costs run 12 months. Revenue is concentrated in 13 weeks. The model must be built month-by-month — not as an annual average. The off-season question is: can dues alone cover fixed costs October–May, or does the club need to suspend operations?'));
+}
+
+/* ── Slide 7: Cost Stack ── */
+function slideCosts(c) {
+  const costs = [
+    { label:"Labor (GM + staff)",  low:290000, high:365000, color:"#f0c040" },
+    { label:"F&B COGS (30%)",      low:75000,  high:105000, color:"#7ab5d8" },
+    { label:"Debt service",         low:85000,  high:92000,  color:"#e07840" },
+    { label:"Maintenance/repair",   low:20000,  high:40000,  color:"#5a8a70" },
+    { label:"Utilities",            low:24000,  high:36000,  color:"#5a8a70" },
+    { label:"Insurance",            low:18000,  high:28000,  color:"#5a8a70" },
+    { label:"Property tax",         low:18000,  high:22000,  color:"#5a8a70" },
+    { label:"Admin / legal",        low:15000,  high:25000,  color:"#5a8a70" },
+  ];
+  const tlo=costs.reduce((s,c)=>s+c.low,0), thi=costs.reduce((s,c)=>s+c.high,0);
+  const grid = sWrap("sstat-grid");
+  [{v:"$"+(tlo/1000).toFixed(0)+"K",k:"Annual cost floor [E]",cls:""},{v:"$"+(thi/1000).toFixed(0)+"K",k:"Annual cost ceiling [E]",cls:"s-warn"},{v:"46–52%",k:"Labor share of total costs [E]",cls:""}]
+  .forEach(s => { const d=sEl("div","sstat "+s.cls); d.innerHTML=`<div class="sv">${s.v}</div><div class="sk">${s.k}</div>`; grid.appendChild(d); });
+  c.appendChild(grid);
+  const cw = sWrap("schart-wrap");
+  cw.appendChild(sEl("div","schart-title","Annual cost stack — low (solid) to high (faded) [E]"));
+  const cd = sEl("div"); cd.id="sco-chart"; cw.appendChild(cd);
+  cw.appendChild(sNote("[E] Labor: GM $130–160K + 3 FTE ops staff $50–65K each, +25–40% penclave premium. Debt service: 35% down, $894K loan, 7.5%/20yr. F&B COGS at 30% of estimated $250–350K F&B revenue. Property tax ~1.1% of $850K assessed. Comparable: Mercer Island Beach Club 2024 — salaries = 34% of expenses."));
+  c.appendChild(cw);
+  const W=sVizW(), H=240, ml=170, mr=100, mt=8, mb=8;
+  const bw=W-ml-mr, bh=H-mt-mb;
+  const x=d3.scaleLinear().domain([0,thi*1.05]).range([0,bw]);
+  const y=d3.scaleBand().domain(costs.map(d=>d.label)).range([0,bh]).padding(0.3);
+  const svg=d3.select("#sco-chart").append("svg").attr("width",W).attr("height",H)
+    .append("g").attr("transform",`translate(${ml},${mt})`);
+  svg.selectAll(".bbg").data(costs).join("rect").attr("class","bbg")
+    .attr("y",d=>y(d.label)).attr("height",y.bandwidth())
+    .attr("x",0).attr("width",0).attr("rx",3)
+    .attr("fill",d=>d.color).attr("opacity",0.22)
+    .transition().duration(500).delay((_,i)=>i*60).attr("width",d=>x(d.high));
+  svg.selectAll(".bfg").data(costs).join("rect").attr("class","bfg")
+    .attr("y",d=>y(d.label)).attr("height",y.bandwidth())
+    .attr("x",0).attr("width",0).attr("rx",3)
+    .attr("fill",d=>d.color).attr("opacity",0.85)
+    .transition().duration(500).delay((_,i)=>i*60).attr("width",d=>x(d.low));
+  svg.selectAll(".lbl").data(costs).join("text").attr("class","lbl")
+    .attr("x",-6).attr("y",d=>y(d.label)+y.bandwidth()/2+4)
+    .attr("text-anchor","end").attr("fill","#7090a8").attr("font-size","11px").text(d=>d.label);
+  svg.selectAll(".vr").data(costs).join("text").attr("class","vr")
+    .attr("x",d=>x(d.high)+5).attr("y",d=>y(d.label)+y.bandwidth()/2+4)
+    .attr("fill",d=>d.color).attr("font-size","10px")
+    .text(d=>"$"+(d.low/1000).toFixed(0)+"–"+(d.high/1000).toFixed(0)+"K");
+}
+
+/* ── Slide 8: Break-Even ── */
+function slideBreakeven(c) {
+  const grid = sWrap("sstat-grid");
+  [{v:"52–75",k:"Members to break even @ $6K dues [E]",cls:""},{v:"39–56",k:"Members to break even @ $8K dues [E]",cls:"s-ok"},{v:"77–113",k:"Members to break even @ $4K dues [E]",cls:""}]
+  .forEach(s => { const d=sEl("div","sstat "+s.cls); d.innerHTML=`<div class="sv">${s.v}</div><div class="sk">${s.k}</div>`; grid.appendChild(d); });
+  c.appendChild(grid);
+  const cw = sWrap("schart-wrap");
+  cw.appendChild(sEl("div","schart-title","Annual dues required to cover cost burden vs. member count [E]"));
+  const cd = sEl("div"); cd.id="sbe-chart"; cw.appendChild(cd);
+  cw.appendChild(sNote("[E] Dues burden = total cost stack mid (~$630K) − F&B gross contribution (~$250K) = $380K net burden on dues. Break-even = $380K ÷ member count. Green zone = realistic founding membership range (50–100 members)."));
+  c.appendChild(cw);
+  const burden=380000, mrng=d3.range(20,151,5), pts=mrng.map(m=>({m,d:burden/m}));
+  const W=sVizW(), H=195, ml=58, mr=20, mt=14, mb=32;
+  const bw=W-ml-mr, bh=H-mt-mb;
+  const x=d3.scaleLinear().domain([20,150]).range([0,bw]);
+  const y=d3.scaleLinear().domain([0,d3.max(pts,d=>d.d)*1.1]).range([bh,0]);
+  const svg=d3.select("#sbe-chart").append("svg").attr("width",W).attr("height",H)
+    .append("g").attr("transform",`translate(${ml},${mt})`);
+  svg.append("rect").attr("x",x(50)).attr("width",x(100)-x(50)).attr("y",0).attr("height",bh).attr("fill","rgba(76,175,80,0.1)");
+  svg.append("text").attr("x",(x(50)+x(100))/2).attr("y",12).attr("text-anchor","middle").attr("fill","#4caf50").attr("font-size","9px").attr("font-weight","700").text("viable zone");
+  [[4000,"#7ab5d8"],[6000,"#f0c040"],[8000,"#4caf50"]].forEach(([dues,col]) => {
+    const m=burden/dues;
+    if (m>=20&&m<=150) {
+      svg.append("line").attr("x1",x(m)).attr("x2",x(m)).attr("y1",y(dues)).attr("y2",bh).attr("stroke","#263545").attr("stroke-dasharray","3,2");
+      svg.append("line").attr("x1",0).attr("x2",x(m)).attr("y1",y(dues)).attr("y2",y(dues)).attr("stroke","#263545").attr("stroke-dasharray","3,2");
+      svg.append("circle").attr("cx",x(m)).attr("cy",y(dues)).attr("r",4).attr("fill",col);
+      svg.append("text").attr("x",x(m)+7).attr("y",y(dues)+4).attr("fill",col).attr("font-size","10px").text("$"+(dues/1000)+"K");
+    }
+  });
+  const lf=d3.line().x(d=>x(d.m)).y(d=>y(d.d)).curve(d3.curveCatmullRom);
+  const p=svg.append("path").datum(pts).attr("fill","none").attr("stroke","#f0c040").attr("stroke-width",2).attr("d",lf);
+  const ln=p.node().getTotalLength();
+  p.attr("stroke-dasharray",ln).attr("stroke-dashoffset",ln).transition().duration(900).attr("stroke-dashoffset",0);
+  svg.append("g").attr("transform",`translate(0,${bh})`).call(d3.axisBottom(x).ticks(7)).selectAll("text").attr("fill","#5a7a94").attr("font-size","10px");
+  svg.append("text").attr("x",bw/2).attr("y",bh+28).attr("text-anchor","middle").attr("fill","#5a7a94").attr("font-size","10px").text("Members");
+  svg.append("g").call(d3.axisLeft(y).ticks(5).tickFormat(d=>"$"+Math.round(d/1000)+"K")).selectAll("text").attr("fill","#5a7a94").attr("font-size","10px");
+  svg.selectAll(".domain,.tick line").attr("stroke","#1e3048");
+}
+
+/* ── Slide 9: Capital Required ── */
+function slideCapital(c) {
+  const grid = sWrap("sstat-grid");
+  [{v:"$481K",   k:"Down payment (35% of $1.375M) [G]",      cls:""     },
+   {v:"$375K",   k:"Renovation mid-estimate [G]",             cls:""     },
+   {v:"$175K",   k:"Carry costs (15 months) [E]",             cls:""     },
+   {v:"~$1.03M", k:"Total equity required before revenue",    cls:"s-warn"},
+   {v:"15–18 mo",k:"Months before first revenue [E]",         cls:""     },
+   {v:"$894K",   k:"Loan required (65% LTV) [G]",             cls:""     }]
+  .forEach(s => { const d=sEl("div","sstat "+s.cls); d.innerHTML=`<div class="sv">${s.v}</div><div class="sk">${s.k}</div>`; grid.appendChild(d); });
+  c.appendChild(grid);
+  const cw = sWrap("schart-wrap");
+  cw.appendChild(sEl("div","schart-title","Pre-revenue equity deployment [G/E]"));
+  const cd = sEl("div"); cd.id="scp-chart"; cw.appendChild(cd);
+  cw.appendChild(sNote("[G/E] Down payment assumes 35% (lender confirmation required — OI-08). Renovation: $250–500K range, mid $375K (inspection required — OI-04). Carry: debt service $89K + property tax $20K + utilities $12K + insurance $15K + misc $39K over 15 months."));
+  c.appendChild(cw);
+  const comps = [
+    { label:"Down payment",   val:481250, color:"#f0c040" },
+    { label:"Renovation [G]", val:375000, color:"#7ab5d8" },
+    { label:"Carry costs [E]",val:175000, color:"#e07840" },
+  ];
+  const total=comps.reduce((s,x)=>s+x.val,0);
+  const W=sVizW(), H=155, ml=145, mr=120, mt=8, mb=8;
+  const bw=W-ml-mr, bh=H-mt-mb;
+  const x=d3.scaleLinear().domain([0,total*1.1]).range([0,bw]);
+  const y=d3.scaleBand().domain(comps.map(d=>d.label)).range([0,bh]).padding(0.35);
+  const svg=d3.select("#scp-chart").append("svg").attr("width",W).attr("height",H)
+    .append("g").attr("transform",`translate(${ml},${mt})`);
+  svg.selectAll("rect").data(comps).join("rect")
+    .attr("y",d=>y(d.label)).attr("height",y.bandwidth())
+    .attr("x",0).attr("width",0).attr("rx",4)
+    .attr("fill",d=>d.color).attr("opacity",0.85)
+    .transition().duration(600).delay((_,i)=>i*120).attr("width",d=>x(d.val));
+  svg.selectAll(".lbl").data(comps).join("text").attr("class","lbl")
+    .attr("x",-6).attr("y",d=>y(d.label)+y.bandwidth()/2+4)
+    .attr("text-anchor","end").attr("fill","#7090a8").attr("font-size","12px").text(d=>d.label);
+  svg.selectAll(".vv").data(comps).join("text").attr("class","vv")
+    .attr("x",d=>x(d.val)+7).attr("y",d=>y(d.label)+y.bandwidth()/2+4)
+    .attr("fill",d=>d.color).attr("font-size","12px").attr("font-weight","700")
+    .text(d=>"$"+(d.val/1000).toFixed(0)+"K");
+  svg.append("line").attr("x1",x(total)).attr("x2",x(total)).attr("y1",-5).attr("y2",bh+5)
+    .attr("stroke","#f0c040").attr("stroke-dasharray","4,3").attr("stroke-width",1.5);
+  svg.append("text").attr("x",x(total)+6).attr("y",bh/2+4)
+    .attr("fill","#f0c040").attr("font-size","12px").attr("font-weight","700")
+    .text("Total: $"+(total/1000).toFixed(0)+"K");
+  c.appendChild(sEl("div","srisk",
+    '<span class="sbold">Bottom line:</span> ~$1.03M in equity required before the first membership dollar arrives — plus an $894K mortgage. If the club fails, the penclave-discounted exit at ~$800K against $1.375M paid + $375K renovation = <span class="sbold">~$950K loss [E]</span>. That is the downside you are accepting.'));
+}
+
+/* ── Slide 10: Go / No-Go ── */
+function slideGoNoGo(c) {
+  c.appendChild(sEl("div","schart-title","Rule 5 failure list — conditions that make the deal unworkable"));
+  const cw = sWrap("schart-wrap");
+  const tbl = sEl("table","gono-tbl");
+  tbl.innerHTML = `
+    <thead><tr><th>Condition</th><th>Threshold</th><th>Signal</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td class="cond-col">Liquor license transfer</td><td class="thresh-col">WSLCB denies Class 6 private club license</td><td><span class="signal-stop">DEAL STOP</span></td><td class="thresh-col">Open — OI-02</td></tr>
+      <tr><td class="cond-col">Renovation cost</td><td class="thresh-col">Actual cost &gt; $600K after inspection</td><td><span class="signal-stop">DEAL STOP</span></td><td class="thresh-col">Open — OI-04</td></tr>
+      <tr><td class="cond-col">Founding membership</td><td class="thresh-col">&lt; 50 members at $6K dues secured in Year 1</td><td><span class="signal-stop">DEAL STOP</span></td><td class="thresh-col">Not tested</td></tr>
+      <tr><td class="cond-col">Lender &gt;45% down</td><td class="thresh-col">Equity req. exceeds $618K + renovation + carry → total &gt;$1.2M+</td><td><span class="signal-warn">RESTRUCTURE</span></td><td class="thresh-col">Open — OI-08</td></tr>
+      <tr><td class="cond-col">Canadian demand &lt;40%</td><td class="thresh-col">Tariff / political climate locks in –30% Canadian visitor loss</td><td><span class="signal-warn">RESTRUCTURE</span></td><td class="thresh-col">Active (2025)</td></tr>
+      <tr><td class="cond-col">Border closure scenario</td><td class="thresh-col">Revenue → ~$0 for 17+ months (documented 2020–2021)</td><td><span class="signal-stop">STOP</span> w/o reserve</td><td class="thresh-col">Needs $700K–$1M reserve</td></tr>
+    </tbody>`;
+  cw.appendChild(tbl); c.appendChild(cw);
+  c.appendChild(sEl("div","shighlight",
+    '<span class="sbold">Gate items before any model is trusted:</span> OI-02 (license class), OI-04 (building inspection), OI-08 (lender terms). These are not optional — the model inputs are wrong without them.'));
+  c.appendChild(sEl("div","srisk",
+    '<span class="sbold">Maximum downside in a failed scenario:</span> Exit at penclave-discounted floor (~$800K) vs. $1.375M paid + $375K renovation = <span class="sbold">~$950K loss [E]</span> before financing costs and carry. This is what you are risking.'));
 }
 
 /* ─────────────────────────────────────────────────────────
