@@ -1684,55 +1684,110 @@ function slideAutomation(c) {
 
 /* ── Slide 9: Break-Even ── */
 function slideBreakeven(c) {
+  const burdenBase=380000, burdenAuto=230000;
+  const foundingN=25, foundingDues=3500;
+  const foundingContrib = foundingN * foundingDues;        // $87,500
+  const burdenRemain    = burdenAuto - foundingContrib;    // $142,500
+  const mFoundBreak     = foundingN + burdenRemain / 6000; // ~48.75 → ~49
+
   const grid = sWrap("sstat-grid");
-  [{v:"52–75",  k:"Baseline: members @ $6K dues [E]",          cls:"s-warn"},
-   {v:"33–45",  k:"Automated: members @ $6K dues [E]",         cls:"s-ok"  },
-   {v:"25–34",  k:"Automated: members @ $8K dues [E]",         cls:"s-ok"  },
-   {v:"$380K",  k:"Baseline dues burden (no automation) [E]",  cls:""      },
-   {v:"~$230K", k:"Automated dues burden [E]",                 cls:""      },
-   {v:"−40%",   k:"Reduction in dues burden from automation",  cls:"s-ok"  }]
+  [{v:"52–75",   k:"Baseline: members @ $6K dues [E]",          cls:"s-warn"},
+   {v:"33–45",   k:"Automated: members @ $6K dues [E]",         cls:"s-ok"  },
+   {v:"~49",     k:"Founding mix: 25×$3.5K + rest@$6K [E]",    cls:""      },
+   {v:"$3,500",  k:"Founding rate · 25 spots [E]",              cls:"s-ok"  },
+   {v:"~$230K",  k:"Automated dues burden [E]",                 cls:""      },
+   {v:"−40%",    k:"Burden reduction from automation",          cls:"s-ok"  }]
   .forEach(s => { const d=sEl("div","sstat "+s.cls); d.innerHTML=`<div class="sv">${s.v}</div><div class="sk">${s.k}</div>`; grid.appendChild(d); });
   c.appendChild(grid);
+
   const cw = sWrap("schart-wrap");
-  cw.appendChild(sEl("div","schart-title","Dues required per member to break even — baseline vs. automated model [E]"));
+  cw.appendChild(sEl("div","schart-title","Required dues per member to break even — baseline · automated · founding mix [E]"));
   const cd = sEl("div"); cd.id="sbe-chart"; cw.appendChild(cd);
-  cw.appendChild(sNote("[E] Baseline burden: cost stack mid $630K − F&B contribution $250K = $380K. Automated burden: $380K − $150K labour saving = ~$230K. Automation capex ~$20–35K absorbed into renovation budget. Green zone = realistic founding membership range."));
+  cw.appendChild(sNote("[E] Baseline $380K; automated ~$230K (−$150K labour). Founding mix: 25 pledges × $3,500 = $87.5K upfront → remaining burden $142.5K ÷ $6K = 24 more regular members → 49 total. Founding pricing de-risks the acquisition — you have proof of demand before you close; it does not reduce operating headcount."));
   c.appendChild(cw);
-  const burdenBase=380000, burdenAuto=230000;
-  const mrng=d3.range(20,151,5);
-  const ptsBase=mrng.map(m=>({m,d:burdenBase/m}));
-  const ptsAuto=mrng.map(m=>({m,d:burdenAuto/m}));
-  const W=sVizW(), H=210, ml=58, mr=24, mt=20, mb=32;
+
+  const mrng = d3.range(20, 151, 5);
+  const ptsBase = mrng.map(m => ({m, d: burdenBase / m}));
+  const ptsAuto = mrng.map(m => ({m, d: burdenAuto / m}));
+  // Founding mix: required dues from (N − 25) regular members to cover remaining $142.5K burden
+  const mrngF = d3.range(foundingN + 2, 151, 2);
+  const ptsFnd = mrngF.map(m => ({m, d: burdenRemain / (m - foundingN)}));
+
+  const W=sVizW(), H=220, ml=58, mr=24, mt=20, mb=32;
   const bw=W-ml-mr, bh=H-mt-mb;
-  const x=d3.scaleLinear().domain([20,150]).range([0,bw]);
-  const y=d3.scaleLinear().domain([0,d3.max(ptsBase,d=>d.d)*1.1]).range([bh,0]);
-  const svg=d3.select("#sbe-chart").append("svg").attr("width",W).attr("height",H)
+  const x = d3.scaleLinear().domain([20, 150]).range([0, bw]);
+  const yMax = d3.max(ptsBase, d => d.d) * 1.1;
+  const y = d3.scaleLinear().domain([0, yMax]).range([bh, 0]);
+  const svg = d3.select("#sbe-chart").append("svg").attr("width",W).attr("height",H)
     .append("g").attr("transform",`translate(${ml},${mt})`);
-  // viable zone shading — tighter with automation
+
+  // clip path — keeps founding curve inside chart bounds
+  svg.append("defs").append("clipPath").attr("id","sbe-clip")
+    .append("rect").attr("width", bw).attr("height", bh);
+
+  // viable zone
   svg.append("rect").attr("x",x(33)).attr("width",x(75)-x(33)).attr("y",0).attr("height",bh).attr("fill","rgba(76,175,80,0.08)");
   svg.append("text").attr("x",(x(33)+x(75))/2).attr("y",12).attr("text-anchor","middle").attr("fill","#4caf50").attr("font-size","9px").attr("font-weight","700").text("← viable zone →");
-  // baseline dotted intercepts @ $6K
-  const mb6=burdenBase/6000, ma6=burdenAuto/6000;
-  svg.append("line").attr("x1",x(mb6)).attr("x2",x(mb6)).attr("y1",y(6000)).attr("y2",bh).attr("stroke","#5a4020").attr("stroke-dasharray","3,3");
-  svg.append("line").attr("x1",x(ma6)).attr("x2",x(ma6)).attr("y1",y(6000)).attr("y2",bh).attr("stroke","#2a5030").attr("stroke-dasharray","3,3");
-  // savings arrow annotation
-  const arrowY = y(6000) - 18;
-  svg.append("line").attr("x1",x(ma6)+2).attr("x2",x(mb6)-2).attr("y1",arrowY).attr("y2",arrowY).attr("stroke","#f0c040").attr("stroke-width",1.5).attr("marker-end","none");
-  svg.append("text").attr("x",(x(ma6)+x(mb6))/2).attr("y",arrowY-4).attr("text-anchor","middle").attr("fill","#f0c040").attr("font-size","9px").attr("font-weight","700")
-    .text(`−${Math.round(mb6-ma6)} members`);
+
+  const lf = d3.line().x(d=>x(d.m)).y(d=>y(d.d)).curve(d3.curveCatmullRom);
+
   // baseline curve (amber, dashed)
-  const lf=d3.line().x(d=>x(d.m)).y(d=>y(d.d)).curve(d3.curveCatmullRom);
-  svg.append("path").datum(ptsBase).attr("fill","none").attr("stroke","#f0c040").attr("stroke-width",1.5)
-    .attr("stroke-dasharray","5,4").attr("opacity",0.6).attr("d",lf);
-  svg.append("text").attr("x",x(30)).attr("y",y(burdenBase/30)+12).attr("fill","#a08030").attr("font-size","9px").text("baseline");
+  svg.append("path").datum(ptsBase).attr("fill","none").attr("stroke","#f0c040")
+    .attr("stroke-width",1.5).attr("stroke-dasharray","5,4").attr("opacity",0.6).attr("d",lf);
+  svg.append("text").attr("x",x(30)).attr("y",y(burdenBase/30)+12)
+    .attr("fill","#a08030").attr("font-size","9px").text("baseline");
+
   // automated curve (green, solid, animated)
-  const pa=svg.append("path").datum(ptsAuto).attr("fill","none").attr("stroke","#4caf50").attr("stroke-width",2.5).attr("d",lf);
-  const ln=pa.node().getTotalLength();
-  pa.attr("stroke-dasharray",ln).attr("stroke-dashoffset",ln).transition().duration(900).attr("stroke-dashoffset",0);
-  svg.append("text").attr("x",x(30)).attr("y",y(burdenAuto/30)+12).attr("fill","#4caf50").attr("font-size","9px").attr("font-weight","700").text("automated");
-  svg.append("g").attr("transform",`translate(0,${bh})`).call(d3.axisBottom(x).ticks(7)).selectAll("text").attr("fill","#5a7a94").attr("font-size","10px");
-  svg.append("text").attr("x",bw/2).attr("y",bh+28).attr("text-anchor","middle").attr("fill","#5a7a94").attr("font-size","10px").text("Members");
-  svg.append("g").call(d3.axisLeft(y).ticks(5).tickFormat(d=>"$"+Math.round(d/1000)+"K")).selectAll("text").attr("fill","#5a7a94").attr("font-size","10px");
+  const pa = svg.append("path").datum(ptsAuto).attr("fill","none").attr("stroke","#4caf50")
+    .attr("stroke-width",2.5).attr("d",lf);
+  const ln = pa.node().getTotalLength();
+  pa.attr("stroke-dasharray",ln).attr("stroke-dashoffset",ln)
+    .transition().duration(900).attr("stroke-dashoffset",0);
+  svg.append("text").attr("x",x(30)).attr("y",y(burdenAuto/30)+12)
+    .attr("fill","#4caf50").attr("font-size","9px").attr("font-weight","700").text("automated");
+
+  // founding mix curve (blue, dashed, clipped)
+  const lfDef = d3.line().defined(d => y(d.d) >= 0 && y(d.d) <= bh)
+    .x(d=>x(d.m)).y(d=>y(d.d)).curve(d3.curveCatmullRom);
+  const pf = svg.append("path").datum(ptsFnd).attr("fill","none").attr("stroke","#7ab5d8")
+    .attr("stroke-width",2).attr("stroke-dasharray","6,3")
+    .attr("clip-path","url(#sbe-clip)").attr("d",lfDef);
+  const lnF = pf.node().getTotalLength();
+  pf.attr("stroke-dashoffset",lnF).transition().delay(300).duration(900).attr("stroke-dashoffset",0);
+  // label near a mid-curve point that's within chart bounds
+  const lblFndM = 80;
+  svg.append("text").attr("x",x(lblFndM)).attr("y",y(burdenRemain/(lblFndM-foundingN))-7)
+    .attr("fill","#7ab5d8").attr("font-size","9px").attr("font-weight","700").text("founding mix");
+
+  // founding break-even intercept dot + label at ~49 members
+  svg.append("line").attr("x1",x(mFoundBreak)).attr("x2",x(mFoundBreak))
+    .attr("y1",y(6000)).attr("y2",bh).attr("stroke","#4a80a8").attr("stroke-dasharray","3,3");
+  svg.append("circle").attr("cx",x(mFoundBreak)).attr("cy",y(6000)).attr("r",3.5).attr("fill","#7ab5d8");
+  svg.append("text").attr("x",x(mFoundBreak)+5).attr("y",y(6000)-7)
+    .attr("fill","#7ab5d8").attr("font-size","9px").attr("font-weight","700")
+    .text(`~${Math.round(mFoundBreak)} total`);
+
+  // automated & baseline vertical intercepts @ $6K
+  const ma6 = burdenAuto / 6000, mb6 = burdenBase / 6000;
+  svg.append("line").attr("x1",x(mb6)).attr("x2",x(mb6)).attr("y1",y(6000)).attr("y2",bh)
+    .attr("stroke","#5a4020").attr("stroke-dasharray","3,3");
+  svg.append("line").attr("x1",x(ma6)).attr("x2",x(ma6)).attr("y1",y(6000)).attr("y2",bh)
+    .attr("stroke","#2a5030").attr("stroke-dasharray","3,3");
+
+  // automation savings arrow
+  const arrowY = y(6000) - 28;
+  svg.append("line").attr("x1",x(ma6)+2).attr("x2",x(mb6)-2).attr("y1",arrowY).attr("y2",arrowY)
+    .attr("stroke","#f0c040").attr("stroke-width",1.5);
+  svg.append("text").attr("x",(x(ma6)+x(mb6))/2).attr("y",arrowY-4)
+    .attr("text-anchor","middle").attr("fill","#f0c040").attr("font-size","9px").attr("font-weight","700")
+    .text(`−${Math.round(mb6-ma6)} members`);
+
+  svg.append("g").attr("transform",`translate(0,${bh})`).call(d3.axisBottom(x).ticks(7))
+    .selectAll("text").attr("fill","#5a7a94").attr("font-size","10px");
+  svg.append("text").attr("x",bw/2).attr("y",bh+28).attr("text-anchor","middle")
+    .attr("fill","#5a7a94").attr("font-size","10px").text("Members");
+  svg.append("g").call(d3.axisLeft(y).ticks(5).tickFormat(d=>"$"+Math.round(d/1000)+"K"))
+    .selectAll("text").attr("fill","#5a7a94").attr("font-size","10px");
   svg.selectAll(".domain,.tick line").attr("stroke","#1e3048");
 }
 
