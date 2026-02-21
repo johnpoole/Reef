@@ -39,6 +39,13 @@
     }
     .tab-btn.active { color: #f0c040; border-bottom-color: #f0c040; }
     .tab-btn:hover:not(.active) { color: #c0d0e0; }
+    #copy-link-btn {
+      flex-shrink: 0; padding: 0 12px; background: none; border: none;
+      border-left: 1px solid #1e3048; color: #3a5a74;
+      font-size: 14px; cursor: pointer; transition: color .15s;
+    }
+    #copy-link-btn:hover  { color: #7ab5d8; }
+    #copy-link-btn.copied { color: #4caf50; }
 
     /* ── Tab panels ── */
     .tab-panel { display: none; flex: 1; flex-direction: column; overflow: hidden; }
@@ -347,6 +354,7 @@
     <button class="tab-btn active" data-tab="map-panel">Map</button>
     <button class="tab-btn" data-tab="planning-panel">Planning</button>
     <button class="tab-btn" data-tab="presentation-panel">Present</button>
+    <button id="copy-link-btn" title="Copy shareable link">&#128279;</button>
   </div>
 
   <!-- ======= MAP TAB ======= -->
@@ -611,6 +619,7 @@ let map, geoLayer;
 const map_ = L.map("map", { zoomControl: false }).setView([48.982, -123.075], 14);
 map = map_;
 L.control.zoom({ position: "bottomright" }).addTo(map);
+map_.on("moveend", pushState);
 
 L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
   attribution: "&copy; OSM contributors &copy; CARTO",
@@ -887,6 +896,7 @@ function switchTab(panelId) {
   } else {
     document.body.classList.remove("presentation-mode");
   }
+  pushState();
 }
 
 document.querySelectorAll(".tab-btn").forEach(btn => {
@@ -935,6 +945,7 @@ fetch("businesses.geojson")
     buildStrategicList();     // Populate the planning tab list
     addStrategicMarkers();      // Show strategic layer by default
     document.getElementById("stats-bar").style.display = "flex";
+    restoreState();
   })
   .catch(() => {
     // If no GeoJSON, still render planning
@@ -1176,6 +1187,7 @@ function goToSlide(idx) {
   while (viz.firstChild) viz.removeChild(viz.firstChild);
   d3.select("#slide-viz").selectAll("svg").remove();
   setTimeout(() => { s.fn(viz); viz.style.opacity = "1"; }, 80);
+  pushState();
 }
 
 // helpers
@@ -1605,6 +1617,70 @@ function slideGoNoGo(c) {
   c.appendChild(sEl("div","srisk",
     '<span class="sbold">Maximum downside in a failed scenario:</span> Exit at penclave-discounted floor (~$800K) vs. $1.375M paid + $375K renovation = <span class="sbold">~$950K loss [E]</span> before financing costs and carry. This is what you are risking.'));
 }
+
+/* ─────────────────────────────────────────────────────────
+   URL STATE — shareable links via #hash
+───────────────────────────────────────────────────────── */
+let _suppressHash = false;
+
+function pushState() {
+  if (_suppressHash) return;
+  const tab = document.querySelector(".tab-panel.active")?.id || "map-panel";
+  const p = new URLSearchParams();
+  p.set("tab", tab);
+  if (tab === "map-panel") {
+    const c = map_.getCenter();
+    p.set("zoom", map_.getZoom());
+    p.set("lat",  c.lat.toFixed(5));
+    p.set("lng",  c.lng.toFixed(5));
+  } else if (tab === "presentation-panel") {
+    p.set("slide", currentSlide);
+  }
+  history.replaceState(null, "", "#" + p.toString());
+}
+
+function restoreState() {
+  const hash = location.hash.slice(1);
+  if (!hash) return;
+  const p = new URLSearchParams(hash);
+  const tab = p.get("tab") || "map-panel";
+  _suppressHash = true;
+  switchTab(tab);
+  if (tab === "map-panel") {
+    const zoom = parseFloat(p.get("zoom"));
+    const lat  = parseFloat(p.get("lat"));
+    const lng  = parseFloat(p.get("lng"));
+    if (!isNaN(zoom) && !isNaN(lat) && !isNaN(lng)) {
+      map_.setView([lat, lng], zoom, { animate: false });
+    }
+  } else if (tab === "presentation-panel") {
+    const slide = parseInt(p.get("slide"), 10);
+    if (!isNaN(slide) && slide >= 0 && slide < SLIDES.length) goToSlide(slide);
+  }
+  _suppressHash = false;
+  pushState(); // normalize (e.g. fill in zoom/lat/lng if missing)
+}
+
+window.addEventListener("hashchange", restoreState);
+
+document.getElementById("copy-link-btn").addEventListener("click", () => {
+  pushState(); // ensure hash is fresh
+  navigator.clipboard.writeText(location.href).then(() => {
+    const btn = document.getElementById("copy-link-btn");
+    btn.classList.add("copied");
+    btn.title = "Copied!";
+    setTimeout(() => { btn.classList.remove("copied"); btn.title = "Copy shareable link"; }, 2500);
+  }).catch(() => {
+    // Fallback for http contexts without clipboard API
+    const ta = document.createElement("textarea");
+    ta.value = location.href; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select(); document.execCommand("copy");
+    document.body.removeChild(ta);
+    const btn = document.getElementById("copy-link-btn");
+    btn.classList.add("copied"); btn.title = "Copied!";
+    setTimeout(() => { btn.classList.remove("copied"); btn.title = "Copy shareable link"; }, 2500);
+  });
+});
 
 /* ─────────────────────────────────────────────────────────
    SEARCH
