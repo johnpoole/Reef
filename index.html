@@ -1336,7 +1336,7 @@ function slidePhotos(c) {
     { href: "https://www.kiniskisreef.com/",
       label: "kiniskisreef.com \u2014 official bar website" },
     { href: "https://www.kiniskisreef.com/private_events.html",
-      label: "kiniskisreef.com/private_events \u2014 events & patio photos" },
+      label: "kiniskisreef.com — events & patio photos" },
     { href: "https://m.yelp.com/biz/kiniskis-reef-tavern-point-roberts",
       label: "Yelp \u2014 Kiniski\u2019s Reef Tavern reviews & photos" },
     { href: "https://www.tripadvisor.ca/Restaurant_Review-g58681-d4375086-Reviews-Kiniski_s_Reef_Tavern-Point_Roberts_Washington.html",
@@ -1368,16 +1368,16 @@ function slideConversion(c) {
   ].forEach(r => { const d=sEl("div","s2col-row"); d.textContent=r; buying.appendChild(d); });
   const building = sWrap("s2col-card bright");
   building.innerHTML = `<h4>What you\'re building</h4>`;
-  ["A private beach club — purpose-converted",
+  ["A member-owned beach club — purpose-converted",
    "Year 1: zero members, zero revenue (greenfield)",
    "New income model: dues + F&B + events",
    "Members must be recruited from scratch",
-   "Class 6 Private Club license (new application)",
+   "Class 6 Club License — WA (new application)",
    "Renovation required: $250K–$500K [E]"
   ].forEach(r => { const d=sEl("div","s2col-row"); d.textContent=r; building.appendChild(d); });
   cols.appendChild(buying); cols.appendChild(building); c.appendChild(cols);
   c.appendChild(sEl("div","shighlight",
-    '<span class="sbold">The bar\'s trailing revenue does not justify club revenue projections.</span> The existing business is only useful for: (a) whether the liquor license transfers to a private club use, (b) what the physical plant costs to operate, and (c) what the seller is actually selling.'));
+    '<span class="sbold">The bar\'s trailing revenue does not justify club revenue projections.</span> The existing business is only useful for: (a) whether the liquor license transfers to a members club use, (b) what the physical plant costs to operate, and (c) what the seller is actually selling.'));
   c.appendChild(sEl("div","srisk",
     '<span class="sbold">Transition risk:</span> Zero revenue during conversion. Carry costs run regardless — debt service + property tax + utilities + insurance for 15–18 months = <span class="sbold">estimated $150–200K [E]</span> before the first member walks in.'));
 }
@@ -1650,7 +1650,7 @@ function slideAutomation(c) {
   const no = sWrap("s2col-card dim");
   no.innerHTML = `<h4 style="color:#e07840">Keep human — presence is the product</h4>`;
   [
-    { t:"Food & drink service",n:"Table service and bar presence is a core reason members pay $6–8K/yr. A robot bringing drinks signals budget motel, not private club." },
+    { t:"Food & drink service",n:"Table service and bar presence is a core reason members pay $6–8K/yr. A robot bringing drinks signals budget motel, not a members club." },
     { t:"Bartending",          n:"Wine and cocktail service is hospitality signal. One skilled bartender during peak hours is a feature, not a cost." },
     { t:"Event hosting",       n:"Members at events expect a human point of contact." },
     { t:"Membership sales",    n:"Founding members are recruited by a person they trust." },
@@ -1793,7 +1793,7 @@ function slideGoNoGo(c) {
   tbl.innerHTML = `
     <thead><tr><th>Condition</th><th>Threshold</th><th>Signal</th><th>Status</th></tr></thead>
     <tbody>
-      <tr><td class="cond-col">Liquor license transfer</td><td class="thresh-col">WSLCB denies Class 6 private club license</td><td><span class="signal-stop">DEAL STOP</span></td><td class="thresh-col">Open — OI-02</td></tr>
+      <tr><td class="cond-col">Liquor license transfer</td><td class="thresh-col">WSLCB denies Class 6 Club License application</td><td><span class="signal-stop">DEAL STOP</span></td><td class="thresh-col">Open — OI-02</td></tr>
       <tr><td class="cond-col">Renovation cost</td><td class="thresh-col">Actual cost &gt; $600K after inspection</td><td><span class="signal-stop">DEAL STOP</span></td><td class="thresh-col">Open — OI-04</td></tr>
       <tr><td class="cond-col">Founding membership</td><td class="thresh-col">&lt; 50 members at $6K dues secured in Year 1</td><td><span class="signal-stop">DEAL STOP</span></td><td class="thresh-col">Not tested</td></tr>
       <tr><td class="cond-col">Lender &gt;45% down</td><td class="thresh-col">Equity req. exceeds $618K + renovation + carry → total &gt;$1.2M+</td><td><span class="signal-warn">RESTRUCTURE</span></td><td class="thresh-col">Open — OI-08</td></tr>
