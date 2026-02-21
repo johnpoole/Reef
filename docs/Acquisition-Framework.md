@@ -130,34 +130,49 @@ Each level inherits the constraints of the level above.
 
 Point Roberts is a **penclave** — US territory accessible by road only through Canada. To reach Point Roberts from the rest of Washington state by land, you must cross into Canada and back. This is not a location characteristic. It is a structural dependency that cuts across all three analysis dimensions and has no analog in any standard comparable.
 
-Every financial assumption must be stress-tested against the question: *what happens if the border is difficult or closed?*
+### Definition and mechanism
 
-### What penclave status means for each dimension
+A penclave creates **domestic isolation via foreign intermediation**: every input to the business (labor, materials, customers, capital) and every output (revenue, staffing, exit) that would normally flow freely within the domestic economy must instead pass through a foreign jurisdiction. Each crossing is subject to that jurisdiction's laws, wait times, hours, and policy — none of which the business controls.
 
-**Dimension 1 — Acquisition / Conversion:**
-- All building materials, equipment, and FF&E deliveries arrive through Canadian customs. Every shipment is subject to inspection, duty assessment, and delay. Conversion timelines and capital budgets must include a border friction premium.
-- Contractor labor for the conversion must be sourced locally (limited pool) or cross the border daily. Cross-border workers require appropriate documentation. US contractor quotes may not be realistic for this site.
+The key distinction from merely "remote" or "rural": a remote property is hard to reach. A penclave property is structurally dependent on a foreign border remaining open, accessible, and passable. Remoteness is a friction. Penclave status is a dependency.
 
-**Dimension 2 — Business Operations:**
-- *Supply chain:* Food, beverage, and consumable restocking passes through Canada every time. This is not a one-time friction — it is a permanent operating cost premium. COGS assumptions from mainland or island comparables are not directly applicable.
-- *Staffing:* The year-round population of Point Roberts is approximately 1,300 people. A club cannot be fully staffed from that pool. Workers who cross daily from Delta/Tsawwassen need NEXUS or equivalent, are subject to border hours and wait times, and cannot be assumed to reliably arrive on time on any given day. Canadian workers employed at a US business have visa and work authorization requirements that add HR complexity and cost.
-- *Member access — US members:* Reaching Point Roberts from the US mainland requires entering Canada, transiting Delta/Tsawwassen, and re-entering the US. This is not "a border crossing" — it is two border crossings each way, four total per visit. This is categorically different from any inland or ferry-access comparable. Frequency of use will be materially lower than at an accessible comparable.
-- *Member access — Canadian members:* Paradoxically, Canadian members in Delta and Tsawwassen have simpler access — one southbound crossing. This means the most accessible member population is foreign nationals. Any model that assumes heavy Canadian membership must also assume the border stays open, wait times stay low, and US entry requirements for Canadians remain unchanged. None of these are guaranteed.
-- *Border closure as existential risk:* The US–Canada land border closed to non-essential travel in March 2020 and did not fully reopen until November 2021 — 18 months. Point Roberts was effectively cut off from its practical supply chain and the majority of its functional market. This is not a tail risk. It happened within the last five years. Any model that does not account for a border disruption scenario is incomplete.
+### Deriving penclave effects
 
-**Dimension 3 — Real Estate:**
-- Floor value (the value if the club concept fails) is directly affected by penclave status. The buyer pool for any Point Roberts property is structurally limited — US buyers face the same access friction their members would. This suppresses liquidity and exit optionality.
-- The penclave premium (if any) may be built into the asking price as an "exclusivity" story. Verify whether comparable sales support that premium or whether it is speculative.
-- Any bank financing this acquisition will be underwriting penclave-specific risk. Lenders may apply a higher rate or lower LTV than mainland comparables — confirm with lenders before assuming standard terms.
+For every business function, apply this test:
+
+> *Does this function depend on the movement of people, goods, or capital across the US–Canada border? If yes: what are the cost, reliability, and policy-risk implications of that dependency, and how does it change the baseline assumption from any non-penclave comparable?*
+
+Work through each function systematically. Do not assume this list is complete — add rows as new dependencies are identified.
+
+| Business Function | Penclave Dependency? | Baseline Assumption Change | Open Question |
+|---|---|---|---|
+| **Labor — local** | Yes | Year-round population ~1,300. Local labor pool is a village, not a town. Roles that cannot be filled locally must be filled cross-border or left vacant. | What positions can realistically be filled locally? |
+| **Labor — cross-border** | Yes | Workers commuting daily from Delta/Tsawwassen need NEXUS or equivalent, are subject to border hours and wait times, and face entry denial risk on any given day. Scheduling reliability is structurally lower than any mainland comparable. | What is the true all-in cost of a cross-border employee vs. a local one? |
+| **Labor — Canadian nationals** | Yes | Canadians working at a US business have work authorization requirements. Non-compliance is a legal and licensing risk. | What visa category applies? What are the actual requirements and costs? |
+| **Supply chain** | Yes | Every delivery of food, beverage, equipment, or consumables passes through Canadian customs. Subject to duty, inspection, delay, and border hours. This is a permanent cost premium, not a one-time friction. | What is the realistic COGS premium vs. a mainland comparable? |
+| **Member / customer access — US** | Yes | US members make four border crossings per visit (out, in, out, in). This is not comparable to any inland or ferry-access club. Frequency of use and membership conversion will be materially lower than at accessible comparables. | What is the actual observed visit frequency at other Point Roberts businesses? |
+| **Member / customer access — Canadian** | Inverted | Canadian members in Delta/Tsawwassen make only one southbound crossing. They have easier access than US members. The most accessible customer population is foreign nationals — creating a structural dependency on Canadian demand. | What fraction of current Reef customers are Canadian? |
+| **Border closure** | Yes | The land border closed March 2020 – November 2021 (18 months). Point Roberts was cut off from its primary supply chain and most of its functional market. This is not a tail risk — it is a documented recent event. Every model must include a border closure scenario. | What happened to Point Roberts businesses during 2020–2021? What revenue remained? |
+| **Capital / financing** | Yes | Lenders underwriting a Point Roberts property are underwriting penclave-specific risk. May apply higher rate, lower LTV, or different lease/covenant terms than mainland comps. Cannot assume standard lending terms without confirmation. | Have lenders active in this market been consulted? |
+| **Real estate exit** | Yes | The buyer pool for any Point Roberts property is limited to those willing to accept penclave access. This suppresses liquidity and exit optionality relative to any comparable without this constraint. Floor value must reflect this discount. | What is the price-per-sqft trend in Point Roberts vs. comparable mainland waterfront? |
+| **Utilities / infrastructure** | Investigate | Power, water, internet, waste — are any of these routed through or dependent on Canadian infrastructure? | Confirm utility sources and redundancy. |
+| **Emergency services** | Investigate | Fire, police, medical — response times and coverage in a penclave may differ materially from mainland. Does this affect insurance rates or operational requirements? | Confirm coverage and insurance implications. |
+
+Add rows as additional dependencies are identified. Any row with an open question must be resolved or flagged per Rule 6 before financial modeling proceeds.
 
 ### Penclave-specific required questions
-- [ ] What were the actual operational impacts on Point Roberts businesses during the 2020–2021 border closure?
-- [ ] What is the current typical border wait time southbound at Peace Arch / Pacific Highway during peak season?
-- [ ] What is the realistic Canadian member fraction, and under what explicit border assumptions?
-- [ ] What is the cost premium for supply delivery via Canadian customs vs. direct mainland delivery?
-- [ ] What is the available local labor pool, and what is the realistic cost to staff from across the border?
-- [ ] Have lenders who operate in this market been consulted on financing terms specific to Point Roberts properties?
-- [ ] What is the floor value of the real estate given the penclave liquidity discount?
+*(Consolidated from the table above — check off when answered or explicitly risk-flagged)*
+- [ ] Local labor pool: what roles can realistically be filled from Point Roberts residents?
+- [ ] Cross-border labor: true all-in cost vs. local hire, including NEXUS, wait time, and reliability premium
+- [ ] Canadian worker authorization: applicable visa category and compliance cost confirmed
+- [ ] Supply chain cost premium: estimated vs. mainland baseline
+- [ ] US member visit frequency: evidence from observed behavior at Point Roberts businesses
+- [ ] Canadian member fraction: current and projected, with explicit border assumptions stated
+- [ ] Border closure scenario: 2020–2021 impacts on Point Roberts businesses documented; scenario modeled
+- [ ] Lender terms: confirmed with lenders active in Point Roberts market
+- [ ] Real estate floor value: estimated with penclave liquidity discount applied
+- [ ] Utilities and infrastructure: sources and redundancy confirmed
+- [ ] Insurance: any penclave-specific premiums or coverage gaps identified
 
 ---
 
