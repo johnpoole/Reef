@@ -325,7 +325,7 @@
         <div class="chart-wrap">
           <div class="chart-title">Revenue vs. costs (Year 2 steady state)</div>
           <div id="chart-revenue"></div>
-          <div class="chart-note">250 members @ $3,500/yr dues + F&amp;B + events. Debt service assumes 30% down on $1.375M @ 7.5%.</div>
+          <div class="chart-note">250 members @ $3,500/yr dues + F&amp;B + events. Debt service: 30% down on $1.375M, 7.5%, 20yr = ~$93K/yr. NOI ~$802K.</div>
         </div>
       </div>
 
@@ -625,9 +625,9 @@ function buildChartRevenue() {
     { label: "Dues",         value:  875000, type: "in" },
     { label: "F&B",          value:  420000, type: "in" },
     { label: "Events",       value:   80000, type: "in" },
-    { label: "Debt Service", value: -560000, type: "out" },
+    { label: "Debt Service", value:  -93000, type: "out" },
     { label: "Ops",          value: -480000, type: "out" },
-    { label: "NOI",          value:  335000, type: "net" }
+    { label: "NOI",          value:  802000, type: "net" }
   ];
 
   const maxVal = d3.max(items, d => Math.abs(d.value));
