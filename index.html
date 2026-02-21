@@ -262,26 +262,33 @@
     #slide-viz::-webkit-scrollbar-thumb { background: #263545; border-radius: 3px; }
 
     #slide-nav {
-      height: 52px; display: flex; align-items: center;
-      justify-content: space-between; padding: 0 48px;
+      height: 64px; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 16px; gap: 10px;
       border-top: 1px solid #1e3048; flex-shrink: 0;
     }
     .slide-nav-btn {
-      background: #1a2a3a; border: 1px solid #263a50; color: #7ab5d8;
-      font-size: 16px; width: 34px; height: 34px; border-radius: 6px;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: all .15s; flex-shrink: 0;
+      background: #1a2a3a; border: 1px solid #263a50; color: #a0c8e8;
+      font-size: 14px; font-weight: 700; letter-spacing: .5px;
+      height: 44px; padding: 0 18px; border-radius: 8px; white-space: nowrap;
+      cursor: pointer; display: flex; align-items: center; gap: 8px;
+      transition: all .15s; flex-shrink: 0; min-width: 90px; justify-content: center;
     }
-    .slide-nav-btn:hover:not(:disabled) { background: #263a50; color: #e8eaed; }
-    .slide-nav-btn:disabled { opacity: 0.3; cursor: default; }
+    .slide-nav-btn:hover:not(:disabled) { background: #263a50; color: #e8eaed; border-color: #4a6a80; }
+    .slide-nav-btn:disabled { opacity: 0.25; cursor: default; }
+    .slide-nav-btn .nav-arrow { font-size: 18px; line-height: 1; }
     #slide-counter { font-size: 12px; color: #5a7a94; min-width: 44px; text-align: center; flex-shrink: 0; }
     #slide-dots { display: flex; gap: 7px; flex: 1; justify-content: center; align-items: center; }
     .slide-dot {
-      width: 6px; height: 6px; border-radius: 50%; background: #263545;
+      width: 7px; height: 7px; border-radius: 50%; background: #263545;
       cursor: pointer; transition: all .15s; border: none; padding: 0;
     }
     .slide-dot.active { background: #f0c040; transform: scale(1.5); }
     .slide-dot:hover:not(.active) { background: #4a6a80; }
+    @media (max-width: 520px) {
+      #slide-nav { padding: 0 8px; gap: 6px; height: 60px; }
+      .slide-nav-btn { min-width: 76px; padding: 0 12px; font-size: 13px; height: 42px; }
+      #slide-counter { display: none; }
+    }
 
     /* slide content components */
     .sstat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 14px; }
@@ -518,10 +525,10 @@
     </div>
     <div id="slide-viz"></div>
     <div id="slide-nav">
-      <button class="slide-nav-btn" id="slide-prev">&#8592;</button>
+      <button class="slide-nav-btn" id="slide-prev"><span class="nav-arrow">&#8592;</span> Prev</button>
       <span id="slide-counter"></span>
       <div id="slide-dots"></div>
-      <button class="slide-nav-btn" id="slide-next">&#8594;</button>
+      <button class="slide-nav-btn" id="slide-next">Next <span class="nav-arrow">&#8594;</span></button>
     </div>
   </div><!-- /presentation-panel -->
 
