@@ -325,7 +325,7 @@
         <div class="chart-wrap">
           <div class="chart-title">Revenue vs. costs (Year 2 steady state)</div>
           <div id="chart-revenue"></div>
-          <div class="chart-note">250 members @ $3,500/yr dues + F&amp;B + events. Debt service: 30% down on $1.375M, 7.5%, 20yr = ~$93K/yr. NOI ~$802K.</div>
+          <div class="chart-note">250 members @ $3,500/yr dues + F&amp;B + events. Debt service: 30% down on $1.375M, 7.5%, 20yr = ~$93K/yr. Net cash flow ~$802K/yr.</div>
         </div>
       </div>
 
@@ -340,8 +340,8 @@
             <tr><td>Founding member deposits</td><td class="hi">&lt; 40 signed</td><td class="no">NO-GO</td></tr>
             <tr><td>Liquor license</td><td class="hi">WSLCB approval confirmed</td><td class="go">GO</td></tr>
             <tr><td>Liquor license</td><td class="hi">Transfer denied</td><td class="no">NO-GO</td></tr>
-            <tr><td>Total Year 2 NOI</td><td class="hi">&#8805; $150K</td><td class="go">GO</td></tr>
-            <tr><td>Total Year 2 NOI</td><td class="hi">&lt; $0</td><td class="no">NO-GO</td></tr>
+            <tr><td>Net cash flow (Year 2)</td><td class="hi">&#8805; $150K</td><td class="go">GO</td></tr>
+            <tr><td>Net cash flow (Year 2)</td><td class="hi">&lt; $0</td><td class="no">NO-GO</td></tr>
           </tbody>
         </table>
       </div>
@@ -627,7 +627,7 @@ function buildChartRevenue() {
     { label: "Events",       value:   80000, type: "in" },
     { label: "Debt Service", value:  -93000, type: "out" },
     { label: "Ops",          value: -480000, type: "out" },
-    { label: "NOI",          value:  802000, type: "net" }
+    { label: "Cash Flow",    value:  802000, type: "net" }
   ];
 
   const maxVal = d3.max(items, d => Math.abs(d.value));
