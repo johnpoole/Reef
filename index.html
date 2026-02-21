@@ -6,380 +6,236 @@
   <title>Point Roberts Beach Club — Property Intelligence</title>
 
   <!-- Leaflet CSS -->
-  <link rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
   <style>
-    /* ── Reset & base ─────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
-      background: #0f1923;
-      color: #e8eaed;
+      display: flex; height: 100vh; overflow: hidden;
+      background: #0f1923; color: #e8eaed;
     }
 
-    /* ── Sidebar ──────────────────────────────────────── */
+    /* ── Sidebar ── */
     #sidebar {
-      width: 360px;
-      min-width: 300px;
-      display: flex;
-      flex-direction: column;
-      background: #141e2a;
-      border-right: 1px solid #263545;
-      overflow: hidden;
+      width: 380px; min-width: 320px;
+      display: flex; flex-direction: column;
+      background: #141e2a; border-right: 1px solid #263545; overflow: hidden;
     }
-
     #sidebar-header {
-      padding: 16px 18px 12px;
-      background: #0d1621;
-      border-bottom: 1px solid #1e3048;
+      padding: 14px 18px 10px; background: #0d1621; border-bottom: 1px solid #1e3048;
     }
-    #sidebar-header h1 {
-      font-size: 15px;
-      font-weight: 700;
-      color: #f0c040;
-      letter-spacing: .3px;
-    }
-    #sidebar-header p {
-      font-size: 11px;
-      color: #7a9ab5;
-      margin-top: 2px;
-    }
+    #sidebar-header h1 { font-size: 15px; font-weight: 700; color: #f0c040; letter-spacing: .3px; }
+    #sidebar-header p  { font-size: 11px; color: #7a9ab5; margin-top: 2px; }
 
-    /* ── The Reef card ────────────────────────────────── */
+    /* ── Tabs ── */
+    #tab-bar {
+      display: flex; background: #0d1621; border-bottom: 1px solid #1e3048;
+    }
+    .tab-btn {
+      flex: 1; padding: 9px 0; font-size: 12px; font-weight: 600;
+      background: none; border: none; color: #5a7a94; cursor: pointer;
+      border-bottom: 2px solid transparent; transition: all .15s;
+    }
+    .tab-btn.active { color: #f0c040; border-bottom-color: #f0c040; }
+    .tab-btn:hover:not(.active) { color: #c0d0e0; }
+
+    /* ── Tab panels ── */
+    .tab-panel { display: none; flex: 1; flex-direction: column; overflow: hidden; }
+    .tab-panel.active { display: flex; }
+
+    /* ── MAP TAB ── */
     #reef-card {
-      margin: 14px 14px 0;
+      margin: 12px 12px 0;
       background: linear-gradient(135deg, #1a2e1a 0%, #162618 100%);
-      border: 1.5px solid #3a7d44;
-      border-radius: 10px;
-      padding: 12px 14px;
+      border: 1.5px solid #3a7d44; border-radius: 10px; padding: 12px 14px;
     }
     #reef-card .label {
-      font-size: 10px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: #4caf50;
-      margin-bottom: 4px;
+      font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase;
+      color: #4caf50; margin-bottom: 4px;
     }
-    #reef-card h2 {
-      font-size: 14px;
-      font-weight: 700;
-      color: #f0c040;
-      margin-bottom: 8px;
+    #reef-card h2 { font-size: 14px; font-weight: 700; color: #f0c040; margin-bottom: 8px; }
+    .reef-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .reef-stat { background: rgba(255,255,255,.05); border-radius: 6px; padding: 6px 8px; }
+    .reef-stat .v { font-size: 13px; font-weight: 700; color: #e8eaed; }
+    .reef-stat .k { font-size: 10px; color: #7a9ab5; margin-top: 1px; }
+    .map-btn-row { display: flex; gap: 7px; margin: 10px 12px 0; }
+    .map-btn {
+      flex: 1; padding: 7px 0; border: none; border-radius: 6px;
+      font-size: 12px; font-weight: 600; cursor: pointer; transition: background .2s;
     }
-    .reef-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-    }
-    .reef-stat {
-      background: rgba(255,255,255,.05);
-      border-radius: 6px;
-      padding: 6px 8px;
-    }
-    .reef-stat .v {
-      font-size: 13px;
-      font-weight: 700;
-      color: #e8eaed;
-    }
-    .reef-stat .k {
-      font-size: 10px;
-      color: #7a9ab5;
-      margin-top: 1px;
-    }
-    #reef-card .cta {
-      margin-top: 8px;
-      width: 100%;
-      padding: 7px 0;
-      background: #2e7d32;
-      border: none;
-      border-radius: 6px;
-      color: #fff;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background .2s;
-    }
-    #reef-card .cta:hover { background: #388e3c; }
+    #fly-to-reef  { background: #2e7d32; color: #fff; }
+    #fly-to-reef:hover { background: #388e3c; }
+    #strategic-toggle { background: #1e3a50; color: #7ab5d8; }
+    #strategic-toggle:hover { background: #264a60; }
+    #strategic-toggle.on { background: #154060; color: #40b8e8; border: 1px solid #2a7aaa; }
 
-    /* ── Filter pills ─────────────────────────────────── */
-    #filter-section {
-      padding: 12px 14px 6px;
-    }
-    #filter-section .section-title {
-      font-size: 10px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #5a7a94;
-      margin-bottom: 7px;
-    }
-    #filter-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-    }
+    #filter-section { padding: 10px 12px 4px; }
+    #filter-section .section-title { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #5a7a94; margin-bottom: 6px; }
+    #filter-pills { display: flex; flex-wrap: wrap; gap: 5px; }
     .pill {
-      padding: 3px 9px;
-      border-radius: 20px;
-      font-size: 11px;
-      cursor: pointer;
-      border: 1.5px solid transparent;
-      transition: all .15s;
-      white-space: nowrap;
+      padding: 3px 9px; border-radius: 20px; font-size: 11px; cursor: pointer;
+      border: 1.5px solid transparent; transition: all .15s; white-space: nowrap;
     }
-    .pill.active {
-      opacity: 1;
-    }
-    .pill:not(.active) {
-      opacity: .45;
-      filter: grayscale(60%);
-    }
+    .pill.active { opacity: 1; }
+    .pill:not(.active) { opacity: .4; filter: grayscale(60%); }
     .pill:hover { opacity: .85; }
 
-    /* ── Property list ────────────────────────────────── */
-    #list-section {
-      flex: 1;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      padding-top: 4px;
-    }
-    #list-header {
-      padding: 6px 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    #list-header .section-title {
-      font-size: 10px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #5a7a94;
-    }
-    #count-badge {
-      font-size: 11px;
-      background: #1e3048;
-      color: #7ab5d8;
-      padding: 2px 7px;
-      border-radius: 10px;
-    }
+    #list-section { flex: 1; overflow: hidden; display: flex; flex-direction: column; padding-top: 4px; }
+    #list-header { padding: 4px 12px; display: flex; justify-content: space-between; align-items: center; }
+    #list-header .section-title { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #5a7a94; }
+    #count-badge { font-size: 11px; background: #1e3048; color: #7ab5d8; padding: 2px 7px; border-radius: 10px; }
     #search-box {
-      margin: 0 14px 6px;
-      padding: 6px 10px;
-      background: #1e2f40;
-      border: 1px solid #263a50;
-      border-radius: 6px;
-      color: #e8eaed;
-      font-size: 12px;
-      width: calc(100% - 28px);
+      margin: 0 12px 6px; padding: 6px 10px;
+      background: #1e2f40; border: 1px solid #263a50; border-radius: 6px;
+      color: #e8eaed; font-size: 12px; width: calc(100% - 24px);
     }
     #search-box::placeholder { color: #4a6a80; }
     #search-box:focus { outline: none; border-color: #4a8aaa; }
 
     #property-list {
-      flex: 1;
-      overflow-y: auto;
-      padding: 0 8px 8px;
-      scrollbar-width: thin;
-      scrollbar-color: #263545 transparent;
+      flex: 1; overflow-y: auto; padding: 0 6px 8px;
+      scrollbar-width: thin; scrollbar-color: #263545 transparent;
     }
     #property-list::-webkit-scrollbar { width: 5px; }
-    #property-list::-webkit-scrollbar-track { background: transparent; }
     #property-list::-webkit-scrollbar-thumb { background: #263545; border-radius: 3px; }
 
     .property-item {
-      padding: 9px 10px;
-      border-radius: 7px;
-      cursor: pointer;
-      display: flex;
-      align-items: flex-start;
-      gap: 9px;
-      margin-bottom: 3px;
-      transition: background .15s;
+      padding: 8px 10px; border-radius: 7px; cursor: pointer;
+      display: flex; align-items: flex-start; gap: 8px;
+      margin-bottom: 3px; transition: background .15s;
       border: 1px solid transparent;
     }
-    .property-item:hover {
-      background: #1e3048;
-    }
-    .property-item.selected {
-      background: #1e3048;
-      border-color: #2e5070;
-    }
-    .property-item.is-reef {
-      border-color: #3a7d44;
-      background: rgba(58,125,68,.12);
-    }
-    .dot {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      margin-top: 3px;
-    }
+    .property-item:hover { background: #1e3048; }
+    .property-item.selected { background: #1e3048; border-color: #2e5070; }
+    .property-item.is-reef { border-color: #3a7d44; background: rgba(58,125,68,.12); }
+    .property-item.is-strategic { border-color: #335566; background: rgba(30,60,80,.15); }
+    .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
     .prop-info { flex: 1; min-width: 0; }
-    .prop-address {
-      font-size: 12px;
-      font-weight: 600;
-      color: #d0dce8;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .prop-address { font-size: 12px; font-weight: 600; color: #d0dce8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .prop-owner   { font-size: 10.5px; color: #5a7a94; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .prop-meta    { text-align: right; flex-shrink: 0; }
+    .prop-value   { font-size: 11px; font-weight: 600; color: #7ab5d8; }
+    .prop-use     { font-size: 10px; color: #4a6a80; }
+
+    /* ── PLANNING TAB ── */
+    #planning-panel {
+      flex: 1; overflow-y: auto; padding: 14px 14px 20px;
+      scrollbar-width: thin; scrollbar-color: #263545 transparent;
     }
-    .prop-owner {
-      font-size: 10.5px;
-      color: #5a7a94;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .prop-meta {
-      text-align: right;
-      flex-shrink: 0;
-    }
-    .prop-value {
-      font-size: 11px;
-      font-weight: 600;
-      color: #7ab5d8;
-    }
-    .prop-use {
-      font-size: 10px;
-      color: #4a6a80;
+    #planning-panel::-webkit-scrollbar { width: 5px; }
+    #planning-panel::-webkit-scrollbar-thumb { background: #263545; border-radius: 3px; }
+
+    .plan-section { margin-bottom: 24px; }
+    .plan-section h3 {
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: #5a7a94; margin-bottom: 10px;
+      padding-bottom: 5px; border-bottom: 1px solid #1e3048;
     }
 
-    /* ── Map ──────────────────────────────────────────── */
-    #map {
-      flex: 1;
-      z-index: 1;
+    .strategic-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 9px 10px; border-radius: 7px; margin-bottom: 5px;
+      cursor: pointer; transition: background .15s; border: 1px solid #1e3048;
     }
+    .strategic-item:hover { background: #1e3048; }
+    .si-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+    .si-info { flex: 1; }
+    .si-name { font-size: 13px; font-weight: 700; color: #d8e8f8; }
+    .si-status { font-size: 10px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; }
+    .si-note { font-size: 10.5px; color: #5a7a94; margin-top: 2px; line-height: 1.5; }
+    .si-assessed { font-size: 11px; color: #7ab5d8; font-weight: 600; text-align: right; flex-shrink: 0; }
 
-    /* ── Custom popup ─────────────────────────────────── */
+    .status-target  { color: #4caf50; }
+    .status-stalled { color: #e07840; }
+    .status-watch   { color: #d4b040; }
+    .status-open    { color: #7ab5d8; }
+
+    /* D3 chart containers */
+    .chart-wrap {
+      background: #0f1923; border-radius: 8px; padding: 12px 14px;
+      margin-bottom: 6px; border: 1px solid #1e3048;
+    }
+    .chart-title { font-size: 11px; color: #7a9ab5; margin-bottom: 8px; font-weight: 600; }
+    .chart-note  { font-size: 10px; color: #4a6a80; margin-top: 6px; }
+
+    /* Data table */
+    .plan-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+    .plan-table th {
+      text-align: left; padding: 5px 8px; color: #5a7a94;
+      border-bottom: 1px solid #1e3048; font-weight: 600;
+    }
+    .plan-table td { padding: 6px 8px; border-bottom: 1px solid #1a2838; color: #b0c4d8; }
+    .plan-table tr:last-child td { border-bottom: none; }
+    .plan-table .go  { color: #4caf50; font-weight: 700; }
+    .plan-table .no  { color: #e05040; font-weight: 700; }
+    .plan-table .cond { color: #d4b040; font-weight: 700; }
+    .plan-table .hi  { color: #e8eaed; font-weight: 700; }
+
+    .open-q { padding: 8px 10px; border-radius: 6px; margin-bottom: 5px; background: #0f1923; border: 1px solid #1e3048; }
+    .open-q .q-label { font-size: 10px; color: #5a7a94; margin-bottom: 2px; }
+    .open-q .q-text  { font-size: 12px; color: #c0d0e0; line-height: 1.5; }
+    .open-q.urgent   { border-color: #5a3020; background: rgba(90,30,10,.15); }
+    .open-q.urgent .q-label { color: #e07840; }
+
+    /* ── Map pane ── */
+    #map { flex: 1; z-index: 1; }
+
+    /* ── Custom popup ── */
     .leaflet-popup-content-wrapper {
-      background: #141e2a;
-      color: #e8eaed;
-      border-radius: 10px;
-      border: 1.5px solid #263545;
-      box-shadow: 0 8px 24px rgba(0,0,0,.5);
-      padding: 0;
+      background: #141e2a; color: #e8eaed; border-radius: 10px;
+      border: 1.5px solid #263545; box-shadow: 0 8px 24px rgba(0,0,0,.5); padding: 0;
     }
     .leaflet-popup-tip-container { display: none; }
-    .leaflet-popup-content {
-      margin: 0;
-      min-width: 240px;
-    }
+    .leaflet-popup-content { margin: 0; min-width: 240px; }
     .popup-inner { padding: 14px 16px 12px; }
     .popup-use-badge {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 12px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .5px;
-      margin-bottom: 6px;
+      display: inline-block; padding: 2px 8px; border-radius: 12px;
+      font-size: 10px; font-weight: 700; letter-spacing: .5px; margin-bottom: 6px;
     }
-    .popup-address {
-      font-size: 14px;
-      font-weight: 700;
-      color: #f0f4f8;
-      margin-bottom: 3px;
-    }
-    .popup-owner {
-      font-size: 11px;
-      color: #7a9ab5;
-      margin-bottom: 10px;
-    }
-    .popup-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-    .popup-stat {
-      background: rgba(255,255,255,.05);
-      border-radius: 6px;
-      padding: 6px 8px;
-    }
-    .popup-stat .v {
-      font-size: 13px;
-      font-weight: 700;
-      color: #e8eaed;
-    }
-    .popup-stat .k {
-      font-size: 10px;
-      color: #5a7a94;
-    }
+    .popup-address { font-size: 14px; font-weight: 700; color: #f0f4f8; margin-bottom: 3px; }
+    .popup-owner   { font-size: 11px; color: #7a9ab5; margin-bottom: 10px; }
+    .popup-stats   { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
+    .popup-stat    { background: rgba(255,255,255,.05); border-radius: 6px; padding: 6px 8px; }
+    .popup-stat .v { font-size: 13px; font-weight: 700; color: #e8eaed; }
+    .popup-stat .k { font-size: 10px; color: #5a7a94; }
     .popup-link {
-      display: block;
-      text-align: center;
-      padding: 6px;
-      background: #1e3048;
-      border-radius: 6px;
-      font-size: 11px;
-      color: #5ab5d8;
-      text-decoration: none;
-      transition: background .15s;
+      display: block; text-align: center; padding: 6px; background: #1e3048;
+      border-radius: 6px; font-size: 11px; color: #5ab5d8; text-decoration: none;
     }
     .popup-link:hover { background: #263a50; }
 
-    /* ── Legend ───────────────────────────────────────── */
-    #legend {
-      position: absolute;
-      bottom: 24px;
-      right: 12px;
-      z-index: 1000;
-      background: rgba(20,30,42,.93);
-      border: 1px solid #263545;
-      border-radius: 8px;
-      padding: 10px 12px;
-      min-width: 160px;
-      font-size: 11px;
+    /* ── Strategic popup additions ── */
+    .strategic-popup-flag {
+      font-size: 10px; text-transform: uppercase; letter-spacing: .8px;
+      font-weight: 700; margin-top: 8px; padding: 4px 8px;
+      border-radius: 4px; display: inline-block;
     }
-    #legend h4 {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #5a7a94;
-      margin-bottom: 7px;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      margin-bottom: 4px;
-      color: #b0c4d8;
-    }
-    .legend-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
+    .flag-target  { background: rgba(76,175,80,.15); color: #4caf50; }
+    .flag-stalled { background: rgba(224,120,64,.15); color: #e07840; }
+    .flag-watch   { background: rgba(212,176,64,.15); color: #d4b040; }
+    .flag-open    { background: rgba(122,181,216,.15); color: #7ab5d8; }
 
-    /* ── Stats bar ────────────────────────────────────── */
+    /* ── Legend ── */
+    #legend {
+      position: absolute; bottom: 24px; right: 12px; z-index: 1000;
+      background: rgba(20,30,42,.93); border: 1px solid #263545;
+      border-radius: 8px; padding: 10px 12px; min-width: 160px; font-size: 11px;
+    }
+    #legend h4 { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #5a7a94; margin-bottom: 7px; }
+    .legend-item { display: flex; align-items: center; gap: 7px; margin-bottom: 4px; color: #b0c4d8; }
+    .legend-dot  { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── Stats bar ── */
     #stats-bar {
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1000;
-      display: flex;
-      gap: 8px;
+      position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+      z-index: 1000; display: flex; gap: 8px;
     }
     .stat-pill {
-      background: rgba(20,30,42,.93);
-      border: 1px solid #263545;
-      border-radius: 20px;
-      padding: 5px 12px;
-      font-size: 11px;
-      color: #7ab5d8;
-      white-space: nowrap;
+      background: rgba(20,30,42,.93); border: 1px solid #263545;
+      border-radius: 20px; padding: 5px 12px; font-size: 11px; color: #7ab5d8; white-space: nowrap;
     }
-    .stat-pill strong {
-      color: #e8eaed;
-      font-weight: 700;
-    }
+    .stat-pill strong { color: #e8eaed; font-weight: 700; }
   </style>
 </head>
 <body>
@@ -387,56 +243,175 @@
 <!-- ======================== SIDEBAR ======================== -->
 <div id="sidebar">
   <div id="sidebar-header">
-    <h1>⚓ Point Roberts Beach Club</h1>
-    <p>Property Intelligence — Whatcom County GIS Data</p>
+    <h1>&#9875; Point Roberts Beach Club</h1>
+    <p>Property Intelligence &#8212; Whatcom County GIS Data</p>
   </div>
 
-  <!-- The Reef card -->
-  <div id="reef-card">
-    <div class="label">Target Acquisition</div>
-    <h2>★ The Reef — 1334 Gulf Rd</h2>
-    <div class="reef-stats">
-      <div class="reef-stat">
-        <div class="v">$1,375,000</div>
-        <div class="k">Asking Price</div>
-      </div>
-      <div class="reef-stat">
-        <div class="v">$850,965</div>
-        <div class="k">Assessed Value</div>
-      </div>
-      <div class="reef-stat">
-        <div class="v">8,463 sqft</div>
-        <div class="k">Building Size</div>
-      </div>
-      <div class="reef-stat">
-        <div class="v">Built 1959</div>
-        <div class="k">Year Built</div>
+  <!-- Tab bar -->
+  <div id="tab-bar">
+    <button class="tab-btn active" data-tab="map-panel">Map</button>
+    <button class="tab-btn" data-tab="planning-panel">Planning</button>
+  </div>
+
+  <!-- ======= MAP TAB ======= -->
+  <div id="map-panel" class="tab-panel active">
+    <!-- The Reef card -->
+    <div id="reef-card">
+      <div class="label">Target Acquisition</div>
+      <h2>&#9733; The Reef &#8212; 1334 Gulf Rd</h2>
+      <div class="reef-stats">
+        <div class="reef-stat"><div class="v">$1,375,000</div><div class="k">Asking Price</div></div>
+        <div class="reef-stat"><div class="v">$850,965</div><div class="k">Assessed Value</div></div>
+        <div class="reef-stat"><div class="v">8,463 sqft</div><div class="k">Building Size</div></div>
+        <div class="reef-stat"><div class="v">Built 1959</div><div class="k">Year Built</div></div>
       </div>
     </div>
-    <button class="cta" id="fly-to-reef">Fly to The Reef &rarr;</button>
-  </div>
 
-  <!-- Filters -->
-  <div id="filter-section">
-    <div class="section-title">Filter by Category</div>
-    <div id="filter-pills"></div>
-  </div>
-
-  <!-- Property list -->
-  <div id="list-section">
-    <div id="list-header">
-      <span class="section-title">Properties</span>
-      <span id="count-badge">—</span>
+    <!-- Action buttons -->
+    <div class="map-btn-row">
+      <button class="map-btn" id="fly-to-reef">Fly to The Reef &rarr;</button>
+      <button class="map-btn on" id="strategic-toggle">Hide Strategic</button>
     </div>
-    <input id="search-box" type="text" placeholder="Search address or owner…" />
-    <div id="property-list"></div>
-  </div>
-</div>
+
+    <!-- Filters -->
+    <div id="filter-section">
+      <div class="section-title">Filter by Category</div>
+      <div id="filter-pills"></div>
+    </div>
+
+    <!-- Property list -->
+    <div id="list-section">
+      <div id="list-header">
+        <span class="section-title">Properties</span>
+        <span id="count-badge">&#8212;</span>
+      </div>
+      <input id="search-box" type="text" placeholder="Search address or owner&#8230;" />
+      <div id="property-list"></div>
+    </div>
+  </div><!-- /map-panel -->
+
+  <!-- ======= PLANNING TAB ======= -->
+  <div id="planning-panel" class="tab-panel">
+    <div id="planning-scroll">
+
+      <!-- Strategic Properties -->
+      <div class="plan-section">
+        <h3>Strategic Properties</h3>
+        <div id="strategic-list"></div>
+      </div>
+
+      <!-- Valuation chart -->
+      <div class="plan-section">
+        <h3>Assessed Valuations</h3>
+        <div class="chart-wrap">
+          <div class="chart-title">Assessed value by property ($M)</div>
+          <div id="chart-valuation"></div>
+        </div>
+      </div>
+
+      <!-- Fee floor chart -->
+      <div class="plan-section">
+        <h3>Membership Fee Floor</h3>
+        <div class="chart-wrap">
+          <div class="chart-title">Annual dues floor vs. member count</div>
+          <div id="chart-fee-floor"></div>
+          <div class="chart-note">Net burden on dues after F&amp;B / events: ~$835K/yr. Green band = target 200&#8211;250 members.</div>
+        </div>
+      </div>
+
+      <!-- Revenue model -->
+      <div class="plan-section">
+        <h3>Year 2 Revenue Model</h3>
+        <div class="chart-wrap">
+          <div class="chart-title">Revenue vs. costs (Year 2 steady state)</div>
+          <div id="chart-revenue"></div>
+          <div class="chart-note">250 members @ $3,500/yr dues + F&amp;B + events. Debt service assumes 30% down on $1.375M @ 7.5%.</div>
+        </div>
+      </div>
+
+      <!-- Financial gates -->
+      <div class="plan-section">
+        <h3>Financial Gates</h3>
+        <table class="plan-table">
+          <thead><tr><th>Trigger</th><th>Threshold</th><th>Signal</th></tr></thead>
+          <tbody>
+            <tr><td>Founding member deposits</td><td class="hi">&#8805; 60 signed @ $20K</td><td class="go">GO</td></tr>
+            <tr><td>Founding member deposits</td><td>40&#8211;59 signed</td><td class="cond">CONDITIONAL</td></tr>
+            <tr><td>Founding member deposits</td><td class="hi">&lt; 40 signed</td><td class="no">NO-GO</td></tr>
+            <tr><td>Liquor license</td><td class="hi">WSLCB approval confirmed</td><td class="go">GO</td></tr>
+            <tr><td>Liquor license</td><td class="hi">Transfer denied</td><td class="no">NO-GO</td></tr>
+            <tr><td>Total Year 2 NOI</td><td class="hi">&#8805; $150K</td><td class="go">GO</td></tr>
+            <tr><td>Total Year 2 NOI</td><td class="hi">&lt; $0</td><td class="no">NO-GO</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Membership tiers -->
+      <div class="plan-section">
+        <h3>Membership Tiers</h3>
+        <table class="plan-table">
+          <thead><tr><th>Tier</th><th>Initiation</th><th>Annual Dues</th><th>Cap</th></tr></thead>
+          <tbody>
+            <tr><td>Founding</td><td class="hi">$20,000</td><td class="hi">$3,500 locked</td><td>100</td></tr>
+            <tr><td>Full</td><td>$12,000</td><td>$4,200</td><td>150</td></tr>
+            <tr><td>Non-resident</td><td>$8,000</td><td>$2,800</td><td>50</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Open questions -->
+      <div class="plan-section">
+        <h3>Open Questions</h3>
+        <div class="open-q urgent">
+          <div class="q-label">Q1 &#8212; URGENT</div>
+          <div class="q-text">Corporate structure: LLC vs. member-owned co-op. Book attorney before any offer.</div>
+        </div>
+        <div class="open-q urgent">
+          <div class="q-label">Q2 &#8212; URGENT</div>
+          <div class="q-text">WSLCB: Can existing on-premise liquor license transfer to new entity? Confirm before offer.</div>
+        </div>
+        <div class="open-q">
+          <div class="q-label">Q3</div>
+          <div class="q-text">Is 1405 Gulf Rd (adjacent liquor store) available? Combined acquisition changes the entry economics.</div>
+        </div>
+        <div class="open-q">
+          <div class="q-label">Q4</div>
+          <div class="q-text">Member cap: 250 vs. 300. Higher cap lowers dues but dilutes exclusivity.</div>
+        </div>
+        <div class="open-q">
+          <div class="q-label">Q5</div>
+          <div class="q-text">Transferable memberships? Recommend yes with 15% transfer fee &#8212; creates secondary market, raises perceived value.</div>
+        </div>
+        <div class="open-q">
+          <div class="q-label">Q6</div>
+          <div class="q-text">Canadian members paying dues in CAD vs USD: pick one currency. USD simplifies books, CAD may soften resistance.</div>
+        </div>
+      </div>
+
+      <!-- Validation deadline -->
+      <div class="plan-section">
+        <h3>Validation Timeline</h3>
+        <table class="plan-table">
+          <thead><tr><th>Milestone</th><th>Deadline</th></tr></thead>
+          <tbody>
+            <tr><td>LOI / exclusivity</td><td>Week 0</td></tr>
+            <tr><td>Attorney review (structure + liquor)</td><td>+ 2 wks</td></tr>
+            <tr><td>Founding member soft commitments</td><td>+ 4 wks</td></tr>
+            <tr><td>60-member GO / NO-GO gate</td><td>+ 6 wks</td></tr>
+            <tr><td>Close + WSLCB transfer filed</td><td>+ 8 wks</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- /planning-scroll -->
+  </div><!-- /planning-panel -->
+
+</div><!-- /sidebar -->
 
 <!-- ======================== MAP ======================== -->
 <div id="map"></div>
 
-<!-- Stats overlay (injected after data load) -->
+<!-- Stats overlay -->
 <div id="stats-bar" style="display:none"></div>
 
 <!-- Legend overlay -->
@@ -445,219 +420,448 @@
   <div id="legend-items"></div>
 </div>
 
-<!-- Leaflet JS -->
+<!-- ======================== SCRIPTS ======================== -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
 
 <script>
-// ── Map init ──────────────────────────────────────────────────
-const map = L.map('map', {
-  zoomControl: false,
-  preferCanvas: true,
-}).setView([48.9880, -123.0680], 14);
+/* ─────────────────────────────────────────────────────────
+   STRATEGIC PROPERTIES  (hardcoded planning data)
+───────────────────────────────────────────────────────── */
+const STRATEGIC = [
+  {
+    id: "reef", name: "★ The Reef", lat: 48.98453, lng: -123.08337,
+    status: "target", assessed: 850965, asking: 1375000,
+    sqft: 8463, built: 1959, address: "1334 Gulf Rd",
+    note: "Target acquisition. Bar/restaurant + lodging. On-premise liquor license. Asking $1.375M vs $851K assessed = 62% premium. Asking price negotiable.",
+    color: "#f0c040"
+  },
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-  attribution: '© OpenStreetMap, © CARTO',
-  subdomains: 'abcd',
-  maxZoom: 20,
-}).addTo(map);
+  {
+    id: "liquorstore", name: "Adjacent Liquor Store", lat: 48.98422, lng: -123.07842,
+    status: "watch", assessed: 202000, asking: null,
+    sqft: null, built: null, address: "1405 Gulf Rd",
+    note: "Adjacent parcel. Combined acquisition with The Reef changes entry economics. Check availability.",
+    color: "#d4b040"
+  },
+  {
+    id: "marina", name: "Point Roberts Marina", lat: 48.97808, lng: -123.06286,
+    status: "open", assessed: 12770000, asking: null,
+    sqft: null, built: null, address: "713 Simundson Dr",
+    note: "Major amenity. 800-slip marina. Natural partner for membership cross-promotion. Not for sale.",
+    color: "#7ab5d8"
+  },
+  {
+    id: "golf", name: "Golf & Country Club", lat: 48.99604, lng: -123.08235,
+    status: "open", assessed: 4340000, asking: null,
+    sqft: null, built: null, address: "500 Benson Rd",
+    note: "Existing members club in PR. Potential cross-membership deal. Operating successfully.",
+    color: "#7ab5d8"
+  },
+  {
+    id: "hislop", name: "Hislop Food Operations", lat: 48.98409, lng: -123.08323,
+    status: "open", assessed: 1500000, asking: null,
+    sqft: null, built: null, address: "1330 Gulf Rd",
+    note: "IGA grocery + Subway directly adjacent to The Reef. Hislop family controls key food retail in PR. Monitor for future consolidation opportunity.",
+    color: "#7ab5d8"
+  }
+];
 
-L.control.zoom({ position: 'topright' }).addTo(map);
-
-// ── Color / category maps ──────────────────────────────────────
+/* ─────────────────────────────────────────────────────────
+   CATEGORY COLORS  (for GIS parcels)
+───────────────────────────────────────────────────────── */
 const CAT_COLORS = {
-  "EATING PLACE":  "#e74c3c",
-  "DRINK PLACES":  "#9b59b6",
-  "LIQUOR":        "#8e44ad",
-  "GAS SERV STA":  "#e67e22",
-  "GROCERIES":     "#27ae60",
-  "MARINAS":       "#2980b9",
-  "OTHR MARINAS":  "#2980b9",
-  "GOLF COURSES":  "#1abc9c",
-  "GEN RESORTS":   "#1abc9c",
-  "RV PARKS":      "#f39c12",
-  "MINI STORAGE":  "#95a5a6",
-  "WHSE/STORAGE":  "#95a5a6",
-  "OTHR WHSE/ST":  "#95a5a6",
-  "BANK SERV":     "#2ecc71",
-  "POSTAL SERV":   "#3498db",
-  "AUTO REP SER":  "#d35400",
-  "RE AG/BRKR/M":  "#16a085",
-  "BLDG MATERLS":  "#d35400",
-  "PHONE COMMUN":  "#7f8c8d",
-  "PHONE RELAY":   "#7f8c8d",
-  "FIRE PROTECT":  "#e74c3c",
-  "POLICE PROTC":  "#1565c0",
-  "POSTAL SERV":   "#3498db",
-  "PRIMARY SCH":   "#3498db",
-  "CHURCHES":      "#8e44ad",
-  "LAND/TAKEOFF":  "#2c3e50",
-  "TENNIS COURT":  "#26a69a",
-  "WATR STORAGE":  "#607d8b",
-  "ELEC SERV":     "#ff9800",
-  "ELEC REG SUB":  "#ff9800",
-  "OSAG RANCHES":  "#558b2f",
-  "DESIG FOREST":  "#558b2f",
-  "OTHR AG LAND":  "#8bc34a",
+  "Food & Drink":    "#e05c5c",
+  "Lodging":        "#e08c40",
+  "Retail":         "#d4b040",
+  "Services":       "#7ab5d8",
+  "Recreation":     "#4caf50",
+  "Marina/Marine":  "#40c8d8",
+  "Government":     "#a060d0",
+  "Commercial":     "#7a9ab5",
+  "Vacant":         "#3a4a5a",
+  "Other":          "#5a6a7a"
 };
-const PARK_TYPES = new Set(["COMMUNITY PK","DISTRICT PK","NEIGHBRHD PK","OTHER PARK","PLAYGROUNDS"]);
-const GOV_TYPES  = new Set(["OTHR GVRN SV","FIRE PROTECT","POLICE PROTC","POSTAL SERV","PRIMARY SCH"]);
-const OTHER_TYPES = new Set(["MISC SERV","OTHR BUS SER","OTHR PER SER","OTHR FIN/INS","OTHR MISC SV","OTHR CULT","OTHR WHSE/ST","OTHR GVRN SV"]);
 
-function getColor(use) {
-  if (CAT_COLORS[use]) return CAT_COLORS[use];
-  if (PARK_TYPES.has(use))  return "#27ae60";
-  if (GOV_TYPES.has(use))   return "#3498db";
-  if (OTHER_TYPES.has(use)) return "#7f8c8d";
-  return "#607d8b";
-}
-
-// Category grouping for filter pills
-function getCategory(use) {
-  if (["EATING PLACE","DRINK PLACES","LIQUOR","GAS SERV STA","GROCERIES"].includes(use)) return "Food & Drink";
-  if (["MARINAS","OTHR MARINAS","RV PARKS"].includes(use)) return "Marine & RV";
-  if (["GOLF COURSES","GEN RESORTS","TENNIS COURT"].includes(use)) return "Recreation";
-  if (PARK_TYPES.has(use)) return "Parks";
-  if (GOV_TYPES.has(use) || use === "OTHR GVRN SV") return "Government";
-  if (["RE AG/BRKR/M","BANK SERV","OTHR FIN/INS"].includes(use)) return "Real Estate & Finance";
-  if (["MINI STORAGE","WHSE/STORAGE","OTHR WHSE/ST"].includes(use)) return "Storage";
-  if (["CHURCHES"].includes(use)) return "Religious";
-  if (["DESIG FOREST","OSAG RANCHES","OTHR AG LAND"].includes(use)) return "Land";
-  if (["ELEC SERV","ELEC REG SUB","PHONE COMMUN","PHONE RELAY","WATR STORAGE","WTR TREATMNT"].includes(use)) return "Utilities";
-  return "Other Services";
-}
-
-function fmt$(v) {
-  if (!v) return "—";
-  return "$" + Number(v).toLocaleString();
-}
-function fmtSqft(v) {
-  if (!v) return "—";
-  return Number(v).toLocaleString() + " sqft";
-}
-
-// ── State ──────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────
+   STATE
+───────────────────────────────────────────────────────── */
 let allFeatures = [];
 let activeCategories = new Set();
 let searchQuery = "";
-let markers = {};
-let currentPopupPropId = null;
+let strategicVisible = true;
+let strategicMarkers = [];
+let selectedId = null;
+let map, geoLayer;
 
-// ── Build marker for a feature ─────────────────────────────────
-function makeMarker(feature) {
-  const p    = feature.properties;
-  const ll   = [feature.geometry.coordinates[1], feature.geometry.coordinates[0]];
-  const col  = p.color || getColor(p.use);
-  const size = p.is_reef ? 20 : 12;
-  const weight = p.is_reef ? 3 : 1.5;
-  const fillOpacity = p.is_reef ? 1 : 0.82;
+/* ─────────────────────────────────────────────────────────
+   MAP INIT
+───────────────────────────────────────────────────────── */
+const map_ = L.map("map", { zoomControl: false }).setView([48.982, -123.075], 14);
+map = map_;
+L.control.zoom({ position: "bottomright" }).addTo(map);
 
-  const marker = L.circleMarker(ll, {
-    radius:      size,
-    fillColor:   col,
-    color:       p.is_reef ? "#f0c040" : "#fff",
-    weight:      weight,
-    opacity:     0.9,
-    fillOpacity: fillOpacity,
-  });
+L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+  attribution: "&copy; OSM contributors &copy; CARTO",
+  maxZoom: 19
+}).addTo(map);
 
-  const popup = L.popup({ className: '', maxWidth: 300, offset: [0, -4] })
-    .setContent(buildPopup(p, col));
+/* ─────────────────────────────────────────────────────────
+   D3 CHARTS
+───────────────────────────────────────────────────────── */
+function buildChartValuation() {
+  const el = document.getElementById("chart-valuation");
+  if (!el) return;
+  const W = el.clientWidth || 330, H = 180;
+  const margin = { top: 6, right: 60, bottom: 6, left: 130 };
+  const w = W - margin.left - margin.right;
+  const h = H - margin.top - margin.bottom;
 
-  marker.bindPopup(popup);
-  marker.on('click', () => highlightListItem(p.prop_id));
+  const data = STRATEGIC
+    .filter(d => d.assessed > 0)
+    .sort((a, b) => b.assessed - a.assessed);
 
-  if (p.is_reef) {
-    marker.bindTooltip("★ The Reef", {
-      permanent: true,
-      direction: "top",
-      className: "",
-      offset: [0, -16],
-    });
-  }
+  const x = d3.scaleLinear().domain([0, d3.max(data, d => d.assessed)]).range([0, w]);
+  const y = d3.scaleBand().domain(data.map(d => d.id)).range([0, h]).padding(0.2);
 
-  return marker;
+  const svg = d3.select(el).append("svg")
+    .attr("width", W).attr("height", H)
+    .append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+  svg.selectAll("rect").data(data).join("rect")
+    .attr("y",      d => y(d.id))
+    .attr("height", y.bandwidth())
+    .attr("x", 0).attr("width", 0)
+    .attr("rx", 3)
+    .attr("fill", d => d.color)
+    .attr("opacity", 0.85)
+    .transition().duration(700).delay((d, i) => i * 80)
+    .attr("width", d => x(d.assessed));
+
+  svg.selectAll(".label").data(data).join("text")
+    .attr("class", "label")
+    .attr("y", d => y(d.id) + y.bandwidth() / 2 + 4)
+    .attr("x", -6)
+    .attr("text-anchor", "end")
+    .attr("fill", "#b0c4d8").attr("font-size", "10px")
+    .text(d => d.name.replace("★ ", "").substring(0, 16));
+
+  svg.selectAll(".val").data(data).join("text")
+    .attr("class", "val")
+    .attr("y", d => y(d.id) + y.bandwidth() / 2 + 4)
+    .attr("x", d => x(d.assessed) + 5)
+    .attr("fill", "#e8eaed").attr("font-size", "10px").attr("font-weight", "bold")
+    .text(d => "$" + (d.assessed / 1e6).toFixed(1) + "M");
 }
 
-function buildPopup(p, color) {
-  const useBadge = `<span class="popup-use-badge" style="background:${color}22;color:${color};border:1px solid ${color}55">${p.use}</span>`;
-  return `
-    <div class="popup-inner">
-      ${useBadge}
-      <div class="popup-address">${p.is_reef ? '★ ' : ''}${p.address}</div>
-      <div class="popup-owner">${p.owner || '—'}</div>
-      <div class="popup-stats">
-        <div class="popup-stat"><div class="v">${fmt$(p.mkt_value)}</div><div class="k">Market Value</div></div>
-        <div class="popup-stat"><div class="v">${fmtSqft(p.sqft)}</div><div class="k">Bldg Size</div></div>
-        <div class="popup-stat"><div class="v">${p.yr_blt || '—'}</div><div class="k">Year Built</div></div>
-        <div class="popup-stat"><div class="v">${p.zoning || '—'}</div><div class="k">Zoning</div></div>
+function buildChartFeeFloor() {
+  const el = document.getElementById("chart-fee-floor");
+  if (!el) return;
+  const W = el.clientWidth || 330, H = 160;
+  const margin = { top: 10, right: 20, bottom: 30, left: 56 };
+  const w = W - margin.left - margin.right;
+  const h = H - margin.top - margin.bottom;
+
+  const burden = 835000;
+  const members = d3.range(100, 351, 10);
+  const points = members.map(m => ({ m, dues: burden / m }));
+
+  const x = d3.scaleLinear().domain([100, 350]).range([0, w]);
+  const y = d3.scaleLinear().domain([0, d3.max(points, d => d.dues) * 1.1]).range([h, 0]);
+
+  const svg = d3.select(el).append("svg")
+    .attr("width", W).attr("height", H)
+    .append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+  // Green target band 200-250
+  svg.append("rect")
+    .attr("x", x(200)).attr("width", x(250) - x(200))
+    .attr("y", 0).attr("height", h)
+    .attr("fill", "rgba(76,175,80,0.12)");
+
+  svg.append("text").attr("x", x(225)).attr("y", 10)
+    .attr("text-anchor", "middle").attr("fill", "#4caf50").attr("font-size", "9px")
+    .text("target");
+
+  // X axis
+  svg.append("g").attr("transform", `translate(0,${h})`).call(
+    d3.axisBottom(x).ticks(5).tickFormat(d => d)
+  ).selectAll("text").attr("fill", "#5a7a94").attr("font-size", "10px");
+  svg.selectAll(".domain, .tick line").attr("stroke", "#263545");
+
+  // Y axis
+  svg.append("g").call(
+    d3.axisLeft(y).ticks(4).tickFormat(d => "$" + Math.round(d / 1000) + "K")
+  ).selectAll("text").attr("fill", "#5a7a94").attr("font-size", "10px");
+  svg.selectAll(".domain, .tick line").attr("stroke", "#263545");
+
+  // Line
+  const line = d3.line().x(d => x(d.m)).y(d => y(d.dues)).curve(d3.curveCatmullRom);
+  const path = svg.append("path")
+    .datum(points).attr("fill", "none")
+    .attr("stroke", "#f0c040").attr("stroke-width", 2)
+    .attr("d", line);
+
+  // Animate
+  const len = path.node().getTotalLength();
+  path.attr("stroke-dasharray", len).attr("stroke-dashoffset", len)
+    .transition().duration(900).attr("stroke-dashoffset", 0);
+
+  // X label
+  svg.append("text").attr("x", w / 2).attr("y", h + 26)
+    .attr("text-anchor", "middle").attr("fill", "#5a7a94").attr("font-size", "10px")
+    .text("Members");
+}
+
+function buildChartRevenue() {
+  const el = document.getElementById("chart-revenue");
+  if (!el) return;
+  const W = el.clientWidth || 330, H = 180;
+  const margin = { top: 10, right: 20, bottom: 40, left: 16 };
+  const w = W - margin.left - margin.right;
+  const h = H - margin.top - margin.bottom;
+
+  const items = [
+    { label: "Dues",         value:  875000, type: "in" },
+    { label: "F&B",          value:  420000, type: "in" },
+    { label: "Events",       value:   80000, type: "in" },
+    { label: "Debt Service", value: -560000, type: "out" },
+    { label: "Ops",          value: -480000, type: "out" },
+    { label: "NOI",          value:  335000, type: "net" }
+  ];
+
+  const maxVal = d3.max(items, d => Math.abs(d.value));
+  const x = d3.scaleBand().domain(items.map(d => d.label)).range([0, w]).padding(0.25);
+  const y = d3.scaleLinear().domain([-maxVal * 1.05, maxVal * 1.05]).range([h, 0]);
+
+  const svg = d3.select(el).append("svg")
+    .attr("width", W).attr("height", H)
+    .append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+  // Zero line
+  svg.append("line")
+    .attr("x1", 0).attr("x2", w)
+    .attr("y1", y(0)).attr("y2", y(0))
+    .attr("stroke", "#263545").attr("stroke-width", 1);
+
+  svg.selectAll("rect").data(items).join("rect")
+    .attr("x",  d => x(d.label))
+    .attr("width", x.bandwidth())
+    .attr("rx", 3)
+    .attr("y",      d => d.value >= 0 ? y(d.value) : y(0))
+    .attr("height", d => Math.abs(y(d.value) - y(0)))
+    .attr("fill",   d => d.type === "in" ? "#4caf50" : d.type === "out" ? "#e05040" : "#f0c040")
+    .attr("opacity", 0)
+    .transition().duration(600).delay((d, i) => i * 90)
+    .attr("opacity", 0.85);
+
+  svg.selectAll(".bar-label").data(items).join("text")
+    .attr("class", "bar-label")
+    .attr("x", d => x(d.label) + x.bandwidth() / 2)
+    .attr("y", d => d.value >= 0 ? y(d.value) - 3 : y(0) + Math.abs(y(d.value) - y(0)) + 11)
+    .attr("text-anchor", "middle")
+    .attr("fill", "#7ab5d8").attr("font-size", "9px")
+    .text(d => (d.value >= 0 ? "+" : "") + Math.round(d.value / 1000) + "K");
+
+  svg.selectAll(".x-label").data(items).join("text")
+    .attr("class", "x-label")
+    .attr("x", d => x(d.label) + x.bandwidth() / 2)
+    .attr("y", h + 14)
+    .attr("text-anchor", "middle")
+    .attr("fill", "#5a7a94").attr("font-size", "9px")
+    .text(d => d.label);
+}
+
+/* ─────────────────────────────────────────────────────────
+   STRATEGIC MARKERS
+───────────────────────────────────────────────────────── */
+function addStrategicMarkers() {
+  strategicMarkers.forEach(m => map.removeLayer(m));
+  strategicMarkers = [];
+  if (!strategicVisible) return;
+
+  STRATEGIC.forEach(s => {
+    const isReef = s.id === "reef";
+    const marker = L.circleMarker([s.lat, s.lng], {
+      radius:      isReef ? 18 : 13,
+      fillColor:   s.color,
+      color:       isReef ? "#ffffff" : s.color,
+      weight:      isReef ? 3 : 1.5,
+      opacity:     0.9,
+      fillOpacity: isReef ? 0.9 : 0.7
+    });
+
+    const statusMap = { target: "Target", stalled: "⚠ Stalled", watch: "Watch", open: "Open" };
+    const flagClass = `flag-${s.status}`;
+    marker.bindPopup(`
+      <div class="popup-inner">
+        <div class="popup-address">${s.name}</div>
+        <div class="popup-owner">${s.address}</div>
+        <div class="popup-stats">
+          <div class="popup-stat"><div class="v">${s.assessed ? "$" + (s.assessed/1e6).toFixed(2) + "M" : "—"}</div><div class="k">Assessed</div></div>
+          <div class="popup-stat"><div class="v">${s.asking ? "$" + (s.asking/1e6).toFixed(2) + "M" : "—"}</div><div class="k">Asking</div></div>
+          <div class="popup-stat"><div class="v">${s.sqft ? s.sqft.toLocaleString() + " sqft" : "—"}</div><div class="k">Size</div></div>
+          <div class="popup-stat"><div class="v">${s.built || "—"}</div><div class="k">Built</div></div>
+        </div>
+        <div class="strategic-popup-flag ${flagClass}">${statusMap[s.status]}</div>
+        <div class="popup-owner" style="margin-top:8px;line-height:1.5;">${s.note}</div>
       </div>
-      ${p.county_url ? `<a class="popup-link" href="${p.county_url}" target="_blank">View County Record ↗</a>` : ''}
-    </div>`;
+    `, { maxWidth: 300 });
+
+    marker.addTo(map);
+    strategicMarkers.push(marker);
+  });
 }
 
-// ── Load and render ────────────────────────────────────────────
-fetch('businesses.geojson')
-  .then(r => r.json())
-  .then(geojson => {
-    allFeatures = geojson.features;
-
-    // Sort: reef first, then by market value desc
-    allFeatures.sort((a, b) => {
-      if (a.properties.is_reef) return -1;
-      if (b.properties.is_reef) return  1;
-      return (b.properties.mkt_value || 0) - (a.properties.mkt_value || 0);
+/* ─────────────────────────────────────────────────────────
+   PLANNING TAB — Strategic list
+───────────────────────────────────────────────────────── */
+function buildStrategicList() {
+  const el = document.getElementById("strategic-list");
+  if (!el) return;
+  el.innerHTML = "";
+  STRATEGIC.forEach(s => {
+    const item = document.createElement("div");
+    item.className = "strategic-item";
+    const statusLabels = { target: "Target", stalled: "⚠ Stalled", watch: "Watch", open: "Open" };
+    item.innerHTML = `
+      <div class="si-dot" style="background:${s.color}"></div>
+      <div class="si-info">
+        <div class="si-name">${s.name}</div>
+        <div class="si-status status-${s.status}">${statusLabels[s.status]}</div>
+        <div class="si-note">${s.address}</div>
+      </div>
+      <div class="si-assessed">${s.assessed ? "$" + (s.assessed/1e6).toFixed(1) + "M" : "—"}</div>
+    `;
+    item.addEventListener("click", () => {
+      // Switch to Map tab, fly there, enable strategic layer
+      switchTab("map-panel");
+      map.flyTo([s.lat, s.lng], 16, { duration: 1 });
+      if (!strategicVisible) {
+        strategicVisible = true;
+        document.getElementById("strategic-toggle").textContent = "Hide Strategic";
+        document.getElementById("strategic-toggle").classList.add("on");
+        addStrategicMarkers();
+      }
+      // Open popup
+      setTimeout(() => {
+        const m = strategicMarkers.find((_, i) => STRATEGIC[i].id === s.id);
+        if (m) m.openPopup();
+      }, 1100);
     });
+    el.appendChild(item);
+  });
+}
 
-    // Build category set
-    const cats = new Set(allFeatures.map(f => getCategory(f.properties.use)));
+/* ─────────────────────────────────────────────────────────
+   TAB SWITCHING
+───────────────────────────────────────────────────────── */
+function switchTab(panelId) {
+  document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  document.getElementById(panelId).classList.add("active");
+  document.querySelector(`[data-tab="${panelId}"]`).classList.add("active");
+
+  if (panelId === "planning-panel") {
+    // Rebuild charts (if container size is now known)
+    setTimeout(() => {
+      if (!document.querySelector("#chart-valuation svg")) buildChartValuation();
+      if (!document.querySelector("#chart-fee-floor svg")) buildChartFeeFloor();
+      if (!document.querySelector("#chart-revenue svg"))   buildChartRevenue();
+    }, 50);
+  }
+}
+
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => switchTab(btn.dataset.tab));
+});
+
+/* ─────────────────────────────────────────────────────────
+   STRATEGIC TOGGLE
+───────────────────────────────────────────────────────── */
+document.getElementById("strategic-toggle").addEventListener("click", () => {
+  strategicVisible = !strategicVisible;
+  const btn = document.getElementById("strategic-toggle");
+  if (strategicVisible) {
+    btn.textContent = "Hide Strategic";
+    btn.classList.add("on");
+  } else {
+    btn.textContent = "Strategic Layer";
+    btn.classList.remove("on");
+  }
+  addStrategicMarkers();
+});
+
+/* ─────────────────────────────────────────────────────────
+   FLY TO THE REEF
+───────────────────────────────────────────────────────── */
+document.getElementById("fly-to-reef").addEventListener("click", () => {
+  map.flyTo([48.98453, -123.08337], 17, { duration: 1.4 });
+});
+
+/* ─────────────────────────────────────────────────────────
+   DATA LOAD + RENDER
+───────────────────────────────────────────────────────── */
+fetch("businesses.geojson")
+  .then(r => r.json())
+  .then(data => {
+    allFeatures = data.features;
+
+    // Collect categories
+    const cats = new Set(allFeatures.map(f => f.properties.category || "Other"));
     activeCategories = new Set(cats);
 
-    buildFilterPills([...cats].sort());
-    buildLegend();
+    buildFilterPills(cats);
+    buildLegend(cats);
     renderAll();
-    buildStatsBar();
+    buildStats();
+    buildStrategicList();     // Populate the planning tab list
+    addStrategicMarkers();      // Show strategic layer by default
+    document.getElementById("stats-bar").style.display = "flex";
   })
-  .catch(err => {
-    console.error("Failed to load businesses.geojson", err);
-    document.getElementById('property-list').innerHTML =
-      '<p style="color:#e74c3c;padding:16px;font-size:13px">Error loading data. Run: python -m http.server 8080</p>';
+  .catch(() => {
+    // If no GeoJSON, still render planning
+    buildStrategicList();
+    addStrategicMarkers();
+    document.getElementById("stats-bar").style.display = "none";
   });
 
-// ── Filter pills ───────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────
+   FILTER PILLS
+───────────────────────────────────────────────────────── */
 function buildFilterPills(cats) {
-  const container = document.getElementById('filter-pills');
+  const container = document.getElementById("filter-pills");
+  container.innerHTML = "";
 
-  // "All" pill
-  const allPill = document.createElement('span');
-  allPill.className = 'pill active';
-  allPill.textContent = 'All';
-  allPill.style.cssText = 'background:#2a3f55;color:#b0c4d8;border-color:#3a5f80';
-  allPill.addEventListener('click', () => {
+  // ALL pill
+  const allPill = document.createElement("div");
+  allPill.className = "pill active";
+  allPill.style.background = "#1e3048";
+  allPill.style.color = "#e8eaed";
+  allPill.style.borderColor = "#2e5070";
+  allPill.textContent = "All";
+  allPill.addEventListener("click", () => {
     activeCategories = new Set(cats);
-    document.querySelectorAll('.pill[data-cat]').forEach(p => p.classList.add('active'));
-    allPill.classList.add('active');
+    document.querySelectorAll(".pill").forEach(p => p.classList.add("active"));
     renderAll();
   });
   container.appendChild(allPill);
 
-  cats.forEach(cat => {
-    // pick a representative color for the pill
-    const sampleFeature = allFeatures.find(f => getCategory(f.properties.use) === cat);
-    const col = sampleFeature ? (sampleFeature.properties.color || getColor(sampleFeature.properties.use)) : "#607d8b";
-
-    const pill = document.createElement('span');
-    pill.className = 'pill active';
-    pill.dataset.cat = cat;
+  [...cats].sort().forEach(cat => {
+    const color = CAT_COLORS[cat] || CAT_COLORS["Other"];
+    const pill = document.createElement("div");
+    pill.className = "pill active";
+    pill.style.background = color + "22";
+    pill.style.borderColor = color;
+    pill.style.color = color;
     pill.textContent = cat;
-    pill.style.cssText = `background:${col}22;color:${col};border-color:${col}55`;
-
-    pill.addEventListener('click', () => {
+    pill.addEventListener("click", () => {
       if (activeCategories.has(cat)) {
         activeCategories.delete(cat);
-        pill.classList.remove('active');
+        pill.classList.remove("active");
       } else {
         activeCategories.add(cat);
-        pill.classList.add('active');
+        pill.classList.add("active");
       }
       renderAll();
     });
@@ -665,132 +869,146 @@ function buildFilterPills(cats) {
   });
 }
 
-// ── Legend ─────────────────────────────────────────────────────
-function buildLegend() {
-  const legendCats = [
-    ["Food & Drink",  "#e74c3c"],
-    ["Marine & RV",   "#2980b9"],
-    ["Recreation",    "#1abc9c"],
-    ["Parks",         "#27ae60"],
-    ["Government",    "#3498db"],
-    ["Real Estate",   "#16a085"],
-    ["Storage",       "#95a5a6"],
-    ["Utilities",     "#ff9800"],
-    ["Target: Reef",  "#f0c040"],
-  ];
-  const cont = document.getElementById('legend-items');
-  legendCats.forEach(([label, color]) => {
-    cont.innerHTML += `
-      <div class="legend-item">
-        <span class="legend-dot" style="background:${color}"></span>
-        ${label}
-      </div>`;
+/* ─────────────────────────────────────────────────────────
+   LEGEND
+───────────────────────────────────────────────────────── */
+function buildLegend(cats) {
+  const container = document.getElementById("legend-items");
+  [...cats].sort().forEach(cat => {
+    const color = CAT_COLORS[cat] || CAT_COLORS["Other"];
+    const item = document.createElement("div");
+    item.className = "legend-item";
+    item.innerHTML = `<div class="legend-dot" style="background:${color}"></div><span>${cat}</span>`;
+    container.appendChild(item);
   });
 }
 
-// ── Stats bar ──────────────────────────────────────────────────
-function buildStatsBar() {
-  const total = allFeatures.length;
-  const totalVal = allFeatures.reduce((s, f) => s + (f.properties.mkt_value || 0), 0);
-  const foodDrink = allFeatures.filter(f => ["EATING PLACE","DRINK PLACES"].includes(f.properties.use)).length;
-
-  const bar = document.getElementById('stats-bar');
-  bar.style.display = 'flex';
-  bar.innerHTML = `
-    <div class="stat-pill"><strong>${total}</strong> Properties</div>
-    <div class="stat-pill"><strong>${fmt$(totalVal)}</strong> Total Assessed</div>
-    <div class="stat-pill"><strong>${foodDrink}</strong> Eating/Drinking</div>
-    <div class="stat-pill">Point Roberts, WA 98281</div>
-  `;
-}
-
-// ── Render all markers + list ──────────────────────────────────
+/* ─────────────────────────────────────────────────────────
+   RENDER ALL
+───────────────────────────────────────────────────────── */
 function renderAll() {
-  // Determine visible features
   const q = searchQuery.toLowerCase();
-  const visible = allFeatures.filter(f => {
+  const filtered = allFeatures.filter(f => {
     const p = f.properties;
-    if (!activeCategories.has(getCategory(p.use))) return false;
-    if (q && !(
-      p.address.toLowerCase().includes(q) ||
-      (p.owner || "").toLowerCase().includes(q) ||
-      p.use.toLowerCase().includes(q)
-    )) return false;
+    if (!activeCategories.has(p.category || "Other")) return false;
+    if (q && !( (p.address||"").toLowerCase().includes(q) || (p.owner||"").toLowerCase().includes(q) )) return false;
     return true;
   });
 
-  // Remove old markers
-  Object.values(markers).forEach(m => map.removeLayer(m));
-  markers = {};
+  document.getElementById("count-badge").textContent = filtered.length + " / " + allFeatures.length;
 
-  // Add new markers
-  visible.forEach(f => {
-    const m = makeMarker(f);
-    m.addTo(map);
-    markers[f.properties.prop_id] = m;
-  });
+  // Map layer — skip The Reef from regular markers (strategic layer handles it)
+  if (geoLayer) map.removeLayer(geoLayer);
+  geoLayer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
+    filter: f => !f.properties.is_reef,
+    pointToLayer: (feature, latlng) => {
+      const p = feature.properties;
+      const color = p.color || CAT_COLORS[p.category] || CAT_COLORS["Other"];
+      const isStrategicParcel = STRATEGIC.some(s => s.address === p.address);
+      return L.circleMarker(latlng, {
+        radius:      isStrategicParcel ? 10 : 7,
+        fillColor:   color,
+        color:       isStrategicParcel ? "#ffffff" : color,
+        weight:      isStrategicParcel ? 1.5 : 1,
+        opacity:     0.8,
+        fillOpacity: 0.75
+      });
+    },
+    onEachFeature: (feature, layer) => {
+      const p = feature.properties;
+      const color = p.color || CAT_COLORS[p.category] || CAT_COLORS["Other"];
+      const fmt = v => v ? "$" + Number(v).toLocaleString() : "—";
 
-  // Render list
-  buildList(visible);
+      layer.bindPopup(`
+        <div class="popup-inner">
+          <span class="popup-use-badge" style="background:${color}22;color:${color}">${p.category || "Other"}</span>
+          <div class="popup-address">${p.address || "Unknown Address"}</div>
+          <div class="popup-owner">${p.owner || "Unknown Owner"}</div>
+          <div class="popup-stats">
+            <div class="popup-stat"><div class="v">${fmt(p.assessed_value)}</div><div class="k">Assessed</div></div>
+            <div class="popup-stat"><div class="v">${p.sqft ? Number(p.sqft).toLocaleString() + " sqft" : "—"}</div><div class="k">Size</div></div>
+            <div class="popup-stat"><div class="v">${p.year_built || "—"}</div><div class="k">Built</div></div>
+            <div class="popup-stat"><div class="v">${p.parcel_id || "—"}</div><div class="k">Parcel ID</div></div>
+          </div>
+          <a class="popup-link" href="https://www.whatcomcounty.us/1877/Property-Information" target="_blank">
+            Whatcom County GIS &rarr;
+          </a>
+        </div>
+      `, { maxWidth: 280 });
+
+      layer.bindTooltip(p.address || "No address", { direction: "top", offset: [0, -6] });
+
+      layer.on("click", () => {
+        selectedId = p.parcel_id;
+        renderList(filtered);
+      });
+    }
+  }).addTo(map);
+
+  renderList(filtered);
 }
 
-// ── Property list ──────────────────────────────────────────────
-function buildList(features) {
-  const list = document.getElementById('property-list');
-  document.getElementById('count-badge').textContent = features.length;
-  list.innerHTML = '';
+/* ─────────────────────────────────────────────────────────
+   SIDEBAR LIST
+───────────────────────────────────────────────────────── */
+function renderList(features) {
+  const container = document.getElementById("property-list");
+  container.innerHTML = "";
 
   features.forEach(f => {
-    const p   = f.properties;
-    const col = p.color || getColor(p.use);
-    const el  = document.createElement('div');
-    el.className = 'property-item' + (p.is_reef ? ' is-reef' : '');
-    el.dataset.propId = p.prop_id;
-    el.innerHTML = `
-      <span class="dot" style="background:${col}"></span>
+    const p = f.properties;
+    const color = p.color || CAT_COLORS[p.category] || CAT_COLORS["Other"];
+    const isStrategic = STRATEGIC.some(s => s.address === p.address);
+    const item = document.createElement("div");
+    item.className = "property-item" +
+      (p.is_reef ? " is-reef" : "") +
+      (isStrategic && !p.is_reef ? " is-strategic" : "") +
+      (p.parcel_id === selectedId ? " selected" : "");
+
+    const fmt = v => v ? "$" + (Number(v) / 1000).toFixed(0) + "K" : "—";
+    item.innerHTML = `
+      <div class="dot" style="background:${color}"></div>
       <div class="prop-info">
-        <div class="prop-address">${p.is_reef ? '★ ' : ''}${p.address}</div>
-        <div class="prop-owner">${p.owner || '—'}</div>
+        <div class="prop-address">${p.address || "No address"}</div>
+        <div class="prop-owner">${p.owner || "—"}</div>
       </div>
       <div class="prop-meta">
-        <div class="prop-value">${fmt$(p.mkt_value)}</div>
-        <div class="prop-use">${p.use}</div>
-      </div>`;
-    el.addEventListener('click', () => flyToProperty(f));
-    list.appendChild(el);
+        <div class="prop-value">${fmt(p.assessed_value)}</div>
+        <div class="prop-use">${p.category || "—"}</div>
+      </div>
+    `;
+
+    if (f.geometry && f.geometry.coordinates) {
+      item.addEventListener("click", () => {
+        const [lng, lat] = f.geometry.coordinates;
+        map.flyTo([lat, lng], 17, { duration: 1 });
+        selectedId = p.parcel_id;
+        renderList(features);
+      });
+    }
+
+    container.appendChild(item);
   });
 }
 
-function flyToProperty(feature) {
-  const ll = [feature.geometry.coordinates[1], feature.geometry.coordinates[0]];
-  const p  = feature.properties;
-
-  map.flyTo(ll, 17, { animate: true, duration: 1 });
-  setTimeout(() => {
-    const m = markers[p.prop_id];
-    if (m) m.openPopup();
-  }, 900);
-
-  highlightListItem(p.prop_id);
+/* ─────────────────────────────────────────────────────────
+   STATS BAR
+───────────────────────────────────────────────────────── */
+function buildStats() {
+  const bar = document.getElementById("stats-bar");
+  const total = allFeatures.length;
+  const totalAssessed = allFeatures.reduce((s, f) => s + (Number(f.properties.assessed_value) || 0), 0);
+  bar.innerHTML = `
+    <div class="stat-pill"><strong>${total}</strong> parcels</div>
+    <div class="stat-pill">Total assessed <strong>$${(totalAssessed / 1e6).toFixed(1)}M</strong></div>
+    <div class="stat-pill">Target: <strong style="color:#f0c040">The Reef $1.375M ask</strong></div>
+  `;
 }
 
-function highlightListItem(propId) {
-  document.querySelectorAll('.property-item').forEach(el => el.classList.remove('selected'));
-  const el = document.querySelector(`.property-item[data-prop-id="${propId}"]`);
-  if (el) {
-    el.classList.add('selected');
-    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-}
-
-// ── Fly to Reef button ─────────────────────────────────────────
-document.getElementById('fly-to-reef').addEventListener('click', () => {
-  const reef = allFeatures.find(f => f.properties.is_reef);
-  if (reef) flyToProperty(reef);
-});
-
-// ── Search ─────────────────────────────────────────────────────
-document.getElementById('search-box').addEventListener('input', e => {
+/* ─────────────────────────────────────────────────────────
+   SEARCH
+───────────────────────────────────────────────────────── */
+document.getElementById("search-box").addEventListener("input", e => {
   searchQuery = e.target.value.trim();
   renderAll();
 });

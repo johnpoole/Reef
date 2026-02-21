@@ -3,8 +3,8 @@
 
 **Status:** DRAFT — Pre-Acquisition  
 **Author:** TBD  
-**Last Updated:** February 19, 2026  
-**Version:** 0.1
+**Last Updated:** February 20, 2026  
+**Version:** 0.2
 
 ---
 
@@ -21,30 +21,20 @@ Affluent Vancouverites have no private waterfront club in the U.S. accessible as
 
 ## 2. Who Is This For?
 
-### Primary Member Persona — "The Vancouver Professional"
-- Age 40–65, household income $300K+ CAD
-- Lives in West Vancouver, Shaughnessy, Kitsilano, Yaletown
-- Already holds 1–2 club memberships (golf, yacht, social)
-- Values exclusivity, service quality, and a unique experience
-- Travels to the U.S. regularly; comfortable crossing the border
-- Seeks: a place to entertain clients, relax with family, hold private events
+### Primary — Vancouverite with a NEXUS card
+Already crosses the border regularly. Probably knows Point Roberts exists and may already own property there or wants to. The specific draw is having a **destination** on the U.S. side — right now there's nothing to go to. They host dinners, celebrate things, and need event space that isn't a generic Vancouver restaurant. The mild currency advantage (paying USD dues on CAD income) makes the price feel softer than it is. The realistic version of this person is a successful business owner or senior professional, not a hedge fund manager — this isn't the Yacht Club crowd, it's one tier below that and likely more fun.
 
-### Secondary Persona — "The Point Roberts Property Owner"
-- Owns a vacation property in Point Roberts (est. 3,000+ U.S. owners)
-- Typically U.S. citizen or Canadian with U.S. real estate
-- Wants a premium social hub within walking/biking distance of their property
-- Price-sensitive compared to Vancouver primary market
+### Secondary — Point Roberts property owner
+Already makes the drive every few weeks. Currently has nowhere to go for dinner without leaving Point Roberts entirely — the food options on-peninsula are thin and informal. Annual dues might as well be described to them as "paying for the good restaurant to stay open." Very price-sensitive on initiation but stickier than you'd expect on annual dues because the alternative is driving to Tsawwassen. Estimated 3,000+ property-owning households in Point Roberts; even 5% conversion is 150 members.
 
-### Tertiary Persona — "The Seattle Weekender"
-- Travels 90–120 min for special destinations
-- Boater or sailing enthusiast using Point Roberts as a waypoint
-- Values waterfront dining and event access without overnight commitment
+### Tertiary — Boater transiting the marina
+Point Roberts Marina (725 Simundson Dr) has 960+ slips. Boaters anchoring here currently have limited options for a proper dinner or a drink with a view. More likely a day-guest or event attendee than a dues-paying member unless they're in the area regularly enough to justify the annual cost. Good target for guest-fee revenue and event bookings without requiring full membership.
 
 ### Who This Is NOT For
-- Local Point Roberts residents as the primary base (population ~1,300, insufficient)
-- Day-trippers or walk-in dining guests
-- Budget-conscious travelers
-- Anyone who can't clear U.S. Customs (eliminates underage/restricted travelers)
+- Local Point Roberts permanent residents as the primary base (population ~1,300 — not enough)
+- Anyone expecting walk-in availability or a public restaurant experience
+- People who find the border crossing genuinely stressful or who can't get NEXUS
+- Ultra-HNW "name on a building" members — wrong scale for this asset
 
 ---
 
@@ -72,16 +62,50 @@ A **private membership club** at 1334 Gulf Rd, Point Roberts, WA offering:
 
 ## 4. Membership Requirements
 
-### 4.1 Membership Tiers
+### 4.1 What Is the Lowest Fee We Can Charge?
+
+Working backward from the numbers:
+
+**Capital needed upfront:** ~$1,975,000 ($1.375M purchase + $400K reno + $200K working capital)
+
+**Annual operating costs net of F&B and event revenue:**
+- Gross opex: ~$1,100,000/yr
+- Less F&B net contribution (40% margin): ~$160,000
+- Less events net: ~$75,000
+- Less guest fees: ~$30,000
+- **Net burden on dues: ~$835,000/yr**
+
+**Annual dues floor by member count:**
+
+| Members | Dues Floor/yr | Notes |
+|---------|--------------|-------|
+| 150 | $5,600 | Undercapitalized — do not attempt |
+| 200 | $4,200 | Workable minimum, no margin for error |
+| 250 | **$3,350** | **Realistic floor at this scale** |
+| 300 | $2,800 | Requires smooth operations and full F&B |
+
+**Initiation fee floor (to cover capital before opening):**
+
+| Founding Members Sold | Initiation Floor | Notes |
+|-----------------------|-----------------|-------|
+| 75 | $26,400 | High — may be a tough sell |
+| 100 | **$19,800** | **Realistic target** |
+| 125 | $15,800 | Possible if price is negotiated down |
+
+**The actual floor:** ~$3,000–$3,500/yr dues + ~$15,000–$20,000 initiation — but only if we hit 250+ members and negotiate the purchase below ask. We cannot run this on dues alone below $3,000/yr without either member count above 300 or the building mostly paying for itself through events.
+
+### 4.2 Proposed Membership Tiers
 
 | Tier | Cap | Initiation | Annual Dues | Access |
 |------|-----|-----------|-------------|--------|
-| Founding Member | 75 | $25,000–$35,000 | $4,500 | Full + priority booking + lifetime rate lock |
-| Full Member | 250 total | $15,000–$20,000 | $4,500–$5,500 | Full access |
-| Social Member | 50 | $5,000 | $2,500 | Dining + events, limited beach |
-| Corporate | 20 accounts | None | $10,000–$15,000/yr | Full, multi-user |
+| Founding Member | 100 | $20,000 | $3,500 (rate-locked) | Full + priority + governance vote |
+| Full Member | 250 total | $12,000–$15,000 | $3,500–$4,500 | Full access |
+| Associate (property owners) | 75 | $5,000 | $2,000 | Dining + events, beach by reservation |
+| Corporate | 20 accounts | — | $8,000–$12,000/yr | Full, 3 named users |
 
-> **Open Question 1:** Should we cap total members at 250 or 300? Lower cap = more exclusive positioning; higher cap = faster debt payoff. This is a strategic brand decision. **Must decide before selling founding memberships.**
+These are lower than the earlier draft. They work if: (a) we negotiate purchase to ~$1.1M, (b) we sell 100 founding memberships, (c) events and F&B pull their weight.
+
+> **Open Question 1:** Should we cap total members at 250 or 300? The math above shows 300 is more forgiving. The counterargument is that 300 members in an 8,643 sqft building will feel crowded on a summer Saturday. **Recommend 250 hard cap with a waitlist — scarcity is the product.**
 
 ### 4.2 Guest Policy
 - Members may bring up to 4 guests per visit
@@ -136,12 +160,12 @@ For the club to be financially sustainable at acquisition cost of ~$2M total-in:
 
 | Source | Target (Year 2) |
 |--------|----------------|
-| Founding member initiations (75 × $30K avg) | $2,250,000 (one-time, at launch) |
-| Annual dues (200 members × $4,500 avg) | $900,000/yr |
-| F&B (member spend, ~40% margin) | $400,000/yr |
-| Events & venue rentals | $150,000/yr |
-| Guest fees & misc | $50,000/yr |
-| **Total Annual (stabilized)** | **~$1,500,000/yr** |
+| Founding member initiations (100 × $20K) | $2,000,000 (one-time, covers capital) |
+| Annual dues (250 members × $3,500 avg) | $875,000/yr |
+| F&B net contribution (~40% margin) | $160,000/yr |
+| Events & venue rentals (net) | $75,000/yr |
+| Guest fees & misc | $30,000/yr |
+| **Total Annual (stabilized)** | **~$1,140,000/yr** |
 
 | Operating Cost | Estimate |
 |----------------|---------|
@@ -154,7 +178,7 @@ For the club to be financially sustainable at acquisition cost of ~$2M total-in:
 | **Total Operating** | **~$1,000,000–$1,200,000** |
 | **Net Operating Income** | **~$300,000–$500,000/yr** |
 
-> **Hard requirement:** Founding member initiation revenue must equal or exceed total acquisition + renovation cost before opening day. Target: $2.25M from 75 founding members covers $1.375M purchase + $500K reno + $200K working capital. **This is the primary financial gate.**
+> **Hard requirement:** Founding member initiation revenue must equal or exceed total acquisition + renovation cost before opening day. Target: $2.0M from 100 founding members at $20K each covers a negotiated purchase (~$1.1M) + $400K reno + $200K working capital. **If we can't negotiate below $1.2M on the purchase, initiation fees need to go up or we need more than 100 founding members. This is the primary financial gate.**
 
 ### 6.2 Go / No-Go Financial Thresholds
 - **GO:** 50+ founding member commitments with $5K–$10K refundable deposits secured = proceed with purchase
