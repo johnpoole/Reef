@@ -995,8 +995,8 @@
         ],
         "place_id": "ChIJN9w3lV_vhVQRgy_xfDwpfSQ",
         "rating": 4.1,
-        "source": "google+assessor",
-        "owner": null,
+        "source": "google+skyvector-1RL",
+        "owner": "Lily Point Holdings LLC",
         "mkt_value": null,
         "land_value": null,
         "impr_value": null,
@@ -1005,7 +1005,16 @@
         "zoning": null,
         "legal": null,
         "prop_id": null,
-        "county_url": null
+        "county_url": null,
+        "faa_id": "1RL",
+        "landing_fee_usd": 10,
+        "overnight_fee_usd": 15,
+        "runway": "16/34, 2265x125 ft, turf",
+        "ctaf": "122.800",
+        "owner_phone": "778-846-4311",
+        "manager": "Bob Granley, 693 Highland Dr, Point Roberts WA 98281",
+        "ppr_required": true,
+        "note": "10 USD landing fee (visiting acft). 15 USD/night overnight tiedown. Payment drop box inside hangar east wall. PPR required \u2014 text 778-846-4311 so field capacity can be controlled. No camping. Attendance Mon-Fri 0900-1700. (SkyVector 1RL, 2026-02-22)"
       }
     },
     {
