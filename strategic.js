@@ -66,22 +66,6 @@ const STRATEGIC = [
     color: "#f0c040"
   },
   {
-    // Google Places API find_place for "1405 Gulf Rd" (2026-02-22) returned only type "premise" —
-    // no business name is linked to this address in Google's data. Lady Liberty appearing in the
-    // nearby search at r=4.0 is a separate listing (types: point_of_interest) — generic, unverified.
-    // IMPORTANT: Larry's Liquor Locker (r=4.5, liquor_store) is at 1334B Gulf Rd, NOT here.
-    //   The assessor LIQUOR use code on 1405 is a tax classification — it does not confirm
-    //   that a liquor store is operating at this address. Lady Liberty's actual business type unknown.
-    // partnerReady: false — business identity unverified.
-    id: "liquorstore", name: "Lady Liberty",
-    status: "watch", assessed: 202000, asking: null,
-    sqft: null, built: null,
-    src: "name:google-places-api, coords:businesses.geojson, assessed:assessor",
-    note: "Lady Liberty appears in Google nearby search (r=4.0, type: point_of_interest only). find_place for 1405 Gulf Rd returned only \"premise\" — no business confirmed at 1405. Assessor use code LIQUOR is a tax classification only. Larry's Liquor Locker is at 1334B (The Reef parcel), not here.",
-    partnerReady: false,
-    color: "#d4b040"
-  },
-  {
     // name: Google Places. Sub-businesses at this address (Shell Marina, The Pier,
     // Point Roberts Marina Resort) confirmed via Google Places API — see businesses.geojson.
     // STRATEGIC marker covers the whole property; sub-businesses are suppressed (is_strategic).

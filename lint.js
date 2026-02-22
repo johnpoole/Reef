@@ -75,6 +75,17 @@ lines("model.js").forEach((l, i) => {
     fail("model.js", i + 1, "property-specific financial data in model.js — belongs in strategic.js");
 });
 
+// ─── Rule 6: "Lady Liberty" must never appear in any data field ──────────────
+// An unconfirmed Google Places artifact. Not a real business entry. Comments are
+// allowed (archaeological record); any non-comment code line is a violation.
+["strategic.js", "index.html", "map.js", "planning.js", "slides.js"].forEach(file => {
+  lines(file).forEach((l, i) => {
+    const stripped = l.replace(/\/\/.*/, "").replace(/<!--.*?-->/, "");
+    if (/lady\s+liberty/i.test(stripped))
+      fail(file, i + 1, `"Lady Liberty" in data/code — unverified artifact, must not appear outside comments`);
+  });
+});
+
 // ─── Summary ─────────────────────────────────────────────────────────────────
 if (errors === 0) {
   console.log("OK    All data-integrity checks passed.");
