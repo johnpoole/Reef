@@ -39,3 +39,20 @@ Violating this creates two diverging copies of the same fact with no clear autho
 A `place_id` is not proof. Google assigns place_ids to third-party listings (Airbnb, VRBO, booking platforms) that do not appear as map pins. Confirmed via the A-Frame Cottage incident (2026-02-22): real place_id `ChIJc5u1m_blhVQRfbk1g6a9vxM` returned by the API, not visible on maps.google.com — removed.
 
 Before adding or restoring any feature, verify it appears on the Google Maps UI as a business pin, not just that the Places API returns a place_id for it.
+## Lady Liberty incident log
+
+**Target: 0% of session questions about Lady Liberty. Current track record: terrible.**
+
+Lady Liberty (`place_id: ChIJf1n0KADlhVQRzL6C4v5bmnA`, 1405 Gulf Rd) is an unverified Google Places artifact — `point_of_interest` only, no confirmed business type, no confirmed map pin. It is not a strategic target. It is not a business. It should never appear in any rendered layer.
+
+`lint.js` Rule 6 hard-fails if the name appears in any non-comment line in any file.
+
+### Incident log
+
+| Date | Incident | Resolution |
+|---|---|---|
+| 2026-02-22 | Lady Liberty appearing as a strategic layer marker | Removed from `strategic.js` |
+| 2026-02-22 | Lady Liberty still appearing — was still in `businesses.geojson` | Removed from `businesses.geojson` |
+| 2026-02-22 | Removal broke geojson (swallowed opening of next feature) | Repaired missing `{` + `"type":"Feature"` lines; map restored |
+
+**Running tally: 3 Lady Liberty incidents. 0 is the goal.**

@@ -1706,6 +1706,8 @@
         "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153807"
       }
     },
+    {
+      "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [
