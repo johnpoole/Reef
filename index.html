@@ -689,24 +689,30 @@ const STRATEGIC = [
     id: "reef", name: "★ The Reef", lat: 48.98453, lng: -123.08337,
     status: "target", assessed: 850965, asking: 1375000,
     sqft: 8463, built: 1959, address: "1334 Gulf Rd",
-    // name: Google Maps + signage. assessed/sqft/built: Whatcom County assessor.
+    // Google Places API (nearby search, 600m radius, 2026-02-22):
+    //   Operating name: "Kiniski's Reef Tavern" — rating 4.3, types: bar, restaurant, food.
+    //   Co-tenant at same address: Larry's Liquor Locker (1334B Gulf Rd) — rating 4.5, types: liquor_store.
+    //   Larry's is a sub-address of this parcel, NOT a separate parcel. Do not confuse with 1405 (Lady Liberty).
+    // assessed/sqft/built: Whatcom County assessor.
     // asking: listing price — verify currency before use.
-    // use codes from assessor (bar/restaurant, lodging) suggest current use but are NOT
-    // a verified description of the operating business — confirm against listing or direct visit.
-    src: "name:google, assessed:assessor, asking:listing, use:assessor-unverified",
-    note: "Target acquisition. Asking $1.375M vs $851K assessed = 62% premium. Assessor use codes indicate bar/restaurant + lodging — verify against current listing.",
+    src: "name:google-places-api, co-tenant:google-places-api, assessed:assessor, asking:listing",
+    note: "Target acquisition. Operating as Kiniski's Reef Tavern (Google r=4.3, bar/restaurant). Co-tenant: Larry's Liquor Locker at 1334B (r=4.5, liquor_store) — same parcel, different sub-address. Asking $1.375M vs $851K assessed = 62% premium.",
     partnerReady: false,
     color: "#f0c040"
   },
   {
-    // name: Verified via Google Places API (rating 4.0, types: point_of_interest).
-    // Assessor use code is LIQUOR — property tax classification only, NOT the business name.
-    // partnerReady: false — business type entirely unverified beyond a generic Google type.
+    // Google Places API find_place for "1405 Gulf Rd" (2026-02-22) returned only type "premise" —
+    // no business name is linked to this address in Google's data. Lady Liberty appearing in the
+    // nearby search at r=4.0 is a separate listing (types: point_of_interest) — generic, unverified.
+    // IMPORTANT: Larry's Liquor Locker (r=4.5, liquor_store) is at 1334B Gulf Rd, NOT here.
+    //   The assessor LIQUOR use code on 1405 is a tax classification — it does not confirm
+    //   that a liquor store is operating at this address. Lady Liberty's actual business type unknown.
+    // partnerReady: false — business identity unverified.
     id: "liquorstore", name: "Lady Liberty", lat: 48.98422, lng: -123.07842,
     status: "watch", assessed: 202000, asking: null,
     sqft: null, built: null, address: "1405 Gulf Rd",
-    src: "name:google, assessed:assessor",
-    note: "1405 Gulf Rd (~350m east by coordinates — not adjacent despite nearby address). Business: Lady Liberty (Google rating 4.0). Assessor use code: LIQUOR (tax classification only). Check availability.",
+    src: "name:google-places-api, assessed:assessor",
+    note: "1405 Gulf Rd (~350m east by coordinates). Lady Liberty appears in Google nearby search (r=4.0, type: point_of_interest only). find_place for this address returned only \"premise\" — no business confirmed at 1405. Assessor use code LIQUOR is a tax classification only. Larry's Liquor Locker is at 1334B (The Reef parcel), not here.",
     partnerReady: false,
     color: "#d4b040"
   },
@@ -762,6 +768,20 @@ const STRATEGIC = [
     note: "1330 Gulf Rd (~50m south by coordinates). Owner: John & Barbara Hislop (assessor). Current tenants unknown — Google Places returned no business name. Verify by direct visit before any partnership or acquisition planning.",
     partnerReady: false,
     color: "#7ab5d8"
+  },
+  {
+    // Google Places API nearby search (600m from The Reef, 2026-02-22):
+    //   Name: "Saltwater Café" — rating 4.4, types: cafe, restaurant, food, address: 1345 Gulf Rd.
+    //   Directly between The Reef (1334) and Lady Liberty (1405). Exact lat/lng not captured from
+    //   API response — leave null until verified by a targeted Places Detail call.
+    // partnerReady: false — newly discovered; no partnership model developed yet.
+    id: "saltwater", name: "Saltwater Café", lat: null, lng: null,
+    status: "watch", assessed: null, asking: null,
+    sqft: null, built: null, address: "1345 Gulf Rd",
+    src: "name:google-places-api, rating:google-places-api",
+    note: "1345 Gulf Rd. Discovered via Google Places nearby search (r=4.4, cafe/restaurant/food). Closest food business to The Reef — potential cross-referral or event partner. Coordinates not yet captured; verify before mapping.",
+    partnerReady: false,
+    color: "#e05c5c"
   }
 ];
 
@@ -1005,6 +1025,7 @@ function addStrategicMarkers() {
   if (!strategicVisible) return;
 
   STRATEGIC.forEach(s => {
+    if (s.lat == null || s.lng == null) return; // coordinates not yet verified
     const isReef = s.id === "reef";
     const marker = L.circleMarker([s.lat, s.lng], {
       radius:      isReef ? 18 : 13,
@@ -1058,6 +1079,7 @@ function buildStrategicList() {
       <div class="si-assessed">${s.assessed ? "$" + (s.assessed/1e6).toFixed(1) + "M" : "—"}</div>
     `;
     item.addEventListener("click", () => {
+      if (s.lat == null || s.lng == null) return; // no verified coordinates yet
       // Switch to Map tab, fly there, enable strategic layer
       switchTab("map-panel");
       map.flyTo([s.lat, s.lng], 16, { duration: 1 });
