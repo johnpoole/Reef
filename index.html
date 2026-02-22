@@ -1173,6 +1173,7 @@ document.getElementById("strategic-toggle").addEventListener("click", () => {
     btn.classList.remove("on");
   }
   addStrategicMarkers();
+  pushState();
 });
 
 /* ─────────────────────────────────────────────────────────
@@ -1251,6 +1252,7 @@ document.getElementById("lots-toggle").addEventListener("click", () => {
     btn.classList.remove("on");
     if (lotsLayer) map.removeLayer(lotsLayer);
   }
+  pushState();
 });
 
 /* ─────────────────────────────────────────────────────────
@@ -2188,6 +2190,8 @@ function pushState() {
   } else if (tab === "presentation-panel") {
     p.set("slide", currentSlide);
   }
+  if (lotsVisible)      p.set("lots", "1");
+  if (!strategicVisible) p.set("strat", "0");
   history.replaceState(null, "", "#" + p.toString());
 }
 
@@ -2208,6 +2212,19 @@ function restoreState() {
   } else if (tab === "presentation-panel") {
     const slide = parseInt(p.get("slide"), 10);
     if (!isNaN(slide) && slide >= 0 && slide < SLIDES.length) goToSlide(slide);
+  }
+  // Restore layer toggles
+  if (p.get("lots") === "1" && !lotsVisible) {
+    lotsVisible = true;
+    const btn = document.getElementById("lots-toggle");
+    if (btn) { btn.textContent = "Hide Lots"; btn.classList.add("on"); }
+    if (lotsLayer) lotsLayer.addTo(map);
+  }
+  if (p.get("strat") === "0" && strategicVisible) {
+    strategicVisible = false;
+    const btn = document.getElementById("strategic-toggle");
+    if (btn) { btn.textContent = "Strategic Layer"; btn.classList.remove("on"); }
+    addStrategicMarkers();
   }
   _suppressHash = false;
   pushState(); // normalize (e.g. fill in zoom/lat/lng if missing)
