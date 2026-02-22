@@ -37,8 +37,10 @@ if not API_KEY:
     raise RuntimeError("Set GOOGLE_PLACES_API_KEY in .env or environment")
 BASE_URL = "https://maps.googleapis.com/maps/api/place"
 
-CENTER   = "48.982,-123.075"
-RADIUS_M = 2500          # covers the whole Point Roberts peninsula
+CENTER   = "48.986,-123.060"   # shifted slightly east/north to better center the peninsula
+RADIUS_M = 4000               # Point Roberts easternmost business (Ollie Otter, 2234 Sunrise Dr)
+                               # is ~3.24km east of the old center. 4km covers the full peninsula
+                               # with margin. Old 2500m was clipping the eastern third.
 
 # Types we skip for the "missing from our map" list (not commercial businesses)
 SKIP_TYPES = {"locality", "political", "neighborhood", "natural_feature",

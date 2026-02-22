@@ -131,10 +131,20 @@ print(f"Assessor parcs: {len(assessor_by_addr)} unique addrs from parcel_data.js
 # ── Build new features ────────────────────────────────────────────────────────
 features = []
 
+# Canadian cities that bleed into the search radius — exclude.
+# US border facilities (CBP, ICE) have Point Roberts addresses and are kept.
+CANADIAN_CITIES = {"delta", "surrey", "tsawwassen", "ladner", "white rock"}
+
 for place in all_places:
     types = place.get("types", [])
     # Skip pure administrative/geo entries
     if all(t in SKIP_TYPES for t in types):
+        continue
+
+    # Skip Canadian businesses (vicinity contains a Canadian city name)
+    vicinity_lower = (place.get("vicinity") or "").lower()
+    if any(city in vicinity_lower for city in CANADIAN_CITIES):
+        print(f"  SKIP (Canada): {place.get('name')} | {place.get('vicinity')}")
         continue
 
     name    = place.get("name", "")

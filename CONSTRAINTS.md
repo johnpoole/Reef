@@ -47,6 +47,16 @@ Why: hand-written data has no provenance, can't be verified, diverges silently f
 A `place_id` is not proof. Google assigns place_ids to third-party listings (Airbnb, VRBO, booking platforms) that do not appear as map pins. Confirmed via the A-Frame Cottage incident (2026-02-22): real place_id `ChIJc5u1m_blhVQRfbk1g6a9vxM` returned by the API, not visible on maps.google.com — removed.
 
 Before adding or restoring any feature, verify it appears on the Google Maps UI as a business pin, not just that the Places API returns a place_id for it.
+## Do not make confident geographic claims you have not verified
+
+Don't say stupid shit like: "2,500m covers the entire peninsula with ~300m to spare — and that spare is what clips into Delta. No Point Roberts businesses are being omitted."
+
+That sentence was wrong. The 2,500m radius was actively cutting off eastern Point Roberts — Ollie Otter Bakery at 2234 Sunrise Dr was ~3.24km from the center and completely missing. Check the data before asserting coverage.
+
+In other words: do not state that a radius, filter, or query is complete and correct unless you have verified it against the actual geography. If something is missing from the output, the right response is to investigate why — not to assert that nothing is missing.
+
+Why: confident wrong statements waste time and erode trust. "No businesses are being omitted" is a load-bearing claim. If it turns out to be false, every decision made on top of it is wrong too.
+
 ## Lady Liberty incident log
 
 **Target: 0% of session questions about Lady Liberty. Current track record: terrible.**

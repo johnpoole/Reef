@@ -38,14 +38,14 @@ const MODEL = {
   //   count     Year-2 operating assumption used throughout model
 
   tiers: [
-    { name: "Founding",     sharePx:  6_000, dues:   600, cap: 100, count: 100 },  // [E] discounted — pre-launch commitment reward
-    { name: "Full",         sharePx: 10_000, dues:   900, cap: 150, count: 100 },  // [E]
-    { name: "Non-resident", sharePx:  7_000, dues:   650, cap:  50, count:  50 },  // [E]
+    { name: "Founding",     sharePx:  6_000, dues:   650, cap: 100, count: 100 },  // [E] discounted — pre-launch commitment reward
+    { name: "Full",         sharePx: 10_000, dues:   950, cap: 150, count: 100 },  // [E]
+    { name: "Non-resident", sharePx:  7_000, dues:   700, cap:  50, count:  50 },  // [E]
   ],
-  //  Annual dues:  100×$600 + 100×$900 + 50×$650 = $182,500
+  //  Annual dues:  100×$650 + 100×$950 + 50×$700 = $195,000  (+$12,500 vs prior — covers supplies line)
   //  F&B gross:    $255,000
-  //  Total income: $437,500
-  //  Total costs:  ~$438,000
+  //  Total income: $450,000
+  //  Total costs:  ~$450,000
   //  Surplus:      ~$0  ← dues are set to cover costs, not generate profit
 
   // ── USES: Acquisition & Pre-Opening Costs ───────────────────────────
@@ -198,6 +198,28 @@ const MODEL = {
           note: "Model uses this range. Reassessment typically follows permitted renovation." },
       ],
     },
+    // ── Supplies & consumables ──────────────────────────────────────────────────
+    // Bar supplies, cleaning chemicals, paper goods, glassware/crockery breakage,
+    // uniforms, office supplies. NOT covered by F&B COGS (which is product only).
+    { label: "Supplies & consumables",  lo:   8_000, hi:  15_000, color: "#5a8a70",  // [E]
+      detail: [
+        { label: "Bar supplies (napkins, garnishes, pourers, straws)",
+          lo:   2_000, hi:   4_000, confidence: "E",
+          note: "~0.8–1.5% of F&B revenue. Industry benchmark for light-service bar." },
+        { label: "Cleaning chemicals + janitorial supplies",
+          lo:   2_400, hi:   4_200, confidence: "E",
+          note: "~$200–$350/mo for 8,463 sqft commercial space." },
+        { label: "Glassware / crockery / utensil replacement",
+          lo:   1_200, hi:   2_500, confidence: "E",
+          note: "Breakage budget. Heavier in year 1 post-renovation." },
+        { label: "Paper goods + to-go supplies",
+          lo:     600, hi:   1_500, confidence: "E" },
+        { label: "Uniforms + staff gear",
+          lo:     800, hi:   1_800, confidence: "E" },
+        { label: "Office supplies + printing",
+          lo:     500, hi:   1_000, confidence: "E" },
+      ],
+    },
     // ── Admin / legal / licenses ─────────────────────────────────────────────
     { label: "Admin / legal / licenses", lo: 15_000, hi: 25_000, color: "#5a8a70",  // [E]
       detail: [
@@ -217,16 +239,17 @@ const MODEL = {
       ],
     },
   ],
-  //  Total OpEx (auto model, mid):   ~$348K
+  //  Total OpEx (auto model, mid):   ~$450K
   //  Total OpEx (baseline,  mid):    ~$476K
   //
   //  Income statement waterfall (Year 2, auto model, mid):
-  //    Dues (250 members × avg $3,640):        = $910K
+  //    Dues (250 members × avg $780):          = $195K
   //    F&B gross:                              = $255K
-  //    Total revenue:                          = $437.5K
-  //    Operating expenses (mid):               = ($438K)
+  //    Total revenue:                          = $450K
+  //    Operating expenses (mid):               = ($450K)
   //    Net:                                    ~  $0
   //
+  //  Dues raised $50/tier vs prior model to absorb Supplies & Consumables line.
   //  Dues are set to cover costs only. No surplus.
 
   /* ──────────────────────────────────────────────────────────────────

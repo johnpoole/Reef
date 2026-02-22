@@ -115,41 +115,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -123.0681933,
-          49.0022813
-        ]
-      },
-      "properties": {
-        "name": "Canada Border Services Agency - Boundary Bay",
-        "address": "4 56 Street, Delta",
-        "category": "Other",
-        "color": "#5a6a7a",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJdUEYnwvmhVQRzTWKZRnWBHQ",
-        "rating": 3.4,
-        "source": "google",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -123.068476,
           48.999892
         ]
@@ -692,41 +657,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -123.0697151,
-          49.0026884
-        ]
-      },
-      "properties": {
-        "name": "Panorama Management Consulting",
-        "address": "5595 Wallace Avenue, Delta",
-        "category": "Other",
-        "color": "#5a6a7a",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJQRUbEgvmhVQRAuzcF_Cs8uY",
-        "rating": 3,
-        "source": "google",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -123.052556,
           48.9813532
         ]
@@ -1077,41 +1007,6 @@
         "legal": "TOWNSITE OF POINT ROBERTS LOT 1 BLK 2-TOG WI VAC E 1/2 FRONT ST ABTG AS VAC CP VOL 57 PG 412 9/18/1984",
         "prop_id": 154425,
         "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=154425"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.063571,
-          49.003021
-        ]
-      },
-      "properties": {
-        "name": "S. Graham Engineering and Geology Inc.",
-        "address": "46 Parkgrove Crescent, Delta",
-        "category": "Other",
-        "color": "#5a6a7a",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJxfQHRQzmhVQRA3gV2OKNYhw",
-        "rating": null,
-        "source": "google",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
       }
     },
     {
@@ -2084,6 +1979,43 @@
         "legal": "S 209 FT OF E 209 FT OF SE NW-EXC ALL OIL-GAS-MIN RTS AS RES AF 952382-EXC PTN TO WHATCOM CO FOR RD DESC AF 1247560- 940",
         "prop_id": 153960,
         "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153960"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.0329008,
+          48.9913767
+        ]
+      },
+      "properties": {
+        "name": "Ollie Otter Bakery",
+        "address": "2234 Sunrise Dr, Point Roberts",
+        "category": "Food & Drink",
+        "color": "#e05c5c",
+        "is_reef": false,
+        "is_strategic": false,
+        "g_types": [
+          "bakery",
+          "store",
+          "food",
+          "point_of_interest"
+        ],
+        "place_id": "ChIJn4nav5bphVQRAE0KBS3cN0I",
+        "rating": 4.5,
+        "source": "google",
+        "owner": null,
+        "mkt_value": null,
+        "land_value": null,
+        "impr_value": null,
+        "yr_blt": null,
+        "sqft": null,
+        "zoning": null,
+        "legal": null,
+        "prop_id": null,
+        "county_url": null
       }
     }
   ]
