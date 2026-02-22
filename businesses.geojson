@@ -1884,6 +1884,70 @@
         "prop_id": null,
         "county_url": null
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.06286,
+          48.97808
+        ]
+      },
+      "properties": {
+        "name": "Point Roberts Marina",
+        "address": "713 Simundson Dr, Point Roberts",
+        "category": "Marina/Marine",
+        "color": "#40c8d8",
+        "is_reef": false,
+        "is_strategic": true,
+        "g_types": ["marina", "establishment"],
+        "place_id": null,
+        "rating": null,
+        "source": "google",
+        "owner": null,
+        "mkt_value": null,
+        "land_value": null,
+        "impr_value": null,
+        "yr_blt": null,
+        "sqft": null,
+        "zoning": null,
+        "legal": null,
+        "prop_id": null,
+        "county_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.08235,
+          48.99604
+        ]
+      },
+      "properties": {
+        "name": "Point Roberts Golf and Country Club",
+        "address": "500 Benson Rd, Point Roberts",
+        "category": "Recreation",
+        "color": "#4caf50",
+        "is_reef": false,
+        "is_strategic": true,
+        "g_types": ["golf_course", "establishment"],
+        "place_id": null,
+        "rating": null,
+        "source": "google",
+        "owner": null,
+        "mkt_value": null,
+        "land_value": null,
+        "impr_value": null,
+        "yr_blt": null,
+        "sqft": null,
+        "zoning": null,
+        "legal": null,
+        "prop_id": null,
+        "county_url": null
+      }
     }
   ]
 }
