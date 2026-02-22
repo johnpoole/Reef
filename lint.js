@@ -78,7 +78,7 @@ lines("model.js").forEach((l, i) => {
 // ─── Rule 6: "Lady Liberty" must never appear in any data field ──────────────
 // An unconfirmed Google Places artifact. Not a real business entry. Comments are
 // allowed (archaeological record); any non-comment code line is a violation.
-["strategic.js", "index.html", "map.js", "planning.js", "slides.js"].forEach(file => {
+["strategic.js", "businesses.geojson", "index.html", "map.js", "planning.js", "slides.js"].forEach(file => {
   lines(file).forEach((l, i) => {
     const stripped = l.replace(/\/\/.*/, "").replace(/<!--.*?-->/, "");
     if (/lady\s+liberty/i.test(stripped))

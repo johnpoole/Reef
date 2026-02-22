@@ -1706,43 +1706,6 @@
         "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153807"
       }
     },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.078691,
-          48.9843878
-        ]
-      },
-      "properties": {
-        "name": "Lady Liberty",
-        "address": "1405 Gulf Road, Point Roberts",
-        "category": "Other",
-        "color": "#5a6a7a",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJf1n0KADlhVQRzL6C4v5bmnA",
-        "rating": 4,
-        "source": "google+assessor",
-        "owner": "ROBERT G SIMPSON",
-        "mkt_value": 202141,
-        "land_value": 128324,
-        "impr_value": 73817,
-        "yr_blt": 1900,
-        "sqft": 1091,
-        "zoning": "SMALL TOWN COM",
-        "legal": "BEG 30 FT E OF NE COR OF GOVT LOT 4-TH E 208 FT-TH S 208 FT-TH W 208 FT-TH N 208 FT TO BEG-LESS RDS-EXC PTN TO WHATCOM C",
-        "prop_id": 153642,
-        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153642"
-      }
-    },
-    {
-      "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [
