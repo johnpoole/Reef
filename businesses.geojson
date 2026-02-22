@@ -132,7 +132,7 @@
         ],
         "place_id": "ChIJdUEYnwvmhVQRzTWKZRnWBHQ",
         "rating": 3.4,
-        "source": "google+assessor",
+        "source": "google",
         "owner": null,
         "mkt_value": null,
         "land_value": null,
@@ -169,16 +169,16 @@
         "place_id": "ChIJ7f8PLArmhVQR5oXPnDbFVpo",
         "rating": 5,
         "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
+        "owner": "JERRY & KAREN WHITE",
+        "mkt_value": 294146,
+        "land_value": 109217,
+        "impr_value": 184929,
+        "yr_blt": 1979,
+        "sqft": 4092,
+        "zoning": "RURAL GEN COMM",
+        "legal": "SUNRISE TERRACE DIV NO 2 LOT 19",
+        "prop_id": 159949,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=159949"
       }
     },
     {
@@ -206,16 +206,16 @@
         "place_id": "ChIJ57kb4vjlhVQRIR7y434VhfE",
         "rating": 5,
         "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
+        "owner": "STERLING SAVINGS ASSN",
+        "mkt_value": 370897,
+        "land_value": 110419,
+        "impr_value": 260478,
+        "yr_blt": 1982,
+        "sqft": 2976,
+        "zoning": "SMALL TOWN COM",
+        "legal": "LOT 2 AM POINT ROBERTS COMMERCIAL CENTER SHORT PLAT AS REC BOOK 9 SHORT PLATS PG 46",
+        "prop_id": 153974,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153974"
       }
     },
     {
@@ -241,16 +241,16 @@
         "place_id": "ChIJWzXmI_flhVQREBOM7MKXhgo",
         "rating": 5,
         "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
+        "owner": "POINT ROBERTS PARK &",
+        "mkt_value": 441387,
+        "land_value": 86243,
+        "impr_value": 355144,
+        "yr_blt": 1960,
+        "sqft": 5368,
+        "zoning": "SMALL TOWN COM",
+        "legal": "BEG 338 FT E-15 FT S OF NE COR OF GOVT LOT 4 SEC 4-TH E 200 FT-TH S 208 FT-TH W 200 FT-TH N 208 FT TO BEG-EXC W 100 FT T",
+        "prop_id": 153713,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153713"
       }
     },
     {
@@ -263,7 +263,7 @@
         ]
       },
       "properties": {
-        "name": "Saltwater Café",
+        "name": "Saltwater Caf\u00e9",
         "address": "1345 Gulf Road, Point Roberts",
         "category": "Food & Drink",
         "color": "#e05c5c",
@@ -279,15 +279,15 @@
         "rating": 4.4,
         "source": "google+assessor",
         "owner": "TH COASTAL DESIGN LLC",
-        "mkt_value": 281000,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": 1960,
-        "sqft": 1200,
-        "zoning": null,
-        "legal": null,
-        "prop_id": 154469,
-        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=154469"
+        "mkt_value": 199963,
+        "land_value": 79021,
+        "impr_value": 120942,
+        "yr_blt": 1946,
+        "sqft": 1168,
+        "zoning": "SMALL TOWN COM",
+        "legal": "TOWNSITE OF POINT ROBERTS LOTS 1-2 BLK 3",
+        "prop_id": 154458,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=154458"
       }
     },
     {
@@ -386,7 +386,7 @@
         ],
         "place_id": "ChIJc2tR6l3vhVQRaP78Z_DQj4I",
         "rating": 2.5,
-        "source": "google+assessor",
+        "source": "google",
         "owner": null,
         "mkt_value": null,
         "land_value": null,
@@ -422,7 +422,7 @@
         ],
         "place_id": "ChIJTcvsQ_nlhVQRiZbDer0w4wE",
         "rating": 2.6,
-        "source": "google+assessor",
+        "source": "google",
         "owner": null,
         "mkt_value": null,
         "land_value": null,
@@ -459,16 +459,16 @@
         "place_id": "ChIJTQoUH_zlhVQRDgHBv6hvk-0",
         "rating": null,
         "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
+        "owner": "WHITE DOG HOLDINGS LLP",
+        "mkt_value": 636171,
+        "land_value": 476990,
+        "impr_value": 159181,
+        "yr_blt": 1900,
+        "sqft": 1548,
+        "zoning": "SMALL TOWN COM",
+        "legal": "GOVT LOT 6-EXC N 810 FT THEREOF-LESS RD",
+        "prop_id": 153987,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153987"
       }
     },
     {
@@ -495,7 +495,7 @@
         ],
         "place_id": "ChIJ6UWnelPvhVQR2ndueZ9sKzI",
         "rating": 4.6,
-        "source": "google+assessor",
+        "source": "google",
         "owner": null,
         "mkt_value": null,
         "land_value": null,
@@ -532,7 +532,7 @@
         ],
         "place_id": "ChIJAQAAAATmhVQRljSy_DKukuc",
         "rating": 1,
-        "source": "google+assessor",
+        "source": "google",
         "owner": null,
         "mkt_value": null,
         "land_value": null,
@@ -568,7 +568,7 @@
         ],
         "place_id": "ChIJd7GBcADmhVQRtDvD0njL3LA",
         "rating": null,
-        "source": "google+assessor",
+        "source": "google",
         "owner": null,
         "mkt_value": null,
         "land_value": null,
@@ -604,7 +604,7 @@
         ],
         "place_id": "ChIJUQVmigbmhVQRzGCj4D_e9AQ",
         "rating": 5,
-        "source": "google+assessor",
+        "source": "google",
         "owner": null,
         "mkt_value": null,
         "land_value": null,
@@ -639,7 +639,7 @@
         ],
         "place_id": "ChIJJY7k0QvmhVQRbblUANUyaCg",
         "rating": 4.2,
-        "source": "google+assessor",
+        "source": "google",
         "owner": null,
         "mkt_value": null,
         "land_value": null,
@@ -709,7 +709,7 @@
         ],
         "place_id": "ChIJQRUbEgvmhVQRAuzcF_Cs8uY",
         "rating": 3,
-        "source": "google+assessor",
+        "source": "google",
         "owner": null,
         "mkt_value": null,
         "land_value": null,
@@ -744,7 +744,7 @@
         ],
         "place_id": "ChIJ6UWnelPvhVQRaC5QSqot-MA",
         "rating": 5,
-        "source": "google+assessor",
+        "source": "google",
         "owner": null,
         "mkt_value": null,
         "land_value": null,
@@ -781,16 +781,16 @@
         "place_id": "ChIJ92w5yPblhVQRTTxXSxXtrZE",
         "rating": 4.1,
         "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
+        "owner": "MARK HOLUB & TENNESSEE BRIAND",
+        "mkt_value": 417475,
+        "land_value": 165857,
+        "impr_value": 251618,
+        "yr_blt": 1913,
+        "sqft": 2996,
+        "zoning": "SMALL TOWN COM",
+        "legal": "TOWNSITE OF POINT ROBERTS E 212 FT OF LOTS 13 THRU 24 BLK 3- EXC W 3 FT OF N 84 FT THEREOF",
+        "prop_id": 154547,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=154547"
       }
     },
     {
@@ -833,6 +833,41 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -123.068481,
+          48.999463
+        ]
+      },
+      "properties": {
+        "name": "Key Interlocking",
+        "address": "1591 McKenzie Way, Point Roberts",
+        "category": "Other",
+        "color": "#5a6a7a",
+        "is_reef": false,
+        "is_strategic": false,
+        "g_types": [
+          "point_of_interest",
+          "establishment"
+        ],
+        "place_id": "ChIJOaXzhwnmhVQRDUN1q4QHgsY",
+        "rating": null,
+        "source": "google+assessor",
+        "owner": "GORDON D NIELSON",
+        "mkt_value": 351205,
+        "land_value": 108513,
+        "impr_value": 242692,
+        "yr_blt": 2010,
+        "sqft": 7876,
+        "zoning": "GENERAL COMM",
+        "legal": "SUNRISE TERRACE DIV NO 2 LOT 20",
+        "prop_id": 159947,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=159947"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -123.0630642,
           48.9769774
         ]
@@ -852,7 +887,7 @@
         ],
         "place_id": "ChIJT_SsSFfvhVQRxBSJJ0uR-BY",
         "rating": 4.4,
-        "source": "google+assessor",
+        "source": "google",
         "owner": null,
         "mkt_value": null,
         "land_value": null,
@@ -890,16 +925,16 @@
         "place_id": "ChIJoWkT_fjlhVQRQOCJum5l2RY",
         "rating": 4.1,
         "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
+        "owner": "D & S PT ROBERTS PROPERTY LLC",
+        "mkt_value": 2236878,
+        "land_value": 848532,
+        "impr_value": 1388346,
+        "yr_blt": 1982,
+        "sqft": 33479,
+        "zoning": "SMALL TOWN COM",
+        "legal": "TRACT A REVISED AM POINT ROBERTS COMMERCIAL CENTER SHORT PLAT LLA AS REC BOOK 28 SHORT PLATS PG 2",
+        "prop_id": 153979,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153979"
       }
     },
     {
@@ -959,7 +994,7 @@
         ],
         "place_id": "ChIJJbYm0gvmhVQRf1sa4efiGGA",
         "rating": 4.2,
-        "source": "google+assessor",
+        "source": "google",
         "owner": null,
         "mkt_value": null,
         "land_value": null,
@@ -995,26 +1030,17 @@
         ],
         "place_id": "ChIJN9w3lV_vhVQRgy_xfDwpfSQ",
         "rating": 4.1,
-        "source": "google+skyvector-1RL",
-        "owner": "Lily Point Holdings LLC",
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null,
-        "faa_id": "1RL",
-        "landing_fee_usd": 10,
-        "overnight_fee_usd": 15,
-        "runway": "16/34, 2265x125 ft, turf",
-        "ctaf": "122.800",
-        "owner_phone": "778-846-4311",
-        "manager": "Bob Granley, 693 Highland Dr, Point Roberts WA 98281",
-        "ppr_required": true,
-        "note": "10 USD landing fee (visiting acft). 15 USD/night overnight tiedown. Payment drop box inside hangar east wall. PPR required \u2014 text 778-846-4311 so field capacity can be controlled. No camping. Attendance Mon-Fri 0900-1700. (SkyVector 1RL, 2026-02-22)"
+        "source": "google+assessor",
+        "owner": "LILY POINT HOLDINGS LLC",
+        "mkt_value": 473190,
+        "land_value": 345000,
+        "impr_value": 128190,
+        "yr_blt": 2006,
+        "sqft": 3600,
+        "zoning": "RES RURAL 1DU/A",
+        "legal": "LOT 3 RAY YOUNG SHORT PLAT AS REC BOOK 5 SHORT PLATS PG 65",
+        "prop_id": 154681,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=154681"
       }
     },
     {
@@ -1045,12 +1071,47 @@
         "mkt_value": 20481,
         "land_value": 20481,
         "impr_value": 0,
-        "yr_blt": "",
-        "sqft": "",
+        "yr_blt": null,
+        "sqft": null,
         "zoning": "RESORT COMM",
         "legal": "TOWNSITE OF POINT ROBERTS LOT 1 BLK 2-TOG WI VAC E 1/2 FRONT ST ABTG AS VAC CP VOL 57 PG 412 9/18/1984",
         "prop_id": 154425,
         "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=154425"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.063571,
+          49.003021
+        ]
+      },
+      "properties": {
+        "name": "S. Graham Engineering and Geology Inc.",
+        "address": "46 Parkgrove Crescent, Delta",
+        "category": "Other",
+        "color": "#5a6a7a",
+        "is_reef": false,
+        "is_strategic": false,
+        "g_types": [
+          "point_of_interest",
+          "establishment"
+        ],
+        "place_id": "ChIJxfQHRQzmhVQRA3gV2OKNYhw",
+        "rating": null,
+        "source": "google",
+        "owner": null,
+        "mkt_value": null,
+        "land_value": null,
+        "impr_value": null,
+        "yr_blt": null,
+        "sqft": null,
+        "zoning": null,
+        "legal": null,
+        "prop_id": null,
+        "county_url": null
       }
     },
     {
@@ -1077,7 +1138,7 @@
         ],
         "place_id": "ChIJAQAAAATmhVQRVJ8Wk6RAimo",
         "rating": null,
-        "source": "google+assessor",
+        "source": "google",
         "owner": null,
         "mkt_value": null,
         "land_value": null,
@@ -1088,6 +1149,41 @@
         "legal": null,
         "prop_id": null,
         "county_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.0795426,
+          48.98407859999999
+        ]
+      },
+      "properties": {
+        "name": "Advanced Simulation Corporation",
+        "address": "1385 Gulf Road # 201, Point Roberts",
+        "category": "Other",
+        "color": "#5a6a7a",
+        "is_reef": false,
+        "is_strategic": false,
+        "g_types": [
+          "point_of_interest",
+          "establishment"
+        ],
+        "place_id": "ChIJ92w5yPblhVQRPGEqSLLD1J4",
+        "rating": null,
+        "source": "google+assessor",
+        "owner": "MARK HOLUB & TENNESSEE BRIAND",
+        "mkt_value": 417475,
+        "land_value": 165857,
+        "impr_value": 251618,
+        "yr_blt": 1913,
+        "sqft": 2996,
+        "zoning": "SMALL TOWN COM",
+        "legal": "TOWNSITE OF POINT ROBERTS E 212 FT OF LOTS 13 THRU 24 BLK 3- EXC W 3 FT OF N 84 FT THEREOF",
+        "prop_id": 154547,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=154547"
       }
     },
     {
@@ -1112,7 +1208,7 @@
         ],
         "place_id": "ChIJT_SsSFfvhVQRYyPUlLY_G5o",
         "rating": 4.3,
-        "source": "google+assessor",
+        "source": "google",
         "owner": null,
         "mkt_value": null,
         "land_value": null,
@@ -1150,54 +1246,16 @@
         "place_id": "ChIJYyzRKvHlhVQRRnUBsGL0s0s",
         "rating": 3.8,
         "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.0834563,
-          48.9845951
-        ]
-      },
-      "properties": {
-        "name": "Kiniski's Reef Tavern",
-        "address": "1334 Gulf Rd, Point Roberts",
-        "category": "Food & Drink",
-        "color": "#f0c040",
-        "is_reef": true,
-        "is_strategic": true,
-        "g_types": [
-          "bar",
-          "restaurant",
-          "food",
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJkw174fPlhVQR1jT640kPTFk",
-        "rating": 4.3,
-        "source": "google-places-api",
-        "owner": "NICHOLAS C KINISKI",
-        "mkt_value": 850965,
-        "land_value": 669526,
-        "impr_value": 181439,
-        "yr_blt": 1959,
-        "sqft": 8463,
-        "zoning": "RESORT COMM",
-        "legal": "TOWNSITE OF POINT ROBERTS LOTS 1 THRU 11 BLK 1-TOG WI ELY 1/2 FRONT ST LY NLY OF GULF RD-ALLEYWAY ABTG-LY NLY OF LOTS 1-",
-        "prop_id": 154423,
-        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=154423"
+        "owner": "DU MAN WON & KAY SOOK WON &",
+        "mkt_value": 1050154,
+        "land_value": 514510,
+        "impr_value": 535644,
+        "yr_blt": 1966,
+        "sqft": 448,
+        "zoning": "SMALL TOWN COM",
+        "legal": "SUNNY POINT TRAILER PARK BEG AT SW COR OF GOVT LOT 9-TH E 400 FT-TH N 544.5 FT-TH W 400 FT-TH S 544.5 FT TO POB-EXC PTN ",
+        "prop_id": 153651,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153651"
       }
     },
     {
@@ -1297,16 +1355,16 @@
         "place_id": "ChIJWzXmI_flhVQR-ZlGrmQs6_k",
         "rating": 4.8,
         "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
+        "owner": "POINT ROBERTS PARKS & RECREATION DIST. NO 1",
+        "mkt_value": 147478,
+        "land_value": 95048,
+        "impr_value": 52430,
+        "yr_blt": 1959,
+        "sqft": 2336,
+        "zoning": "SMALL TOWN COM",
+        "legal": "W 100 FT OF TR DAF-BEG 338 FT E-15 FT S OF NE COR OF GOVT LOT 4 SEC 4-TH E 200 FT-TH S 208 FT-TH W 200 FT-TH N 208 FT TO",
+        "prop_id": 153704,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153704"
       }
     },
     {
@@ -1334,16 +1392,16 @@
         "place_id": "ChIJRbO6vmDvhVQRk58-hjGFVaQ",
         "rating": 4.6,
         "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
+        "owner": "WHATCOM COUNTY PARKS & REC DEPT",
+        "mkt_value": 4813890,
+        "land_value": 4422550,
+        "impr_value": 391340,
+        "yr_blt": 1972,
+        "sqft": 2217,
+        "zoning": "REC & OPEN SP",
+        "legal": "GOVT LOT 4-LESS RD-DITCHES-EXC MIN RTS AS RES AF 942458-SUBJ TO REVERSION CLAUSE CVL 43804",
+        "prop_id": 154659,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=154659"
       }
     },
     {
@@ -1404,7 +1462,7 @@
         ],
         "place_id": "ChIJVVXlI_flhVQR51UWIXdSxfo",
         "rating": null,
-        "source": "google+assessor",
+        "source": "google",
         "owner": null,
         "mkt_value": null,
         "land_value": null,
@@ -1415,6 +1473,41 @@
         "legal": null,
         "prop_id": null,
         "county_url": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.0762,
+          48.98459799999999
+        ]
+      },
+      "properties": {
+        "name": "ChargePoint Charging Station",
+        "address": "1437 Gulf Road, Point Roberts",
+        "category": "Other",
+        "color": "#5a6a7a",
+        "is_reef": false,
+        "is_strategic": false,
+        "g_types": [
+          "point_of_interest",
+          "establishment"
+        ],
+        "place_id": "ChIJF7KFPPflhVQRjnhAj6OuunA",
+        "rating": null,
+        "source": "google+assessor",
+        "owner": "POINT ROBERTS PARK &",
+        "mkt_value": 441387,
+        "land_value": 86243,
+        "impr_value": 355144,
+        "yr_blt": 1960,
+        "sqft": 5368,
+        "zoning": "SMALL TOWN COM",
+        "legal": "BEG 338 FT E-15 FT S OF NE COR OF GOVT LOT 4 SEC 4-TH E 200 FT-TH S 208 FT-TH W 200 FT-TH N 208 FT TO BEG-EXC W 100 FT T",
+        "prop_id": 153713,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153713"
       }
     },
     {
@@ -1441,16 +1534,16 @@
         "place_id": "ChIJybKxi1HlhVQRC7qm0nRo75g",
         "rating": 4.9,
         "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
+        "owner": "POINT ROBERTS PARK &",
+        "mkt_value": 441387,
+        "land_value": 86243,
+        "impr_value": 355144,
+        "yr_blt": 1960,
+        "sqft": 5368,
+        "zoning": "SMALL TOWN COM",
+        "legal": "BEG 338 FT E-15 FT S OF NE COR OF GOVT LOT 4 SEC 4-TH E 200 FT-TH S 208 FT-TH W 200 FT-TH N 208 FT TO BEG-EXC W 100 FT T",
+        "prop_id": 153713,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153713"
       }
     },
     {
@@ -1477,16 +1570,16 @@
         "place_id": "ChIJz5OSnPvlhVQRDHV1vZZbPg4",
         "rating": 5,
         "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
+        "owner": "ERICKSON BROTHERS REAL ESTATE LLC",
+        "mkt_value": 196222,
+        "land_value": 95398,
+        "impr_value": 100824,
+        "yr_blt": 1976,
+        "sqft": 2544,
+        "zoning": "SMALL TOWN COM",
+        "legal": "BEG 238 FT E-15 FT S OF NE COR OF GOVT LOT 4 SEC 4-TH E 100 FT-TH S 208 FT-TH W 100 FT-TH N 208 FT TO BEG-LESS RD",
+        "prop_id": 153680,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153680"
       }
     },
     {
@@ -1513,16 +1606,16 @@
         "place_id": "ChIJY9YiXzLlhVQRmZITLOeQdwE",
         "rating": null,
         "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
+        "owner": "ERICKSON BROTHERS REAL ESTATE LLC",
+        "mkt_value": 196222,
+        "land_value": 95398,
+        "impr_value": 100824,
+        "yr_blt": 1976,
+        "sqft": 2544,
+        "zoning": "SMALL TOWN COM",
+        "legal": "BEG 238 FT E-15 FT S OF NE COR OF GOVT LOT 4 SEC 4-TH E 100 FT-TH S 208 FT-TH W 100 FT-TH N 208 FT TO BEG-LESS RD",
+        "prop_id": 153680,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153680"
       }
     },
     {
@@ -1586,16 +1679,16 @@
         "place_id": "ChIJ2ZFE2PblhVQRSCep13MeroY",
         "rating": 5,
         "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
+        "owner": "ERICKSON BROTHERS REAL ESTATE LLC",
+        "mkt_value": 196222,
+        "land_value": 95398,
+        "impr_value": 100824,
+        "yr_blt": 1976,
+        "sqft": 2544,
+        "zoning": "SMALL TOWN COM",
+        "legal": "BEG 238 FT E-15 FT S OF NE COR OF GOVT LOT 4 SEC 4-TH E 100 FT-TH S 208 FT-TH W 100 FT-TH N 208 FT TO BEG-LESS RD",
+        "prop_id": 153680,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153680"
       }
     },
     {
@@ -1622,6 +1715,42 @@
         "place_id": "ChIJ2ZFE2PblhVQR4qQVLJpw08g",
         "rating": 4.7,
         "source": "google+assessor",
+        "owner": "ERICKSON BROTHERS REAL ESTATE LLC",
+        "mkt_value": 196222,
+        "land_value": 95398,
+        "impr_value": 100824,
+        "yr_blt": 1976,
+        "sqft": 2544,
+        "zoning": "SMALL TOWN COM",
+        "legal": "BEG 238 FT E-15 FT S OF NE COR OF GOVT LOT 4 SEC 4-TH E 100 FT-TH S 208 FT-TH W 100 FT-TH N 208 FT TO BEG-LESS RD",
+        "prop_id": 153680,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153680"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.0794067,
+          48.98279950000001
+        ]
+      },
+      "properties": {
+        "name": "Adorable Newly Remolded A - Frame Cottage with Hot Tub",
+        "address": "United States",
+        "category": "Lodging",
+        "color": "#e08c40",
+        "is_reef": false,
+        "is_strategic": false,
+        "g_types": [
+          "lodging",
+          "point_of_interest",
+          "establishment"
+        ],
+        "place_id": "ChIJc5u1m_blhVQRfbk1g6a9vxM",
+        "rating": null,
+        "source": "google",
         "owner": null,
         "mkt_value": null,
         "land_value": null,
@@ -1656,6 +1785,41 @@
           "establishment"
         ],
         "place_id": "ChIJ06ou3fvlhVQRTY3U_5e1lnk",
+        "rating": null,
+        "source": "google+assessor",
+        "owner": "PT ROBERTS MINI AND MOBILE STORAGE LLC",
+        "mkt_value": 426143,
+        "land_value": 194430,
+        "impr_value": 231713,
+        "yr_blt": 1970,
+        "sqft": 5712,
+        "zoning": "SMALL TOWN COM",
+        "legal": "BEG AT CTR OF SW 1/4-TH NLY 20 FT-TH W 103 FT TO TPOB-TH N 244 FT-TH E 3 FT-TH N 285 FT-TH W 138 FT-TH S 529 FT-TH E 135",
+        "prop_id": 153807,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153807"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.0742627,
+          48.9849699
+        ]
+      },
+      "properties": {
+        "name": "Airline Broker",
+        "address": "1480 Gulf Road, Point Roberts",
+        "category": "Other",
+        "color": "#5a6a7a",
+        "is_reef": false,
+        "is_strategic": false,
+        "g_types": [
+          "point_of_interest",
+          "establishment"
+        ],
+        "place_id": "ChIJVVVpXfflhVQRjqVM5DbZQWI",
         "rating": null,
         "source": "google+assessor",
         "owner": "PT ROBERTS MINI AND MOBILE STORAGE LLC",
@@ -1788,6 +1952,41 @@
         ]
       },
       "properties": {
+        "name": "Shred Nations",
+        "address": "1577 Gulf Road, Point Roberts",
+        "category": "Other",
+        "color": "#5a6a7a",
+        "is_reef": false,
+        "is_strategic": false,
+        "g_types": [
+          "point_of_interest",
+          "establishment"
+        ],
+        "place_id": "ChIJoyxDFDvlhVQRV9T9hHaaIQU",
+        "rating": null,
+        "source": "google+assessor",
+        "owner": "FEREYDOON PAKZAD",
+        "mkt_value": 538117,
+        "land_value": 136102,
+        "impr_value": 402015,
+        "yr_blt": 2017,
+        "sqft": 2964,
+        "zoning": "SMALL TOWN COM",
+        "legal": "THAT PTN OF SE SW DAF-BEG AT NE COR OF SD QTR QTR-TH N 88 DEG 47' 17\" W ALG N LI OF SD QTR QTR 446.29 FT TO TPOB-TH S AT",
+        "prop_id": 186606,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=186606"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.069871,
+          48.984325
+        ]
+      },
+      "properties": {
         "name": "The UPS Store",
         "address": "1577 Gulf Road, Point Roberts",
         "category": "Retail",
@@ -1803,16 +2002,16 @@
         "place_id": "ChIJwz6eCbblhVQREytE0TfQdhw",
         "rating": 3.4,
         "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
+        "owner": "FEREYDOON PAKZAD",
+        "mkt_value": 538117,
+        "land_value": 136102,
+        "impr_value": 402015,
+        "yr_blt": 2017,
+        "sqft": 2964,
+        "zoning": "SMALL TOWN COM",
+        "legal": "THAT PTN OF SE SW DAF-BEG AT NE COR OF SD QTR QTR-TH N 88 DEG 47' 17\" W ALG N LI OF SD QTR QTR 446.29 FT TO TPOB-TH S AT",
+        "prop_id": 186606,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=186606"
       }
     },
     {
@@ -1838,16 +2037,16 @@
         "place_id": "ChIJWUlnp9PlhVQRVgJz2qogGaw",
         "rating": 3.9,
         "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
+        "owner": "FEREYDOON PAKZAD",
+        "mkt_value": 538117,
+        "land_value": 136102,
+        "impr_value": 402015,
+        "yr_blt": 2017,
+        "sqft": 2964,
+        "zoning": "SMALL TOWN COM",
+        "legal": "THAT PTN OF SE SW DAF-BEG AT NE COR OF SD QTR QTR-TH N 88 DEG 47' 17\" W ALG N LI OF SD QTR QTR 446.29 FT TO TPOB-TH S AT",
+        "prop_id": 186606,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=186606"
       }
     },
     {
@@ -1855,63 +2054,36 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -123.06286,
-          48.97808
+          -123.0682885,
+          48.9885113
         ]
       },
       "properties": {
-        "name": "Point Roberts Marina",
-        "address": "713 Simundson Dr, Point Roberts",
-        "category": "Marina/Marine",
-        "color": "#40c8d8",
+        "name": "Nielson's Building Center LLC",
+        "address": "391 Tyee Drive, Point Roberts",
+        "category": "Retail",
+        "color": "#d4b040",
         "is_reef": false,
-        "is_strategic": true,
-        "g_types": ["marina", "establishment"],
-        "place_id": null,
-        "rating": null,
-        "source": "google",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.08235,
-          48.99604
-        ]
-      },
-      "properties": {
-        "name": "Point Roberts Golf and Country Club",
-        "address": "500 Benson Rd, Point Roberts",
-        "category": "Recreation",
-        "color": "#4caf50",
-        "is_reef": false,
-        "is_strategic": true,
-        "g_types": ["golf_course", "establishment"],
-        "place_id": null,
-        "rating": null,
-        "source": "google",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
+        "is_strategic": false,
+        "g_types": [
+          "hardware_store",
+          "point_of_interest",
+          "home_goods_store",
+          "store"
+        ],
+        "place_id": "ChIJ17WGAPzlhVQRVYbrCXmLN14",
+        "rating": 4.7,
+        "source": "google+assessor",
+        "owner": "391 TYEE DRIVE LLC",
+        "mkt_value": 696844,
+        "land_value": 288045,
+        "impr_value": 408799,
+        "yr_blt": 1948,
+        "sqft": 9668,
+        "zoning": "SMALL TOWN COM",
+        "legal": "S 209 FT OF E 209 FT OF SE NW-EXC ALL OIL-GAS-MIN RTS AS RES AF 952382-EXC PTN TO WHATCOM CO FOR RD DESC AF 1247560- 940",
+        "prop_id": 153960,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153960"
       }
     }
   ]

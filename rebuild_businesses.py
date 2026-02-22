@@ -91,22 +91,45 @@ def extract_street(addr):
 with open("google_places.json", encoding="utf-8") as fh:
     all_places = json.load(fh)
 
-with open("businesses.geojson", encoding="utf-8") as fh:
-    assessor_data = json.load(fh)
+with open("parcel_data.json", encoding="utf-8") as fh:
+    parcel_raw = json.load(fh)
 
-# Build assessor lookup by normalized street address
+# Build assessor lookup from parcel_data.json keyed by normalized street address.
+# parcel_data.json is the authoritative assessor source — using businesses.geojson
+# here created a circular dependency that prevented new Google entries from getting
+# assessor data on their first rebuild.
+SLIP_TYPES_RB = {"MARINE CONDO", "STOR CONDOS"}
+
+def prop_url_rb(prop_id):
+    return f"https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id={prop_id}"
+
 assessor_by_addr = {}
-for feat in assessor_data["features"]:
-    addr = extract_street(feat["properties"].get("address", ""))
-    if addr:
-        assessor_by_addr[addr] = feat["properties"]
+for p in parcel_raw.get("commercial_only", []):
+    if (p.get("property_use_description") or "").strip() in SLIP_TYPES_RB:
+        continue
+    num    = str(p.get("situs_num") or "").strip()
+    street = (p.get("situs_street") or "").strip()
+    if not num or not street:
+        continue
+    addr = norm_addr(f"{num} {street}")
+    assessor_by_addr[addr] = {
+        "owner":      (p.get("title_owner_name") or "").strip(),
+        "mkt_value":  p.get("market"),
+        "land_value": p.get("market_land_val"),
+        "impr_value": p.get("market_improvement_val"),
+        "yr_blt":     p.get("yr_blt") or None,
+        "sqft":       p.get("sqft_la") or None,
+        "zoning":     (p.get("zoning_description") or "").strip() or None,
+        "legal":      (p.get("legal_description") or "").strip()[:120] or None,
+        "prop_id":    p.get("prop_id"),
+        "county_url": prop_url_rb(p.get("prop_id", "")),
+    }
 
 print(f"Google Places:  {len(all_places)} total")
-print(f"Assessor parcs: {len(assessor_data['features'])} total, {len(assessor_by_addr)} unique addrs")
+print(f"Assessor parcs: {len(assessor_by_addr)} unique addrs from parcel_data.json")
 
 # ── Build new features ────────────────────────────────────────────────────────
 features = []
-matched_addrs = set()
 
 for place in all_places:
     types = place.get("types", [])
@@ -171,7 +194,6 @@ for place in all_places:
         props["prop_id"]    = a.get("prop_id")
         props["county_url"] = a.get("county_url")
         props["source"]     = "google+assessor"
-        matched_addrs.add(vic_addr)
 
     features.append({
         "type": "Feature",
@@ -179,57 +201,18 @@ for place in all_places:
         "properties": props
     })
 
-# ── Add assessor-only records (not matched to any Google entry) ────────────────
-assessor_only = []
-for feat in assessor_data["features"]:
-    addr = extract_street(feat["properties"].get("address", ""))
-    if addr not in matched_addrs:
-        p = feat["properties"]
-        props = {
-            "name":       (p.get("owner") or "").title(),
-            "address":    p.get("address", ""),
-            "category":   p.get("category", "Other"),
-            "color":      p.get("color", CAT_COLORS["Other"]),
-            "is_reef":      p.get("is_reef", False),
-            "is_strategic": norm_addr(p.get("address","").split(",")[0]) in {norm_addr("713 Simundson Dr")},
-            "g_types":    [],
-            "place_id":   None,
-            "rating":     None,
-            "source":     "assessor",
-            "owner":      p.get("owner"),
-            "mkt_value":  p.get("mkt_value"),
-            "land_value": p.get("land_value"),
-            "impr_value": p.get("impr_value"),
-            "yr_blt":     p.get("yr_blt"),
-            "sqft":       p.get("sqft"),
-            "zoning":     p.get("zoning"),
-            "legal":      p.get("legal"),
-            "prop_id":    p.get("prop_id"),
-            "county_url": p.get("county_url"),
-        }
-        geom = feat.get("geometry")
-        assessor_only.append({
-            "type": "Feature",
-            "geometry": geom,
-            "properties": props
-        })
-
-features.extend(assessor_only)
-
 # ── Save ──────────────────────────────────────────────────────────────────────
 out = {"type": "FeatureCollection", "features": features}
 with open("businesses.geojson", "w", encoding="utf-8") as fh:
     json.dump(out, fh, indent=2)
 
 # ── Report ────────────────────────────────────────────────────────────────────
-google_only  = sum(1 for f in features if f["properties"]["source"] == "google")
-merged       = sum(1 for f in features if f["properties"]["source"] == "google+assessor")
-aonly        = sum(1 for f in features if f["properties"]["source"] == "assessor")
+merged     = sum(1 for f in features if f["properties"]["source"] == "google+assessor")
+google_only = sum(1 for f in features if f["properties"]["source"] == "google")
 
 print(f"\nbusinesses.geojson rebuilt:")
 print(f"  {merged:3d}  google + assessor (matched)")
 print(f"  {google_only:3d}  google only (no assessor parcel)")
-print(f"  {aonly:3d}  assessor only (not in Google)")
 print(f"  ───")
 print(f"  {len(features):3d}  total features")
 print(f"\nSaved: businesses.geojson")

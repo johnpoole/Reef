@@ -32,6 +32,14 @@ At runtime, index.html joins STRATEGIC with businesses.geojson by `place_id` or 
 
 Violating this creates two diverging copies of the same fact with no clear authority.
 
+## Do not hand-write data into files
+
+> "do not fucking hack in the data you fucking moron."
+
+In other words: never manually construct a geojson feature, strategic entry, or any other data record by typing values into a file. If the data exists in a real source — the Google Places API, the Whatcom County assessor — fetch it from that source and let the pipeline write it.
+
+Why: hand-written data has no provenance, can't be verified, diverges silently from the source on the next rebuild, and is exactly the kind of thing that causes a fake statue to haunt the strategic layer for three separate incidents.
+
 ## businesses.geojson — inclusion standard
 
 **A feature must be visible as a business pin on Google Maps to be included.**
