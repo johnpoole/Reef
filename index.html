@@ -686,12 +686,13 @@
 // ═══════════════════════════════════════════════════════════
 const STRATEGIC = [
   {
-    id: "reef", name: "★ The Reef", lat: 48.98453, lng: -123.08337,
+    id: "reef", name: "★ The Reef", lat: 48.9845951, lng: -123.0834563,
     status: "target", assessed: 850965, asking: 1375000,
     sqft: 8463, built: 1959, address: "1334 Gulf Rd",
-    // Google Places API (nearby search, 600m radius, 2026-02-22):
+    // Google Places API (findplacefromtext, 2026-02-22):
     //   Operating name: "Kiniski's Reef Tavern" — rating 4.3, types: bar, restaurant, food.
-    //   Co-tenant at same address: Larry's Liquor Locker (1334B Gulf Rd) — rating 4.5, types: liquor_store.
+    //   Exact coords: lat 48.9845951, lng -123.0834563. place_id: ChIJkw174fPlhVQR1jT640kPTFk.
+    //   Co-tenant at same parcel: Larry's Liquor Locker (1334B Gulf Rd) — rating 4.5, types: liquor_store.
     //   Larry's is a sub-address of this parcel, NOT a separate parcel. Do not confuse with 1405 (Lady Liberty).
     // assessed/sqft/built: Whatcom County assessor.
     // asking: listing price — verify currency before use.
@@ -772,14 +773,14 @@ const STRATEGIC = [
   {
     // Google Places API nearby search (600m from The Reef, 2026-02-22):
     //   Name: "Saltwater Café" — rating 4.4, types: cafe, restaurant, food, address: 1345 Gulf Rd.
-    //   Directly between The Reef (1334) and Lady Liberty (1405). Exact lat/lng not captured from
-    //   API response — leave null until verified by a targeted Places Detail call.
+    //   Coords from businesses.geojson (Google Places source): lat 48.9840489, lng -123.081863.
+    //   Assessor: owner TH COASTAL DESIGN LLC, assessed $281K, sqft 1200, built 1960.
     // partnerReady: false — newly discovered; no partnership model developed yet.
-    id: "saltwater", name: "Saltwater Café", lat: null, lng: null,
-    status: "watch", assessed: null, asking: null,
-    sqft: null, built: null, address: "1345 Gulf Rd",
-    src: "name:google-places-api, rating:google-places-api",
-    note: "1345 Gulf Rd. Discovered via Google Places nearby search (r=4.4, cafe/restaurant/food). Closest food business to The Reef — potential cross-referral or event partner. Coordinates not yet captured; verify before mapping.",
+    id: "saltwater", name: "Saltwater Café", lat: 48.9840489, lng: -123.081863,
+    status: "watch", assessed: 281000, asking: null,
+    sqft: 1200, built: 1960, address: "1345 Gulf Rd",
+    src: "name:google-places-api, coords:google-places-api, assessed:assessor",
+    note: "1345 Gulf Rd (~175m east of The Reef by coords). r=4.4, cafe/restaurant/food. Owner: TH Coastal Design LLC (assessor). Closest food tenant to The Reef — potential cross-referral or event partner.",
     partnerReady: false,
     color: "#e05c5c"
   }
@@ -1192,7 +1193,7 @@ document.getElementById("strategic-toggle").addEventListener("click", () => {
    FLY TO THE REEF
 ───────────────────────────────────────────────────────── */
 document.getElementById("fly-to-reef").addEventListener("click", () => {
-  map.flyTo([48.98453, -123.08337], 17, { duration: 1.4 });
+  map.flyTo([48.9845951, -123.0834563], 17, { duration: 1.4 });
 });
 
 /* ─────────────────────────────────────────────────────────

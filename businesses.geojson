@@ -263,7 +263,7 @@
         ]
       },
       "properties": {
-        "name": "Saltwater Caf\u00e9",
+        "name": "Saltwater Café",
         "address": "1345 Gulf Road, Point Roberts",
         "category": "Food & Drink",
         "color": "#e05c5c",
@@ -1263,6 +1263,44 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -123.0834563,
+          48.9845951
+        ]
+      },
+      "properties": {
+        "name": "Kiniski's Reef Tavern",
+        "address": "1334 Gulf Rd, Point Roberts",
+        "category": "Food & Drink",
+        "color": "#f0c040",
+        "is_reef": true,
+        "is_strategic": true,
+        "g_types": [
+          "bar",
+          "restaurant",
+          "food",
+          "point_of_interest",
+          "establishment"
+        ],
+        "place_id": "ChIJkw174fPlhVQR1jT640kPTFk",
+        "rating": 4.3,
+        "source": "google-places-api",
+        "owner": "NICHOLAS C KINISKI",
+        "mkt_value": 850965,
+        "land_value": 669526,
+        "impr_value": 181439,
+        "yr_blt": 1959,
+        "sqft": 8463,
+        "zoning": "RESORT COMM",
+        "legal": "TOWNSITE OF POINT ROBERTS LOTS 1 THRU 11 BLK 1-TOG WI ELY 1/2 FRONT ST LY NLY OF GULF RD-ALLEYWAY ABTG-LY NLY OF LOTS 1-",
+        "prop_id": 154423,
+        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=154423"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -123.0832283,
           48.9844851
         ]
@@ -2082,166 +2120,6 @@
         "legal": null,
         "prop_id": null,
         "county_url": null
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.06955369072865,
-          48.98863925143436
-        ]
-      },
-      "properties": {
-        "name": "Point Roberts Mini &",
-        "address": "1568 BENSON RD",
-        "category": "Services",
-        "color": "#95a5a6",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [],
-        "place_id": null,
-        "rating": null,
-        "source": "assessor",
-        "owner": "POINT ROBERTS MINI &",
-        "mkt_value": 170576,
-        "land_value": 122485,
-        "impr_value": 48091,
-        "yr_blt": 2006,
-        "sqft": 960,
-        "zoning": "SMALL TOWN COM",
-        "legal": "W 208 FT OF S 238 FT OF E 517 FT OF SE NW-LESS RDS",
-        "prop_id": 153946,
-        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153946"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.06934916373518,
-          48.98467262377495
-        ]
-      },
-      "properties": {
-        "name": "Point Roberts Chevron Llc",
-        "address": "1559 GULF RD",
-        "category": "Services",
-        "color": "#c0392b",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [],
-        "place_id": null,
-        "rating": null,
-        "source": "assessor",
-        "owner": "POINT ROBERTS CHEVRON LLC",
-        "mkt_value": 355496,
-        "land_value": 160663,
-        "impr_value": 194833,
-        "yr_blt": 1890,
-        "sqft": 1739,
-        "zoning": "SMALL TOWN COM",
-        "legal": "THAT PTN OF SE SW DAF-COM AT NE COR OF SE SW-TH W ALG N LI OF SD SE SW 237.58 FT TO TPOB-TH S AT R/A TO SD N LI 238.71 F",
-        "prop_id": 153953,
-        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153953"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.0752384109068,
-          48.983108526115274
-        ]
-      },
-      "properties": {
-        "name": "Point Roberts Mini & Mobile Storage Llc",
-        "address": "1473 GULF RD",
-        "category": "Services",
-        "color": "#95a5a6",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [],
-        "place_id": null,
-        "rating": null,
-        "source": "assessor",
-        "owner": "POINT ROBERTS MINI & MOBILE STORAGE LLC",
-        "mkt_value": 1049998,
-        "land_value": 228484,
-        "impr_value": 821514,
-        "yr_blt": 2017,
-        "sqft": 21675,
-        "zoning": "SMALL TOWN COM",
-        "legal": "TR IN SW SW DAF-BEG 15 FT S-337.5 FT W OF NE COR OF SW SW-TH S 645 FT-TH W 270 FT-TH N 279 FT-TH E 240 FT-TH N 366 FT- T",
-        "prop_id": 153767,
-        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153767"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.06286472028883,
-          48.97807910670407
-        ]
-      },
-      "properties": {
-        "name": "Point Roberts Resort Lp",
-        "address": "725 SIMUNDSON DR",
-        "category": "Marina/Marine",
-        "color": "#2980b9",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [],
-        "place_id": null,
-        "rating": null,
-        "source": "assessor",
-        "owner": "POINT ROBERTS RESORT LP",
-        "mkt_value": 1491712,
-        "land_value": 441863,
-        "impr_value": 1049849,
-        "yr_blt": 1980,
-        "sqft": 20909,
-        "zoning": "RESORT COMM",
-        "legal": "POINT ROBERTS YACHT BASIN SUBDIV LOT 2",
-        "prop_id": 155837,
-        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=155837"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.0682896980083,
-          48.988587809187024
-        ]
-      },
-      "properties": {
-        "name": "391 Tyee Drive Llc",
-        "address": "391 TYEE DR",
-        "category": "Retail",
-        "color": "#d35400",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [],
-        "place_id": null,
-        "rating": null,
-        "source": "assessor",
-        "owner": "391 TYEE DRIVE LLC",
-        "mkt_value": 696844,
-        "land_value": 288045,
-        "impr_value": 408799,
-        "yr_blt": 1948,
-        "sqft": 9668,
-        "zoning": "SMALL TOWN COM",
-        "legal": "S 209 FT OF E 209 FT OF SE NW-EXC ALL OIL-GAS-MIN RTS AS RES AF 952382-EXC PTN TO WHATCOM CO FOR RD DESC AF 1247560- 940",
-        "prop_id": 153960,
-        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153960"
       }
     }
   ]
