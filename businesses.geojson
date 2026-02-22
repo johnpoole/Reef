@@ -263,7 +263,7 @@
         ]
       },
       "properties": {
-        "name": "Saltwater Café",
+        "name": "Saltwater Caf\u00c3\u00a9",
         "address": "1345 Gulf Road, Point Roberts",
         "category": "Food & Drink",
         "color": "#e05c5c",
@@ -833,41 +833,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -123.068481,
-          48.999463
-        ]
-      },
-      "properties": {
-        "name": "Key Interlocking",
-        "address": "1591 McKenzie Way, Point Roberts",
-        "category": "Other",
-        "color": "#5a6a7a",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJOaXzhwnmhVQRDUN1q4QHgsY",
-        "rating": null,
-        "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -123.0630642,
           48.9769774
         ]
@@ -1084,41 +1049,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -123.063571,
-          49.003021
-        ]
-      },
-      "properties": {
-        "name": "S. Graham Engineering and Geology Inc.",
-        "address": "46 Parkgrove Crescent, Delta",
-        "category": "Other",
-        "color": "#5a6a7a",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJxfQHRQzmhVQRA3gV2OKNYhw",
-        "rating": null,
-        "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -123.0569529,
           48.98838050000001
         ]
@@ -1137,41 +1067,6 @@
           "establishment"
         ],
         "place_id": "ChIJAQAAAATmhVQRVJ8Wk6RAimo",
-        "rating": null,
-        "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.0795426,
-          48.98407859999999
-        ]
-      },
-      "properties": {
-        "name": "Advanced Simulation Corporation",
-        "address": "1385 Gulf Road # 201, Point Roberts",
-        "category": "Other",
-        "color": "#5a6a7a",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJ92w5yPblhVQRPGEqSLLD1J4",
         "rating": null,
         "source": "google+assessor",
         "owner": null,
@@ -1518,41 +1413,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -123.0762,
-          48.98459799999999
-        ]
-      },
-      "properties": {
-        "name": "ChargePoint Charging Station",
-        "address": "1437 Gulf Road, Point Roberts",
-        "category": "Other",
-        "color": "#5a6a7a",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJF7KFPPflhVQRjnhAj6OuunA",
-        "rating": null,
-        "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -123.0767132,
           48.98449230000001
         ]
@@ -1842,41 +1702,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -123.0742627,
-          48.9849699
-        ]
-      },
-      "properties": {
-        "name": "Airline Broker",
-        "address": "1480 Gulf Road, Point Roberts",
-        "category": "Other",
-        "color": "#5a6a7a",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJVVVpXfflhVQRjqVM5DbZQWI",
-        "rating": null,
-        "source": "google+assessor",
-        "owner": "PT ROBERTS MINI AND MOBILE STORAGE LLC",
-        "mkt_value": 426143,
-        "land_value": 194430,
-        "impr_value": 231713,
-        "yr_blt": 1970,
-        "sqft": 5712,
-        "zoning": "SMALL TOWN COM",
-        "legal": "BEG AT CTR OF SW 1/4-TH NLY 20 FT-TH W 103 FT TO TPOB-TH N 244 FT-TH E 3 FT-TH N 285 FT-TH W 138 FT-TH S 529 FT-TH E 135",
-        "prop_id": 153807,
-        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153807"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -123.0742358,
           48.9850535
         ]
@@ -2013,41 +1838,6 @@
         "legal": "COM AT NE COR OF SE SW-TH W ALG N LI OF SD SE SW 655.00 FT TO TPOB-TH S AT R/A TO SD N LI OF SE SW 238.76 FT-TH E PAR WI",
         "prop_id": 186586,
         "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=186586"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.069871,
-          48.984325
-        ]
-      },
-      "properties": {
-        "name": "Shred Nations",
-        "address": "1577 Gulf Road, Point Roberts",
-        "category": "Other",
-        "color": "#5a6a7a",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJoyxDFDvlhVQRV9T9hHaaIQU",
-        "rating": null,
-        "source": "google+assessor",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
       }
     },
     {
