@@ -757,20 +757,6 @@ const STRATEGIC = [
     color: "#7ab5d8"
   },
   {
-    // owner: Assessor record — "JOHN & BARBARA HISLOP". That is ALL that is verified.
-    // Google Places returned only a generic real_estate_agency / point_of_interest result
-    // for this location — no tenant names. IGA and Subway were NEVER in the API response.
-    // Do not add tenant names until confirmed by direct visit or WA business license lookup.
-    // partnerReady: false — tenants unknown; no coherent partnership model is possible yet.
-    id: "hislop", name: "Hislop Property", lat: 48.98409, lng: -123.08323,
-    status: "watch", assessed: 1500000, asking: null,
-    sqft: null, built: null, address: "1330 Gulf Rd",
-    src: "owner:assessor",
-    note: "1330 Gulf Rd (~50m south by coordinates). Owner: John & Barbara Hislop (assessor). Current tenants unknown — Google Places returned no business name. Verify by direct visit before any partnership or acquisition planning.",
-    partnerReady: false,
-    color: "#7ab5d8"
-  },
-  {
     // Google Places API nearby search (600m from The Reef, 2026-02-22):
     //   Name: "Saltwater Café" — rating 4.4, types: cafe, restaurant, food, address: 1345 Gulf Rd.
     //   Coords from businesses.geojson (Google Places source): lat 48.9840489, lng -123.081863.
