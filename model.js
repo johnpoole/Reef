@@ -1,7 +1,14 @@
 /* =====================================================================
    THE REEF — Point Roberts Beach Club  |  1334 Gulf Rd, Point Roberts WA
    Financial Model  |  model.js
-   Last updated: 2026-02-21
+   Last updated: 2026-02-22
+
+   !! CONSTRAINT — DO NOT CHANGE WITHOUT EXPLICIT INSTRUCTION !!
+   Dues are an assessment, not a revenue source.
+   Set dues to cover operating costs only. No surplus. No reserves.
+   Do not raise dues to generate profit, justify a reserve, or
+   "smooth" any unexplained overage.
+   !! END CONSTRAINT !!
 
    Confidence codes:
      [G]  = Given — contractual or public record (MLS, county assessor)
@@ -31,11 +38,15 @@ const MODEL = {
   //   count     Year-2 operating assumption used throughout model
 
   tiers: [
-    { name: "Founding",     sharePx:  6_000, dues: 3_500, cap: 100, count: 100 },  // [G] pre-launch price
-    { name: "Full",         sharePx: 10_000, dues: 4_200, cap: 150, count: 100 },  // [E]
-    { name: "Non-resident", sharePx:  7_000, dues: 2_800, cap:  50, count:  50 },  // [E]
+    { name: "Founding",     sharePx:  6_000, dues:   600, cap: 100, count: 100 },  // [E] discounted — pre-launch commitment reward
+    { name: "Full",         sharePx: 10_000, dues:   900, cap: 150, count: 100 },  // [E]
+    { name: "Non-resident", sharePx:  7_000, dues:   650, cap:  50, count:  50 },  // [E]
   ],
-  //  Total sources:  100 × $6,000 + 100 × $10,000 + 50 × $7,000 = $1,950,000
+  //  Annual dues:  100×$600 + 100×$900 + 50×$650 = $182,500
+  //  F&B gross:    $255,000
+  //  Total income: $437,500
+  //  Total costs:  ~$438,000
+  //  Surplus:      ~$0  ← dues are set to cover costs, not generate profit
 
   // ── USES: Acquisition & Pre-Opening Costs ───────────────────────────
   askPrice:    1_375_000,   // Purchase price, 1334 Gulf Rd               [G]
@@ -81,14 +92,6 @@ const MODEL = {
    Ranges shown: lo = floor, hi = ceiling (automated staffing model).
    Labor line also carries a no-automation baseline for comparison.
    color field is for chart rendering only — not a financial input.
-
-   DUES RATIONALE — why dues are set above pure operating cost:
-   Operating costs + F&B net leave ~$272K of dues burden (~$1,090/member).
-   Dues are set at market rate ($3,500–$4,200) because:
-     (a) that is the local comparable club price point, and
-     (b) the excess above operating costs funds the closure reserve (final line).
-   Once the closure reserve target (~$700K–$1M) is met (~Year 3), the
-   reserve line drops to $0 and dues are assessed downward ~$2,800/member.
    ────────────────────────────────────────────────────────────────── */
 
   costs: [
@@ -103,24 +106,18 @@ const MODEL = {
     { label: "Insurance",            lo:  18_000, hi:  28_000, color: "#5a8a70" },  // [E]
     { label: "Property tax",         lo:  18_000, hi:  22_000, color: "#5a8a70" },  // [G]
     { label: "Admin / legal",        lo:  15_000, hi:  25_000, color: "#5a8a70" },  // [E]
-    { label: "Closure reserve",      lo: 600_000, hi: 800_000, color: "#e05040" },  // [E] border-risk fund; drops to $0 after target met
   ],
-  //  Operating costs only (excl. closure reserve):
-  //    Auto model mid:   ~$348K OpEx + $89K COGS = $437K
-  //    Baseline mid:     ~$476K OpEx + $89K COGS = $565K
+  //  Total OpEx (auto model, mid):   ~$348K
+  //  Total OpEx (baseline,  mid):    ~$476K
   //
-  //  Total costs incl. closure reserve (auto model, mid):  $437K + $700K = $1,137K
+  //  Income statement waterfall (Year 2, auto model, mid):
+  //    Dues (250 members × avg $3,640):        = $910K
+  //    F&B gross:                              = $255K
+  //    Total revenue:                          = $437.5K
+  //    Operating expenses (mid):               = ($438K)
+  //    Net:                                    ~  $0
   //
-  //  Full income statement waterfall (Year 2, auto model, mid):
-  //    Revenue:               dues $910K + F&B $255K           = $1,165K
-  //    F&B COGS (35%):        35% × $255K                      =  ($89K)
-  //    Gross profit:                                            = $1,076K
-  //    Operating expenses:    labor + ops (mid)                =  ($348K)
-  //    Closure reserve:       border-risk fund (mid, Year 2)   =  ($700K)
-  //    Net surplus:                                            ≈    $28K
-  //
-  //  Every dollar of dues above operating cost is NAMED — not surplus profit.
-  //  After reserve is fully funded, $700K drops out and dues reduce ~$2,800/member.
+  //  Dues are set to cover costs only. No surplus.
 
   /* ──────────────────────────────────────────────────────────────────
    CAPITAL EXPENDITURE — Automation (one-time, pre-opening)
@@ -178,11 +175,9 @@ const MODEL = {
       return s + Math.round((lo + hi) / 2);
     }, 0);
   },
-  get costsTotalLo()         { return this.costs.reduce((s,c) => s + (c.baselineLo || c.lo), 0); },
-  get costsTotalHi()         { return this.costs.reduce((s,c) => s + (c.baselineHi || c.hi), 0); },
-  // otherOpsMid excludes the final costs[] entry (closure reserve) so charts can show it separately
-  get otherOpsMid()          { return this.costs.slice(2, -1).reduce((s,c) => s + Math.round((c.lo + c.hi) / 2), 0); },
-  get closureReserveMid()    { const c = this.costs[this.costs.length - 1]; return Math.round((c.lo + c.hi) / 2); },
+  get costsTotalLo()      { return this.costs.reduce((s,c) => s + (c.baselineLo || c.lo), 0); },
+  get costsTotalHi()      { return this.costs.reduce((s,c) => s + (c.baselineHi || c.hi), 0); },
+  get otherOpsMid()       { return this.costs.slice(2).reduce((s,c) => s + Math.round((c.lo + c.hi) / 2), 0); },
 
   // Net Operating Income (EBITDA proxy)
   get cashFlow()          { return this.annualDues + this.fbGross - this.totalCostsAutoMid; },

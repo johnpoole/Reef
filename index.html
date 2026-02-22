@@ -665,11 +665,11 @@ function initPlanningNotes() {
 
   const feeNote = document.getElementById("note-fee-floor");
   if (feeNote) feeNote.textContent =
-    `Dues floor: automated model, shares fund acquisition (no mortgage). Break-even \u2248 ${M.mAutoBreak} members at avg $${M.avgDues.toLocaleString()} dues. At ${M.totalMembers} members the floor is $${Math.round(M.burdenAuto/M.totalMembers).toLocaleString()}/yr \u2014 actual dues run far above it.`;
+    `Dues set to cover costs: $${M.avgDues.toLocaleString()}/member avg across ${M.totalMembers} members. Break-even \u2248 ${M.mAutoBreak} members. Annual burden on dues: $${Math.round(M.burdenAuto).toLocaleString()} (after F&B).`;
 
   const revNote = document.getElementById("note-revenue");
   if (revNote) revNote.innerHTML =
-    `${M.totalMembers} members; tier avg $${(M.avgDues/1000).toFixed(2).replace(/\.?0+$/,"")}K/yr dues ($${k(M.annualDues)}K total). Light F&amp;B + events gross $${k(M.fbGross)}K. No mortgage \u2014 ${M.totalMembers} shares fund the $${(M.shareEquity/1e6).toFixed(3).replace(/\.?0+$/,"")}M acquisition. Dues cover ops ($${k(M.totalCostsAutoMid - M.closureReserveMid)}K) + closure reserve ($${k(M.closureReserveMid)}K/yr). NOI \u2248 $${k(M.cashFlow)}K \u2014 intentionally near zero. Reserve line drops once target is met.`;
+    `${M.totalMembers} members; tier avg $${(M.avgDues/1000).toFixed(2).replace(/\.?0+$/,"")}K/yr dues ($${k(M.annualDues)}K total). F&amp;B adds $${k(M.fbGross)}K gross. Operating costs ~$${k(M.totalCostsAutoMid)}K/yr. Dues are set to cover costs — no surplus.`;
 
   const tb = document.getElementById("tiers-tbody");
   if (tb) tb.innerHTML = M.tiers.map((t, i) =>
@@ -801,8 +801,7 @@ function buildChartRevenue() {
     { label: "Labor",     value: -M.laborAutoMid,                                   type: "out" },
     { label: "COGS",      value: -Math.round((M.costs[1].lo+M.costs[1].hi)/2),     type: "out" },
     { label: "Other Ops", value: -M.otherOpsMid,                                   type: "out" },
-    { label: "Reserve",   value: -M.closureReserveMid,                             type: "out" },
-    { label: "NOI",       value:  M.cashFlow,                                       type: "net" }
+    { label: "Surplus",   value:  M.cashFlow,                                       type: "net" }
   ];
 
   const maxVal = d3.max(items, d => Math.abs(d.value));
