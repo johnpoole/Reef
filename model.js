@@ -181,4 +181,71 @@ const MODEL = {
   get foundingContrib()   { return this.foundingN * this.foundingDues; },
   get burdenRemain()      { return this.burdenAuto - this.foundingContrib; },
   get mFoundBreak()       { return this.foundingN + this.burdenRemain / this.avgDues; },
+
+
+/* =====================================================================
+   IV.  OPENING BALANCE SHEET  (two snapshots)
+
+   Snapshot A — At close (shares collected, property title transferred,
+                          renovation not yet started):
+
+     ASSETS
+       Real property, at cost                      $1,375,000   [G]
+       Cash held for renovation & carry              $575,000   [E]
+       ─────────────────────────────────────────────────────────
+       Total assets                                $1,950,000
+
+     LIABILITIES
+       Long-term debt                                       $0   no mortgage
+       ─────────────────────────────────────────────────────────
+       Total liabilities                                    $0
+
+     MEMBERS' EQUITY
+       Share capital — Founding  (100 × $6,000)     $600,000
+       Share capital — Full      (100 × $10,000)  $1,000,000
+       Share capital — Non-res.  ( 50 × $7,000)    $350,000
+       ─────────────────────────────────────────────────────────
+       Total members' equity                       $1,950,000
+       ─────────────────────────────────────────────────────────
+       Total liabilities + equity                  $1,950,000   ✓
+
+   Snapshot B — Stabilized (post-renovation, pre-revenue operations):
+                Renovation capitalized; carry expensed during pre-opening.
+
+     ASSETS
+       Real property + improvements                $1,750,000   [E]
+       Cash surplus                                   $25,000   [E]
+       ─────────────────────────────────────────────────────────
+       Total assets                                $1,775,000
+
+     LIABILITIES
+       Long-term debt                                       $0
+       ─────────────────────────────────────────────────────────
+       Total liabilities                                    $0
+
+     MEMBERS' EQUITY
+       Share capital                               $1,950,000
+       Pre-opening expense (carry, expensed)        ($175,000)  [E]
+       Retained earnings                                    $0
+       ─────────────────────────────────────────────────────────
+       Total members' equity                       $1,775,000
+       ─────────────────────────────────────────────────────────
+       Total liabilities + equity                  $1,775,000   ✓
+   ===================================================================== */
+
+  // ── Balance Sheet — Snapshot A (at close) ───────────────────────────
+  get bs_propertyAtCost()       { return this.askPrice; },
+  get bs_cashAtClose()          { return this.shareEquity - this.askPrice; },
+  get bs_totalAssetsAtClose()   { return this.shareEquity; },        // = shareEquity
+  get bs_totalLiabilities()     { return 0; },
+  get bs_shareCapital()         { return this.shareEquity; },
+  get bs_totalEquityAtClose()   { return this.shareEquity; },
+
+  // ── Balance Sheet — Snapshot B (stabilized, post-renovation) ────────
+  get bs_propertyStabilized()   { return this.askPrice + this.renovation; },
+  get bs_cashStabilized()       { return this.surplus; },            // shareEquity - dealTotal
+  get bs_totalAssetsStabilized(){ return this.bs_propertyStabilized + this.bs_cashStabilized; },
+  get bs_preOpeningExpense()    { return -this.carry; },             // expensed, not capitalized
+  get bs_retainedEarnings()     { return 0; },
+  get bs_totalEquityStabilized(){ return this.shareEquity + this.bs_preOpeningExpense; },
 };
