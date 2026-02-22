@@ -207,5 +207,19 @@ const STRATEGIC = [
     note: "Primary community event venue. Also hosts Point Roberts History Center. Potential: member recruitment events, co-hosted community nights, Reef literature presence.",
     partnerReady: false,
     color: "#a060d0"
+  },
+  {
+    // businesses.geojson (Google Places, 2026-02-22): r=4.5, bakery/store, 2234 Sunrise Dr.
+    // Eastern Point Roberts — was outside the original 2500m fetch radius, found manually.
+    // Bakery in a residential cluster; small local operation. No assessor data matched.
+    // Potential: baked goods supply for member events, cross-referral partnership with the Reef.
+    // partnerReady: false — no outreach model developed yet.
+    id: "ollieotter", name: "Ollie Otter Bakery",
+    status: "watch", assessed: null, asking: null,
+    sqft: null, built: null,
+    src: "name:google-places-api, coords:businesses.geojson",
+    note: "Local bakery in eastern PR residential area. Potential: pastry/bread supply for member events, reciprocal cross-referral. Rating 4.5.",
+    partnerReady: false,
+    color: "#e05c5c"
   }
 ];
