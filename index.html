@@ -76,6 +76,9 @@
     #strategic-toggle { background: #1e3a50; color: #7ab5d8; }
     #strategic-toggle:hover { background: #264a60; }
     #strategic-toggle.on { background: #154060; color: #40b8e8; border: 1px solid #2a7aaa; }
+    #lots-toggle { background: #1e3a50; color: #c8a040; }
+    #lots-toggle:hover { background: #264a60; }
+    #lots-toggle.on { background: #2a2810; color: #f0c040; border: 1px solid #806010; }
 
     #filter-section { padding: 10px 12px 4px; }
     #filter-section .section-title { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #5a7a94; margin-bottom: 6px; }
@@ -408,6 +411,7 @@
     <div class="map-btn-row">
       <button class="map-btn" id="fly-to-reef">Fly to The Reef &rarr;</button>
       <button class="map-btn on" id="strategic-toggle">Hide Strategic</button>
+      <button class="map-btn" id="lots-toggle">Lot Lines</button>
     </div>
 
     <!-- Filters -->
@@ -641,7 +645,8 @@ let searchQuery = "";
 let strategicVisible = true;
 let strategicMarkers = [];
 let selectedId = null;
-let map, geoLayer;
+let map, geoLayer, lotsLayer;
+let lotsVisible = false;
 
 /* ─────────────────────────────────────────────────────────
    MAP INIT
@@ -982,32 +987,102 @@ document.getElementById("fly-to-reef").addEventListener("click", () => {
 });
 
 /* ─────────────────────────────────────────────────────────
+   LOT LINES LAYER
+───────────────────────────────────────────────────────── */
+function buildLotsLayer(features) {
+  if (lotsLayer) map.removeLayer(lotsLayer);
+
+  lotsLayer = L.geoJSON({ type: "FeatureCollection", features }, {
+    style: f => {
+      const isReef = (f.properties.situs_num === "1334");
+      return {
+        color:       isReef ? "#f0c040" : "#7ab5d8",
+        weight:      isReef ? 2.5 : 1.2,
+        opacity:     isReef ? 0.95 : 0.6,
+        fillColor:   isReef ? "#f0c040" : "#4a8aaa",
+        fillOpacity: isReef ? 0.08 : 0.04,
+        dashArray:   isReef ? null : "4 3"
+      };
+    },
+    onEachFeature: (f, layer) => {
+      const p = f.properties;
+      const addr  = `${p.situs_num || ""} ${p.situs_street || ""}`.trim() || "(no address)";
+      const owner = p.title_owner_name || "—";
+      const use   = (p.property_use_description || "").trim() || "—";
+      const val   = p.market ? "$" + p.market.toLocaleString() : "—";
+      const zoning = `${(p.zoning || "").trim()} — ${(p.zoning_description || "").trim()}`;
+      const lot    = p.lot   ? `Lot ${p.lot}`   : "";
+      const block  = p.block ? `Block ${p.block}` : "";
+      const subdv  = (p.subdv_description || "").trim();
+      const link   = p.Hyperlink ? `<a href="${p.Hyperlink}" target="_blank" style="color:#7ab5d8">Whatcom Assessor ↗</a>` : "";
+      const yr     = p.yr_blt   ? `Built ${p.yr_blt}` : "";
+      const sqft   = p.sqft_la  ? `${p.sqft_la.toLocaleString()} sqft` : "";
+
+      layer.bindPopup(`
+        <div class="popup-inner">
+          <div class="popup-address">${addr}</div>
+          <div class="popup-owner">${owner}</div>
+          <div class="popup-stats">
+            <div class="popup-stat"><div class="v">${val}</div><div class="k">Assessed</div></div>
+            <div class="popup-stat"><div class="v">${use}</div><div class="k">Use</div></div>
+            ${yr ? `<div class="popup-stat"><div class="v">${yr}</div><div class="k">Built</div></div>` : ""}
+            ${sqft ? `<div class="popup-stat"><div class="v">${sqft}</div><div class="k">Bldg Sqft</div></div>` : ""}
+          </div>
+          <div style="font-size:11px;color:#5a7a94;margin-top:6px">${zoning}</div>
+          ${(lot || block) ? `<div style="font-size:11px;color:#5a7a94">${[lot,block,subdv].filter(Boolean).join(" · ")}</div>` : ""}
+          ${p.legal_description ? `<div style="font-size:10px;color:#3a5060;margin-top:4px">${p.legal_description}</div>` : ""}
+          ${link ? `<div style="margin-top:8px">${link}</div>` : ""}
+        </div>
+      `, { maxWidth: 300 });
+
+      layer.on("mouseover", () => layer.setStyle({ fillOpacity: 0.18, opacity: 1 }));
+      layer.on("mouseout",  () => lotsLayer.resetStyle(layer));
+    }
+  });
+
+  if (lotsVisible) lotsLayer.addTo(map);
+}
+
+document.getElementById("lots-toggle").addEventListener("click", () => {
+  lotsVisible = !lotsVisible;
+  const btn = document.getElementById("lots-toggle");
+  if (lotsVisible) {
+    btn.textContent = "Hide Lots";
+    btn.classList.add("on");
+    if (lotsLayer) lotsLayer.addTo(map);
+  } else {
+    btn.textContent = "Lot Lines";
+    btn.classList.remove("on");
+    if (lotsLayer) map.removeLayer(lotsLayer);
+  }
+});
+
+/* ─────────────────────────────────────────────────────────
    DATA LOAD + RENDER
 ───────────────────────────────────────────────────────── */
-fetch("businesses.geojson")
-  .then(r => r.json())
-  .then(data => {
-    allFeatures = data.features;
-
-    // Collect categories
+Promise.all([
+  fetch("businesses.geojson").then(r => r.json()).catch(() => null),
+  fetch("lots.geojson").then(r => r.json()).catch(() => null)
+]).then(([bizData, lotsData]) => {
+  if (bizData) {
+    allFeatures = bizData.features;
     const cats = new Set(allFeatures.map(f => f.properties.category || "Other"));
     activeCategories = new Set(cats);
-
     buildFilterPills(cats);
     buildLegend(cats);
     renderAll();
     buildStats();
-    buildStrategicList();     // Populate the planning tab list
-    addStrategicMarkers();      // Show strategic layer by default
     document.getElementById("stats-bar").style.display = "flex";
-    restoreState();
-  })
-  .catch(() => {
-    // If no GeoJSON, still render planning
-    buildStrategicList();
-    addStrategicMarkers();
+  } else {
     document.getElementById("stats-bar").style.display = "none";
-  });
+  }
+  if (lotsData && lotsData.features && lotsData.features.length) {
+    buildLotsLayer(lotsData.features);
+  }
+  buildStrategicList();
+  addStrategicMarkers();
+  restoreState();
+});
 
 /* ─────────────────────────────────────────────────────────
    FILTER PILLS
