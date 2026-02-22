@@ -1149,7 +1149,7 @@ function renderAll() {
   const filtered = allFeatures.filter(f => {
     const p = f.properties;
     if (!activeCategories.has(p.category || "Other")) return false;
-    if (q && !( (p.address||"").toLowerCase().includes(q) || (p.owner||"").toLowerCase().includes(q) )) return false;
+    if (q && !( (p.name||p.address||"").toLowerCase().includes(q) || (p.owner||"").toLowerCase().includes(q) )) return false;
     return true;
   });
 
@@ -1162,7 +1162,7 @@ function renderAll() {
     pointToLayer: (feature, latlng) => {
       const p = feature.properties;
       const color = p.color || CAT_COLORS[p.category] || CAT_COLORS["Other"];
-      const isStrategicParcel = STRATEGIC.some(s => s.address === p.address);
+      const isStrategicParcel = STRATEGIC.some(s => (p.address||"").startsWith(s.address));
       return L.circleMarker(latlng, {
         radius:      isStrategicParcel ? 10 : 7,
         fillColor:   color,
@@ -1177,27 +1177,31 @@ function renderAll() {
       const color = p.color || CAT_COLORS[p.category] || CAT_COLORS["Other"];
       const fmt = v => v ? "$" + Number(v).toLocaleString() : "—";
 
+      const ratingStr = p.rating ? `★ ${p.rating}` : "";
+      const ownerLine = p.owner ? `<div class="popup-owner">Owner: ${p.owner.replace(/\b\w/g,c=>c.toUpperCase()).replace(/\bLlc\b/,"LLC")}</div>` : "";
+      const countyLink = p.county_url
+        ? `<a class="popup-link" href="${p.county_url}" target="_blank">Whatcom County assessor &rarr;</a>`
+        : "";
       layer.bindPopup(`
         <div class="popup-inner">
-          <span class="popup-use-badge" style="background:${color}22;color:${color}">${p.category || "Other"}</span>
-          <div class="popup-address">${p.address || "Unknown Address"}</div>
-          <div class="popup-owner">${p.owner || "Unknown Owner"}</div>
+          <span class="popup-use-badge" style="background:${color}22;color:${color}">${p.category || "Other"}${ratingStr ? " &nbsp;" + ratingStr : ""}</span>
+          <div class="popup-address">${p.name || p.address || "Unknown"}</div>
+          <div class="popup-owner">${p.address || ""}</div>
+          ${ownerLine}
           <div class="popup-stats">
-            <div class="popup-stat"><div class="v">${fmt(p.assessed_value)}</div><div class="k">Assessed</div></div>
+            <div class="popup-stat"><div class="v">${fmt(p.mkt_value)}</div><div class="k">Assessed</div></div>
             <div class="popup-stat"><div class="v">${p.sqft ? Number(p.sqft).toLocaleString() + " sqft" : "—"}</div><div class="k">Size</div></div>
-            <div class="popup-stat"><div class="v">${p.year_built || "—"}</div><div class="k">Built</div></div>
-            <div class="popup-stat"><div class="v">${p.parcel_id || "—"}</div><div class="k">Parcel ID</div></div>
+            <div class="popup-stat"><div class="v">${p.yr_blt || "—"}</div><div class="k">Built</div></div>
+            <div class="popup-stat"><div class="v">${p.zoning || "—"}</div><div class="k">Zoning</div></div>
           </div>
-          <a class="popup-link" href="https://www.whatcomcounty.us/1877/Property-Information" target="_blank">
-            Whatcom County GIS &rarr;
-          </a>
+          ${countyLink}
         </div>
       `, { maxWidth: 280 });
 
-      layer.bindTooltip(p.address || "No address", { direction: "top", offset: [0, -6] });
+      layer.bindTooltip(p.name || p.address || "No name", { direction: "top", offset: [0, -6] });
 
       layer.on("click", () => {
-        selectedId = p.parcel_id;
+        selectedId = p.place_id || String(p.prop_id);
         renderList(filtered);
       });
     }
@@ -1216,22 +1220,25 @@ function renderList(features) {
   features.forEach(f => {
     const p = f.properties;
     const color = p.color || CAT_COLORS[p.category] || CAT_COLORS["Other"];
-    const isStrategic = STRATEGIC.some(s => s.address === p.address);
+    const isStrategic = STRATEGIC.some(s => (p.address||"").startsWith(s.address));
+    const uid = p.place_id || String(p.prop_id);
     const item = document.createElement("div");
     item.className = "property-item" +
       (p.is_reef ? " is-reef" : "") +
       (isStrategic && !p.is_reef ? " is-strategic" : "") +
-      (p.parcel_id === selectedId ? " selected" : "");
+      (uid === selectedId ? " selected" : "");
 
     const fmt = v => v ? "$" + (Number(v) / 1000).toFixed(0) + "K" : "—";
+    const label = p.name || p.address || "Unknown";
+    const sub   = p.name ? (p.address || "") : (p.owner ? p.owner.replace(/\b\w/g,c=>c.toUpperCase()).replace(/\bLlc\b/,"LLC") : "");
     item.innerHTML = `
       <div class="dot" style="background:${color}"></div>
       <div class="prop-info">
-        <div class="prop-address">${p.address || "No address"}</div>
-        <div class="prop-owner">${p.owner || "—"}</div>
+        <div class="prop-address">${label}</div>
+        <div class="prop-owner">${sub}</div>
       </div>
       <div class="prop-meta">
-        <div class="prop-value">${fmt(p.assessed_value)}</div>
+        <div class="prop-value">${fmt(p.mkt_value)}</div>
         <div class="prop-use">${p.category || "—"}</div>
       </div>
     `;
@@ -1240,7 +1247,7 @@ function renderList(features) {
       item.addEventListener("click", () => {
         const [lng, lat] = f.geometry.coordinates;
         map.flyTo([lat, lng], 17, { duration: 1 });
-        selectedId = p.parcel_id;
+        selectedId = uid;
         renderList(features);
       });
     }
@@ -1255,9 +1262,9 @@ function renderList(features) {
 function buildStats() {
   const bar = document.getElementById("stats-bar");
   const total = allFeatures.length;
-  const totalAssessed = allFeatures.reduce((s, f) => s + (Number(f.properties.assessed_value) || 0), 0);
+  const totalAssessed = allFeatures.reduce((s, f) => s + (Number(f.properties.mkt_value) || 0), 0);
   bar.innerHTML = `
-    <div class="stat-pill"><strong>${total}</strong> parcels</div>
+    <div class="stat-pill"><strong>${total}</strong> businesses</div>
     <div class="stat-pill">Total assessed <strong>$${(totalAssessed / 1e6).toFixed(1)}M</strong></div>
     <div class="stat-pill">Target: <strong style="color:#f0c040">The Reef $1.375M ask</strong></div>
   `;

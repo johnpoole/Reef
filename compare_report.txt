@@ -1,0 +1,83 @@
+========================================================================
+  Point Roberts — Business Data Comparison
+  Google Places (non-admin): 58
+  Our GeoJSON (assessor):    16
+  Matched by address:        11
+========================================================================
+
+[MATCHED by address — 11]
+  1334 gulf rd                    ours: Nicholas C Kiniski
+                                  goog: Larry's Liquor Locker
+  1339 gulf rd                    ours: John & Barbara Hislop
+                                  goog: Julius Realty
+  1345 gulf rd                    ours: Th Coastal Design Llc
+                                  goog: Saltwater Café
+  1405 gulf rd                    ours: Robert G Simpson
+                                  goog: Lady Liberty
+  145 tyee dr                     ours: Nx Holding Inc
+                                  goog: In Out Parcel
+  1480 gulf rd                    ours: Pt Roberts Mini And Mobile Storage Llc
+                                  goog: Point Roberts Parcel Service / The Rubber Duck Museum / Point Roberts Mini & Mobile / Airline Broker / Norman Annelle / Tessa Pinckston, Real Estate Broker with RE/MAX Whatcom County Inc.
+  1557 gulf rd                    ours: Point Roberts Chevron Llc
+                                  goog: Point Fuel & Pantry
+  1574 gulf rd                    ours: Daryl & Roberta Marquette
+                                  goog: TSB Shipping Plus / Strip-Curtains.com
+  1582 gulf rd                    ours: Kwong & Choi Llc
+                                  goog: United States Postal Service / Breast Forms
+  423 tyee dr                     ours: Kallu Enterprises Llc
+                                  goog: Shell / Point Roberts Coffee Roasting Company / Data-Recovery-Vancouver.com
+  486 tyee dr                     ours: Point Roberts Chevron Llc
+                                  goog: Chevron Point Roberts
+
+[IN GOOGLE — NOT IN OUR MAP (38)]
+  (businesses Google knows about that we're missing)
+  Name                                          Types                           Address
+  --------------------------------------------  ----------------------------  --------
+  Adorable Newly Remolded A - Frame Cottage with Hot Tub  lodging                         United States
+  Advanced Simulation Corporation                                               1385 Gulf Road # 201, Point Roberts
+  All Hues Painting                             painter                         234 Windsor Drive, Point Roberts
+  Canada Border Services Agency - Boundary Bay                                  4 56 Street, Delta
+  ChargePoint Charging Station                                                  1437 Gulf Road, Point Roberts
+  Columbia Bank                                 bank, finance                   476 Tyee Drive, Point Roberts
+  Dennis' Auto                                  car_repair                      1423 Gulf Road, Point Roberts
+  Erickson Brothers Garage                      car_repair                      1423 Gulf Road, Point Roberts
+  Harmony Web Designs                                                           1880 APA Road, Point Roberts
+  International Marketplace                     supermarket, grocery_or_supe    480 Tyee Drive, Point Roberts
+  Just Rental Listings                          real_estate_agency, travel_a    Point Roberts
+  Key Interlocking                                                              1591 McKenzie Way, Point Roberts
+  Lighthouse Marine Park                        park, campground                811 Marine Drive, Point Roberts
+  Malysh Associates Cnslting Inc                accounting, finance             Point Roberts
+  Oceanview Apartments                                                          1459 Edwards Drive, Point Roberts
+  Panorama Management Consulting                                                5595 Wallace Avenue, Delta
+  Point Roberts Airpark                         airport                         622 Marine Drive, Point Roberts
+  Point Roberts Community Center                                                1437 Gulf Road, Point Roberts
+  Point Roberts Food Bank - Food Distribution Center  food                            1487 Gulf Road, Point Roberts
+  Point Roberts History Center                  museum                          1437 Gulf Road, Point Roberts
+  Point Roberts Marina Resort                                                   713 Simundson Drive, Point Roberts
+  Point Roberts Real Estate                     real_estate_agency              1385 Gulf Road, Point Roberts
+  Point Roberts Realty Inc                      real_estate_agency              79 Tyee Drive, Point Roberts
+  RV Storage Point                              storage                         386 Tyee Drive, Point Roberts
+  S. Graham Engineering and Geology Inc.                                        46 Parkgrove Crescent, Delta
+  Sharp Bob's Garage                            car_repair                      1423 Gulf Road, Point Roberts
+  Shell Marina                                  gas_station                     713 Simundson Drive, Point Roberts
+  Shred Nations                                                                 1577 Gulf Road, Point Roberts
+  Stephen's Hair Design                         beauty_salon                    1423 Gulf Road # B, Point Roberts
+  Sunny Point Resort                            rv_park, lodging                1408 Gulf Road, Point Roberts
+  The Pier                                      restaurant, food                713 Simundson Drive, Point Roberts
+  The UPS Store                                 finance, store                  1577 Gulf Road, Point Roberts
+  Trinity Community Lutheran                    church, place_of_worship        1880 APA Road, Point Roberts
+  U.S. Customs and Border Protection - Point Roberts Port of Entry                                  50 Tyee Drive, Point Roberts
+  UPS Access Point location                                                     1577 Gulf Road, Point Roberts
+  US Immigration & Customs Enforcement Centre                                   50 Tyee Drive, Point Roberts
+  Whatcom County Library System - Point Roberts Library  library                         1431 Gulf Road, Point Roberts
+  WineOhh                                       store                           Point Roberts
+
+[IN OUR MAP — NOT IN GOOGLE (5)]
+  (assessor parcels we show that Google doesn't have)
+  Owner                                         Category              Address
+  --------------------------------------------  ------------------  --------
+  Point Roberts Mini & Mobile Storage Llc       Services              1473 GULF RD
+  Point Roberts Chevron Llc                     Services              1559 GULF RD
+  Point Roberts Mini &                          Services              1568 BENSON RD
+  391 Tyee Drive Llc                            Retail                391 TYEE DR
+  Point Roberts Resort Lp                       Marina/Marine         725 SIMUNDSON DR
