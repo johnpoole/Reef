@@ -95,17 +95,127 @@ const MODEL = {
    ────────────────────────────────────────────────────────────────── */
 
   costs: [
-    //  Line item              Auto model              No-automation baseline
-    //                         lo          hi          baselineLo  baselineHi
-    { label: "Labor (GM + staff)",
-      lo: 160_000, hi: 230_000, baselineLo: 290_000, baselineHi: 365_000, color: "#f0c040" },  // [E]
+    // ── Labor ────────────────────────────────────────────────────────────────
+    // Basis: WA minimum wage 2026 = $17.13/hr (L&I, confirmed 2026-02-22).
+    // Automation model: GM + 1–2 PT bar/service + payroll taxes.
+    // Baseline: same GM, 3–4 FTE bar/FOH, 1 PT cleaning — no self-service.
+    { label: "Labor",
+      lo: 160_000, hi: 230_000, baselineLo: 290_000, baselineHi: 365_000, color: "#f0c040",  // [E]
+      detail: [
+        { label: "GM / Operations Manager (salaried)",
+          lo:  75_000, hi:  85_000, confidence: "E",
+          note: "~$36–$41/hr equiv. Competitive for remote WA market." },
+        { label: "Bar & service staff (hourly, auto model)",
+          lo:  55_000, hi: 100_000, confidence: "E",
+          note: "1–2 PT bartenders + event coverage. $17.13/hr × 20–35 hrs × 52 wks × 1–2 staff." },
+        { label: "Payroll taxes + WA L&I + unemployment",
+          lo:  18_000, hi:  35_000, confidence: "I",
+          note: "FICA 7.65% + WA L&I ~2% + WA UI ~1.5% ≈ 11–12% of gross wages." },
+      ],
+      baselineDetail: [
+        { label: "GM / Operations Manager (salaried)",      lo:  75_000, hi:  85_000 },
+        { label: "Bar + front-of-house (3–4 FTE)",          lo: 170_000, hi: 220_000,
+          note: "3–4 FTE × $17.13/hr × 40 hrs × 52 wks + OT allowance." },
+        { label: "Cleaning / back-of-house (1 PT)",         lo:  20_000, hi:  30_000 },
+        { label: "Payroll taxes + WA L&I + unemployment",   lo:  25_000, hi:  30_000 },
+      ],
+    },
+    // ── F&B COGS ─────────────────────────────────────────────────────────────
+    // Derived from fbCOGSRate (35%). No subcategories — single rate applied to fbGross.
     { label: "F&B COGS (35%)",       lo:  75_000, hi: 105_000, color: "#7ab5d8" },  // [I]
+    // ── Buyback reserve ──────────────────────────────────────────────────────
+    // Structural — no real-world rate source. Amount set by policy, not market.
     { label: "Buyback reserve",      lo:  20_000, hi:  40_000, color: "#e07840" },  // [E]
-    { label: "Maintenance / repair", lo:  20_000, hi:  40_000, color: "#5a8a70" },  // [E]
-    { label: "Utilities",            lo:  24_000, hi:  36_000, color: "#5a8a70" },  // [E]
-    { label: "Insurance",            lo:  18_000, hi:  28_000, color: "#5a8a70" },  // [E]
-    { label: "Property tax",         lo:  18_000, hi:  22_000, color: "#5a8a70" },  // [G]
-    { label: "Admin / legal",        lo:  15_000, hi:  25_000, color: "#5a8a70" },  // [E]
+    // ── Maintenance / repair ─────────────────────────────────────────────────
+    // Industry benchmark: 1–2% of building value/yr on older commercial stock.
+    // 1334 Gulf Rd: 1959 build, 8,463 sqft. Higher end of range is prudent.
+    { label: "Maintenance / repair", lo:  20_000, hi:  40_000, color: "#5a8a70",  // [E]
+      detail: [
+        { label: "HVAC, plumbing, electrical (routine)",
+          lo:  10_000, hi:  20_000, confidence: "E",
+          note: "1–2% of $850K–$1.75M building value. 1959 construction = higher draw." },
+        { label: "Grounds, dock, beach access upkeep",
+          lo:   5_000, hi:  12_000, confidence: "E" },
+        { label: "Contingency / unplanned repairs",
+          lo:   5_000, hi:   8_000, confidence: "E" },
+      ],
+    },
+    // ── Utilities ────────────────────────────────────────────────────────────
+    // NEEDS QUOTES: PSE (electric), Point Roberts Water District (water/sewer),
+    // Wave/Consolidated (internet), propane supplier.
+    // Point Roberts has no natural gas grid — propane for heating.
+    { label: "Utilities",            lo:  24_000, hi:  36_000, color: "#5a8a70",  // [E]
+      detail: [
+        { label: "Electric — PSE small commercial",
+          lo:  12_000, hi:  18_000, confidence: "E",
+          note: "NEEDS PSE QUOTE. 8,463 sqft commercial bar. ~$1,000–$1,500/mo for similar WA coastal venues." },
+        { label: "Water / sewer — Point Roberts Water District",
+          lo:   4_800, hi:   7_200, confidence: "E",
+          note: "NEEDS PRWD QUOTE. Bar use is high-draw (dishwasher, restrooms, bar sinks)." },
+        { label: "Propane / heating fuel",
+          lo:   3_000, hi:   5_000, confidence: "E",
+          note: "NEEDS QUOTE. Point Roberts is not on natural gas grid. Propane assumed." },
+        { label: "Internet / cable — Wave or Consolidated",
+          lo:   2_400, hi:   3_600, confidence: "E",
+          note: "NEEDS QUOTE. ~$200–$300/mo business plan estimated." },
+        { label: "Garbage / recycling — Whatcom County",
+          lo:   1_800, hi:   3_600, confidence: "E",
+          note: "NEEDS QUOTE. Commercial bar rate, Whatcom County solid waste." },
+      ],
+    },
+    // ── Insurance ────────────────────────────────────────────────────────────
+    // NEEDS BROKER QUOTE. Liquor liability is the dominant line for any licensed
+    // alcohol service. Coastal/waterfront location adds property surcharge.
+    { label: "Insurance",            lo:  18_000, hi:  28_000, color: "#5a8a70",  // [E]
+      detail: [
+        { label: "Liquor liability",
+          lo:   8_000, hi:  12_000, confidence: "E",
+          note: "NEEDS QUOTE. WA clubs/taverns typically $6K–$14K/yr. Dominant line." },
+        { label: "Commercial property (8,463 sqft, coastal)",
+          lo:   5_000, hi:   9_000, confidence: "E",
+          note: "NEEDS QUOTE. Coastal/waterfront adds surcharge over inland rates." },
+        { label: "General liability",
+          lo:   3_000, hi:   5_000, confidence: "E" },
+        { label: "Directors & officers (member-owned entity)",
+          lo:   1_500, hi:   2_500, confidence: "E" },
+      ],
+    },
+    // ── Property tax ─────────────────────────────────────────────────────────
+    // Current assessed value: $850,965 (Whatcom County assessor, prop_id 154423).
+    // Whatcom Co. unincorporated levy ~$10.50/$1,000 → current bill ~$8,935/yr.
+    // Model range anticipates post-renovation reassessment:
+    //   $1,750,000 × $10.50/$1,000 = $18,375
+    //   $2,100,000 × $10.50/$1,000 = $22,050
+    // Range is reasonable IF renovation triggers reassessment to that level.
+    // Confidence on levy rate: [E] — confirm against Whatcom Co. published levy schedule.
+    { label: "Property tax",         lo:  18_000, hi:  22_000, color: "#5a8a70",  // [G/E]
+      detail: [
+        { label: "Current assessed $850,965 × ~$10.50/$1,000",
+          lo:   8_900, hi:   8_900, confidence: "G",
+          note: "Prop_id 154423. Levy rate ~$10.50/$1,000 — confirm against Whatcom Co. levy schedule." },
+        { label: "Post-renovation reassessment (~$1.75M–$2.1M)",
+          lo:  18_000, hi:  22_000, confidence: "E",
+          note: "Model uses this range. Reassessment typically follows permitted renovation." },
+      ],
+    },
+    // ── Admin / legal / licenses ─────────────────────────────────────────────
+    { label: "Admin / legal / licenses", lo: 15_000, hi: 25_000, color: "#5a8a70",  // [E]
+      detail: [
+        { label: "WA LCB liquor license (annual)",
+          lo:   1_000, hi:   4_000, confidence: "E",
+          note: "Tavern (beer/wine) ~$1,070/yr; spirits/beer/wine restaurant ~$2K–$4K/yr; private club ~$900–$1,500/yr. Exact type TBD pending entity structure. CONFIRM WITH LCB." },
+        { label: "Accounting / bookkeeping",
+          lo:   6_000, hi:  10_000, confidence: "E" },
+        { label: "Legal retainer (HOA / coop / nonprofit counsel)",
+          lo:   4_000, hi:   8_000, confidence: "E" },
+        { label: "Software — POS + club management",
+          lo:   2_400, hi:   4_800, confidence: "E",
+          note: "~$200–$400/mo. Club management (e.g. Jonas, Northstar) + POS terminal." },
+        { label: "WA SOS annual report + misc state filings",
+          lo:     200, hi:     500, confidence: "G",
+          note: "WA LLC annual report fee: $71. 501(c)(7) nonprofit: $0 annual report." },
+      ],
+    },
   ],
   //  Total OpEx (auto model, mid):   ~$348K
   //  Total OpEx (baseline,  mid):    ~$476K
