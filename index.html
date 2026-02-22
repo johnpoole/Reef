@@ -581,41 +581,87 @@
 /* ─────────────────────────────────────────────────────────
    STRATEGIC PROPERTIES  (hardcoded planning data)
 ───────────────────────────────────────────────────────── */
+// ═══════════════════════════════════════════════════════════
+//  STRATEGIC DATA INTEGRITY RULES
+//
+//  Every field in this array must have a traceable source.
+//  The `src` field on each entry documents provenance.
+//  Never use assessor property use codes as business names —
+//  they describe tax classification, not operating businesses.
+//
+//  ALLOWED SOURCES:
+//    "assessor"  — Whatcom County parcel data (numeric fields only:
+//                  assessed value, sqft, yr_blt, owner name)
+//    "google"    — Google Places API or Maps (business name, rating,
+//                  address, hours, business type)
+//    "listing"   — MLS / broker listing (asking price — verify currency)
+//    "direct"    — Personal observation or direct contact
+//
+//  PROHIBITED:
+//    ✗ Inferring a business name from an assessor use code
+//      (e.g. use code "LIQUOR" ≠ business name "Liquor Store")
+//    ✗ Claiming operational status ("operating successfully",
+//      "not for sale") without a source
+//    ✗ Describing strategy or intent as fact
+//      ("controls key food retail", "asking price negotiable")
+//    ✗ Adding any note claim without being able to cite its origin
+//
+//  When in doubt: leave the field null and add "[ unverified ]"
+//  to the note rather than filling it with inference.
+// ═══════════════════════════════════════════════════════════
 const STRATEGIC = [
   {
     id: "reef", name: "★ The Reef", lat: 48.98453, lng: -123.08337,
     status: "target", assessed: 850965, asking: 1375000,
     sqft: 8463, built: 1959, address: "1334 Gulf Rd",
-    note: "Target acquisition. Bar/restaurant + lodging. On-premise liquor license. Asking $1.375M vs $851K assessed = 62% premium. Asking price negotiable.",
+    // name: Google Maps + signage. assessed/sqft/built: Whatcom County assessor.
+    // asking: listing price — verify currency before use.
+    // use codes from assessor (bar/restaurant, lodging) suggest current use but are NOT
+    // a verified description of the operating business — confirm against listing or direct visit.
+    src: "name:google, assessed:assessor, asking:listing, use:assessor-unverified",
+    note: "Target acquisition. Asking $1.375M vs $851K assessed = 62% premium. Assessor use codes indicate bar/restaurant + lodging — verify against current listing.",
     color: "#f0c040"
   },
-
   {
-    id: "liquorstore", name: "Adjacent Liquor Store", lat: 48.98422, lng: -123.07842,
+    // name: Verified via Google Places API (rating 4.0, types: point_of_interest).
+    // Assessor use code is LIQUOR — property tax classification only, NOT the business name.
+    id: "liquorstore", name: "Lady Liberty", lat: 48.98422, lng: -123.07842,
     status: "watch", assessed: 202000, asking: null,
     sqft: null, built: null, address: "1405 Gulf Rd",
-    note: "Adjacent parcel. Combined acquisition with The Reef changes entry economics. Check availability.",
+    src: "name:google, assessed:assessor",
+    note: "Adjacent parcel. Business: Lady Liberty (Google rating 4.0). Assessor use code: LIQUOR (tax classification only). Check availability.",
     color: "#d4b040"
   },
   {
+    // name: Google Places. Sub-businesses at this address (Shell Marina, The Pier,
+    // Point Roberts Marina Resort) confirmed via Google Places API — see businesses.geojson.
+    // STRATEGIC marker covers the whole property; sub-businesses are suppressed (is_strategic).
     id: "marina", name: "Point Roberts Marina", lat: 48.97808, lng: -123.06286,
     status: "open", assessed: 12770000, asking: null,
     sqft: null, built: null, address: "713 Simundson Dr",
-    note: "Major amenity. 800-slip marina. Natural partner for membership cross-promotion. Not for sale.",
+    src: "name:google, assessed:assessor, sub-businesses:google-places-api",
+    note: "Marina complex at 713 Simundson Dr. Tenants confirmed via Google: The Pier restaurant (4.4★), Shell Marina fuel dock, Point Roberts Marina Resort.",
     color: "#7ab5d8"
   },
   {
+    // name: "Point Roberts Golf and Country Club" per Google Maps — shortened here for display.
+    // Verify full legal name before any formal outreach.
     id: "golf", name: "Golf & Country Club", lat: 48.99604, lng: -123.08235,
     status: "open", assessed: 4340000, asking: null,
     sqft: null, built: null, address: "500 Benson Rd",
-    note: "Existing members club in PR. Potential cross-membership deal. Operating successfully.",
+    src: "name:google, assessed:assessor",
+    note: "Point Roberts Golf and Country Club. Existing members club — potential cross-membership opportunity. Operational status unverified.",
     color: "#7ab5d8"
   },
   {
-    id: "hislop", name: "Hislop Food Operations", lat: 48.98409, lng: -123.08323,
+    // name: "Hislop Food Operations" was a fabricated name — same error as the Lady Liberty case.
+    // Assessor owner name is Hislop; the actual operating businesses are IGA and Subway.
+    // Name corrected to owner name (assessor) + verified tenant brands (Google).
+    id: "hislop", name: "Hislop Property — IGA / Subway", lat: 48.98409, lng: -123.08323,
     status: "open", assessed: 1500000, asking: null,
     sqft: null, built: null, address: "1330 Gulf Rd",
-    note: "IGA grocery + Subway directly adjacent to The Reef. Hislop family controls key food retail in PR. Monitor for future consolidation opportunity.",
+    src: "owner:assessor, tenants:google",
+    note: "1330 Gulf Rd. Owner: Hislop (assessor). Tenants: IGA grocery + Subway, directly adjacent to The Reef. Monitor for availability.",
     color: "#7ab5d8"
   }
 ];
@@ -1155,10 +1201,12 @@ function renderAll() {
 
   document.getElementById("count-badge").textContent = filtered.length + " / " + allFeatures.length;
 
-  // Map layer — skip The Reef from regular markers (strategic layer handles it)
+  // Map layer — skip The Reef and STRATEGIC sub-businesses (strategic layer handles them).
+  // is_reef: The Reef (1334 Gulf Rd). is_strategic: sub-businesses at complex STRATEGIC parcels
+  // (e.g. the 3 Google businesses stacked inside the Marina property at 713 Simundson Dr).
   if (geoLayer) map.removeLayer(geoLayer);
   geoLayer = L.geoJSON({ type: "FeatureCollection", features: filtered }, {
-    filter: f => !f.properties.is_reef,
+    filter: f => !f.properties.is_reef && !f.properties.is_strategic,
     pointToLayer: (feature, latlng) => {
       const p = feature.properties;
       const color = p.color || CAT_COLORS[p.category] || CAT_COLORS["Other"];

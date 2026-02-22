@@ -123,14 +123,23 @@ for place in all_places:
     category = infer_category(types)
     color    = CAT_COLORS.get(category, CAT_COLORS["Other"])
     is_reef  = ("1334" in vicinity and "gulf" in vicinity.lower())
+    # Suppress sub-businesses at STRATEGIC property addresses from the regular marker layer.
+    # 713 Simundson Dr = Point Roberts Marina complex (Shell Marina, The Pier, Marina Resort).
+    # The STRATEGIC circle marker already represents the whole property; individual markers
+    # just stack on top of it and clutter the map.
+    STRATEGIC_ADDRS = {
+        norm_addr("713 Simundson Dr"),
+    }
+    is_strategic = (not is_reef) and (vic_addr in STRATEGIC_ADDRS)
 
     # Base properties from Google
     props = {
-        "name":       name,
-        "address":    vicinity,
-        "category":   category,
-        "color":      color,
-        "is_reef":    is_reef,
+        "name":         name,
+        "address":      vicinity,
+        "category":     category,
+        "color":        color,
+        "is_reef":      is_reef,
+        "is_strategic": is_strategic,
         "g_types":    types[:4],
         "place_id":   place.get("place_id", ""),
         "rating":     place.get("rating"),
@@ -181,7 +190,8 @@ for feat in assessor_data["features"]:
             "address":    p.get("address", ""),
             "category":   p.get("category", "Other"),
             "color":      p.get("color", CAT_COLORS["Other"]),
-            "is_reef":    p.get("is_reef", False),
+            "is_reef":      p.get("is_reef", False),
+            "is_strategic": norm_addr(p.get("address","").split(",")[0]) in {norm_addr("713 Simundson Dr")},
             "g_types":    [],
             "place_id":   None,
             "rating":     None,
