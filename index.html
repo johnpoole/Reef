@@ -374,6 +374,54 @@
       border-radius: 20px; padding: 5px 12px; font-size: 11px; color: #7ab5d8; white-space: nowrap;
     }
     .stat-pill strong { color: #e8eaed; font-weight: 700; }
+
+    /* ── PARTNERSHIPS TAB ── */
+    #partnerships-panel {
+      flex: 1; overflow-y: auto; padding: 14px 14px 20px;
+      scrollbar-width: thin; scrollbar-color: #263545 transparent;
+    }
+    #partnerships-panel::-webkit-scrollbar { width: 5px; }
+    #partnerships-panel::-webkit-scrollbar-thumb { background: #263545; border-radius: 3px; }
+
+    .partner-intro {
+      font-size: 11px; color: #4a6a80; line-height: 1.6;
+      padding: 8px 10px; background: rgba(30,48,72,.4);
+      border: 1px solid #1e3048; border-radius: 6px; margin-bottom: 16px;
+    }
+    .partner-card {
+      background: #0f1923; border: 1px solid #1e3048; border-radius: 9px;
+      margin-bottom: 14px; overflow: hidden;
+    }
+    .partner-card-head {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 14px; border-bottom: 1px solid #1e3048;
+    }
+    .partner-card-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+    .partner-card-meta { flex: 1; }
+    .partner-card-name { font-size: 13px; font-weight: 700; color: #d8e8f8; }
+    .partner-card-addr { font-size: 10.5px; color: #5a7a94; margin-top: 2px; }
+    .partner-card-tag {
+      font-size: 10px; font-weight: 700; letter-spacing: .6px;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 4px; flex-shrink: 0; white-space: nowrap;
+    }
+    .ptag-adjacent { background: rgba(240,192,64,.15); color: #d4b040; }
+    .ptag-nearby   { background: rgba(122,181,216,.15); color: #7ab5d8; }
+
+    .partner-card-body { padding: 10px 14px; }
+    .partner-data-note {
+      font-size: 10.5px; color: #4a6a80; padding: 5px 8px;
+      background: rgba(40,60,80,.4); border-left: 2px solid #2a4a60;
+      border-radius: 0 4px 4px 0; margin-bottom: 8px; line-height: 1.5;
+    }
+    .partner-data-note.warn { border-left-color: #805020; color: #806040; }
+    .partner-idea {
+      display: flex; gap: 9px; padding: 7px 0;
+      border-bottom: 1px solid #141e2a; line-height: 1.55;
+    }
+    .partner-idea:last-child { border-bottom: none; }
+    .partner-idea-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+    .partner-idea-text { font-size: 12px; color: #7a8a9a; }
+    .partner-idea-text strong { color: #b0c4d8; font-weight: 600; }
   </style>
 </head>
 <body>
@@ -389,6 +437,7 @@
   <div id="tab-bar">
     <button class="tab-btn active" data-tab="map-panel">Map</button>
     <button class="tab-btn" data-tab="planning-panel">Planning</button>
+    <button class="tab-btn" data-tab="partnerships-panel">Partners</button>
     <button class="tab-btn" data-tab="presentation-panel">Present</button>
     <button id="copy-link-btn" title="Copy shareable link">&#128279;</button>
   </div>
@@ -543,6 +592,151 @@
     </div><!-- /planning-scroll -->
   </div><!-- /planning-panel -->
 
+  <!-- ======= PARTNERSHIPS TAB ======= -->
+  <div id="partnerships-panel" class="tab-panel">
+
+    <p class="partner-intro">
+      Proposed models only &mdash; none verified or discussed with any party.
+      Every idea here requires direct outreach to validate interest before it
+      can inform any decision. Sources for factual claims are noted inline.
+    </p>
+
+    <!-- Lady Liberty -->
+    <div class="partner-card">
+      <div class="partner-card-head">
+        <div class="partner-card-dot" style="background:#d4b040"></div>
+        <div class="partner-card-meta">
+          <div class="partner-card-name">Lady Liberty</div>
+          <div class="partner-card-addr">1405 Gulf Rd &mdash; ~350m east (coords, not adjacent)</div>
+        </div>
+        <div class="partner-card-tag ptag-nearby">Watch</div>
+      </div>
+      <div class="partner-card-body">
+        <div class="partner-data-note warn">
+          &#9888; Business type unverified. Google Places returns only generic types
+          (&ldquo;point of interest / establishment&rdquo;, rating 4.0).
+          Assessor use code is LIQUOR &mdash; tax classification only.
+          Confirm the actual business before proposing any partnership.
+        </div>
+        <div class="partner-idea">
+          <span class="partner-idea-icon">&#x1f511;</span>
+          <div class="partner-idea-text"><strong>Acquisition watch.</strong> Coordinates place Lady Liberty ~350m east &mdash; parcels are NOT adjacent. Acquisition would be a separate transaction, not a combined parcel deal. Verify parcel map before modeling any expansion footprint.</div>
+        </div>
+        <div class="partner-idea">
+          <span class="partner-idea-icon">&#x1f3d7;</span>
+          <div class="partner-idea-text"><strong>Overflow / expansion space.</strong> Depending on what the business actually is: could become a member lounge, private event annex, or storage for beach equipment. Requires site visit to assess layout.</div>
+        </div>
+        <div class="partner-idea">
+          <span class="partner-idea-icon">&#x1f4cb;</span>
+          <div class="partner-idea-text"><strong>First step: identify the business.</strong> Check WA Secretary of State business license search or visit in person. All partnership models depend on this.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Marina complex -->
+    <div class="partner-card">
+      <div class="partner-card-head">
+        <div class="partner-card-dot" style="background:#7ab5d8"></div>
+        <div class="partner-card-meta">
+          <div class="partner-card-name">The Pier + Marina Complex</div>
+          <div class="partner-card-addr">713 Simundson Dr &mdash; ~1.0 mi southeast (coords)</div>
+        </div>
+        <div class="partner-card-tag ptag-nearby">Nearby</div>
+      </div>
+      <div class="partner-card-body">
+        <div class="partner-data-note">
+          Tenants confirmed via Google Places API: The Pier restaurant (4.4&#x2605;,
+          food/restaurant), Shell Marina (gas station/fuel dock),
+          Point Roberts Marina Resort (point of interest). Assessed $12.77M
+          (<em>src: assessor</em>).
+        </div>
+        <div class="partner-idea">
+          <span class="partner-idea-icon">&#x1f6a4;</span>
+          <div class="partner-idea-text"><strong>Dock-and-dine arrangement with The Pier.</strong> Marina slip holders get a Reef day-pass or member discount; Reef members get preferred reservation access or a fuel discount at Shell Marina. High overlap in boating demographic.</div>
+        </div>
+        <div class="partner-idea">
+          <span class="partner-idea-icon">&#x1f374;</span>
+          <div class="partner-idea-text"><strong>Cross-referral with The Pier (4.4&#x2605;).</strong> The Pier is a full-service restaurant; The Reef is a bar/social venue. Refer overflow to each other rather than competing. Marina guests get exposure to The Reef and vice versa.</div>
+        </div>
+        <div class="partner-idea">
+          <span class="partner-idea-icon">&#x1f3d6;</span>
+          <div class="partner-idea-text"><strong>Marina Resort guest day passes.</strong> Resort overnight guests get a complimentary Reef beach access pass. Adds amenity value to the resort stay without capital cost to either party.</div>
+        </div>
+        <div class="partner-idea">
+          <span class="partner-idea-icon">&#x1f4c5;</span>
+          <div class="partner-idea-text"><strong>Shared event calendar.</strong> Combined events (seafood nights, fishing tournaments, sunset cruises) draw from both guest lists and strengthen Point Roberts as a destination rather than splitting thin local demand.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Golf & Country Club -->
+    <div class="partner-card">
+      <div class="partner-card-head">
+        <div class="partner-card-dot" style="background:#7ab5d8"></div>
+        <div class="partner-card-meta">
+          <div class="partner-card-name">Point Roberts Golf &amp; Country Club</div>
+          <div class="partner-card-addr">500 Benson Rd &mdash; ~0.8 mi north (coords)</div>
+        </div>
+        <div class="partner-card-tag ptag-nearby">Nearby</div>
+      </div>
+      <div class="partner-card-body">
+        <div class="partner-data-note">
+          Full name per Google Maps: &ldquo;Point Roberts Golf and Country Club&rdquo;.
+          Assessed $4.34M (<em>src: assessor</em>). Existing member club structure
+          confirmed (<em>src: google</em>). Operational status unverified.
+        </div>
+        <div class="partner-idea">
+          <span class="partner-idea-icon">&#x1f91d;</span>
+          <div class="partner-idea-text"><strong>Cross-membership bundle.</strong> Golf + Beach Club dual membership at a combined price point. The classic private club playbook &mdash; members who join one are natural prospects for the other. Neither club dilutes its brand; both expand value.</div>
+        </div>
+        <div class="partner-idea">
+          <span class="partner-idea-icon">&#x1f4cb;</span>
+          <div class="partner-idea-text"><strong>Founding member prospect list.</strong> The golf club&rsquo;s existing members are the highest-quality cold-call list for Reef founding shares &mdash; they already pay for a PR membership and have demonstrated willingness to do so.</div>
+        </div>
+        <div class="partner-idea">
+          <span class="partner-idea-icon">&#x1f4c5;</span>
+          <div class="partner-idea-text"><strong>Shared social calendar.</strong> Golf tournament with awards dinner at The Reef. Summer beach BBQ for club members. Keeps both facilities fully utilized on event days.</div>
+        </div>
+        <div class="partner-idea">
+          <span class="partner-idea-icon">&#x1f3cc;</span>
+          <div class="partner-idea-text"><strong>Guest reciprocity.</strong> Reef members get one complimentary guest round at the club per season; golf members get Reef guest day passes. Low-cost perk that makes dual membership feel richer.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hislop property -->
+    <div class="partner-card">
+      <div class="partner-card-head">
+        <div class="partner-card-dot" style="background:#7ab5d8"></div>
+        <div class="partner-card-meta">
+          <div class="partner-card-name">Hislop Property</div>
+          <div class="partner-card-addr">1330 Gulf Rd &mdash; ~50m south (coords; parcel adjacency unverified)</div>
+        </div>
+        <div class="partner-card-tag ptag-nearby">Near</div>
+      </div>
+      <div class="partner-card-body">
+        <div class="partner-data-note warn">
+          &#9888; Owner: John &amp; Barbara Hislop (<em>src: assessor</em>). Assessed $1.5M (<em>src: assessor</em>).
+          Current tenants <strong>unknown</strong> &mdash; Google Places API returned no business name for this address.
+          IGA and Subway were never in the API data. Verify by direct visit before any partnership planning.
+        </div>
+        <div class="partner-idea">
+          <span class="partner-idea-icon">&#x1f4cb;</span>
+          <div class="partner-idea-text"><strong>First step: identify the tenant.</strong> Drive by or check WA Secretary of State business license search. All partnership ideas below are contingent on what the actual occupant is.</div>
+        </div>
+        <div class="partner-idea">
+          <span class="partner-idea-icon">&#x1f6d2;</span>
+          <div class="partner-idea-text"><strong>If food/grocery tenant:</strong> event provisioning, member discount card, bar supply arrangement. Physical proximity makes supply-chain coordination low-friction. None of this applies until tenant is confirmed.</div>
+        </div>
+        <div class="partner-idea">
+          <span class="partner-idea-icon">&#x1f3d7;</span>
+          <div class="partner-idea-text"><strong>Acquisition watch.</strong> ~50m south by coordinates, Hislop-owned. If the property becomes available, proximity to The Reef makes it a natural expansion candidate. Confirm parcel boundaries before drawing any conclusions.</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /partnerships-panel -->
+
   <!-- ======= PRESENTATION TAB ======= -->
   <div id="presentation-panel" class="tab-panel">
     <div id="slide-header">
@@ -604,6 +798,12 @@
 //      "not for sale") without a source
 //    ✗ Describing strategy or intent as fact
 //      ("controls key food retail", "asking price negotiable")
+//    ✗ Any proximity or direction claim that was not computed from
+//      coordinates. Address numbers are NOT proximity evidence.
+//      Use haversine on lat/lng; cite the computed value.
+//    ✗ Writing a `src` value you cannot verify in the actual data.
+//      If the API did not return it, `src` cannot say "google".
+//      A fake citation is worse than no citation — it hides the gap.
 //    ✗ Adding any note claim without being able to cite its origin
 //
 //  When in doubt: leave the field null and add "[ unverified ]"
@@ -629,7 +829,7 @@ const STRATEGIC = [
     status: "watch", assessed: 202000, asking: null,
     sqft: null, built: null, address: "1405 Gulf Rd",
     src: "name:google, assessed:assessor",
-    note: "Adjacent parcel. Business: Lady Liberty (Google rating 4.0). Assessor use code: LIQUOR (tax classification only). Check availability.",
+    note: "1405 Gulf Rd (~350m east by coordinates — not adjacent despite nearby address). Business: Lady Liberty (Google rating 4.0). Assessor use code: LIQUOR (tax classification only). Check availability.",
     color: "#d4b040"
   },
   {
@@ -654,14 +854,15 @@ const STRATEGIC = [
     color: "#7ab5d8"
   },
   {
-    // name: "Hislop Food Operations" was a fabricated name — same error as the Lady Liberty case.
-    // Assessor owner name is Hislop; the actual operating businesses are IGA and Subway.
-    // Name corrected to owner name (assessor) + verified tenant brands (Google).
-    id: "hislop", name: "Hislop Property — IGA / Subway", lat: 48.98409, lng: -123.08323,
-    status: "open", assessed: 1500000, asking: null,
+    // owner: Assessor record — "JOHN & BARBARA HISLOP". That is ALL that is verified.
+    // Google Places returned only a generic real_estate_agency / point_of_interest result
+    // for this location — no tenant names. IGA and Subway were NEVER in the API response.
+    // Do not add tenant names until confirmed by direct visit or WA business license lookup.
+    id: "hislop", name: "Hislop Property", lat: 48.98409, lng: -123.08323,
+    status: "watch", assessed: 1500000, asking: null,
     sqft: null, built: null, address: "1330 Gulf Rd",
-    src: "owner:assessor, tenants:google",
-    note: "1330 Gulf Rd. Owner: Hislop (assessor). Tenants: IGA grocery + Subway, directly adjacent to The Reef. Monitor for availability.",
+    src: "owner:assessor",
+    note: "1330 Gulf Rd (~50m south by coordinates). Owner: John & Barbara Hislop (assessor). Current tenants unknown — Google Places returned no business name. Verify by direct visit before any partnership or acquisition planning.",
     color: "#7ab5d8"
   }
 ];
