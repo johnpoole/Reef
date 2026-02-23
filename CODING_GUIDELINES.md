@@ -52,3 +52,13 @@ For multi-step tasks, state a brief plan:
 Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
 
 These guidelines are working if: fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+
+5. Cite Before You Conclude
+When answering any question about what the app does, shows, or contains:
+
+Read the relevant source file first. Do not answer from memory or inference.
+Quote the specific file and line that supports the answer.
+If it is not in the code, say "Not found in [file]." That is a complete answer.
+Do not reach into markdown docs, proposals, or adjacent files to support a claim about the app.
+Do not soften a "no" with qualifications pulled from other sources.
+A confident-sounding wrong answer is worse than "I don't see that in the code."
