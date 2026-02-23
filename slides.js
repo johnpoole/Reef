@@ -18,7 +18,8 @@ const SLIDES = [
   { num:"09", sect:"AUTOMATION",         sub:"The penclave makes automation capital \u2014 not compromise", fn: slideAutomation },
   { num:"10", sect:"BREAK-EVEN",         sub:"How many members does it take?",                       fn: slideBreakeven  },
   { num:"11", sect:"CAPITAL REQUIRED",   sub:"Total outlay before first dollar of revenue",          fn: slideCapital    },
-  { num:"12", sect:"GO / NO-GO",         sub:"The conditions that kill the deal",                    fn: slideGoNoGo     },
+  { num:"12", sect:"FINANCING OPTIONS",  sub:"You don't have to sell every share before you close",  fn: slideFinancing  },
+  { num:"13", sect:"GO / NO-GO",         sub:"The conditions that kill the deal",                    fn: slideGoNoGo     },
 ];
 
 /* ─────────────────────────────────────────────────────────
@@ -677,7 +678,86 @@ function slideCapital(c) {
     `<span class="sbold">Bottom line:</span> ${M.totalMembers} shares at $${M.tiers[0].sharePx.toLocaleString()}\u2013$${M.tiers[1].sharePx.toLocaleString()} raise $${(M.shareEquity/1e6).toFixed(2)}M against a $${(M.dealTotal/1e6).toFixed(3).replace(/\.?0+$/,"")}M deal \u2014 no mortgage required. If the club fails, a penclave-discounted exit at ~$800K against $${k(M.askPrice)}K paid + $${k(M.renovation)}K renovation = <span class="sbold">~$${k(M.shareEquity - 800000)}K collective member loss [E]</span>. That is the downside you are accepting.`));
 }
 
-/* ── Slide 12: Go / No-Go ── */
+/* ── Slide 12: Financing Options ── */
+function slideFinancing(c) {
+  const M = MODEL;
+  const k = n => '$' + Math.round(n / 1000).toLocaleString() + 'K';
+  const askPrice = M.askPrice;  // $1,375,000
+
+  // Three structures. All numbers [E] except ask price [G].
+  const structures = [
+    {
+      label:    "All-equity (current model)",
+      down:     M.shareEquity,
+      loan:     0,
+      annualDS: 0,
+      membersToClose: M.totalMembers,
+      note:     "All shares sold before close. No debt. Club owns asset outright.",
+      cls:      ""
+    },
+    {
+      label:    "Commercial loan — 25% down",
+      down:     Math.round(askPrice * 0.25),
+      loan:     Math.round(askPrice * 0.75),
+      annualDS: Math.round(askPrice * 0.75 * (0.08 / 12) / (1 - Math.pow(1 + 0.08/12, -240)) * 12),
+      membersToClose: Math.ceil(Math.round(askPrice * 0.25) / M.tiers[0].sharePx),
+      note:     "8% rate, 20-yr amortization [E]. Debt service paid from dues before any surplus.",
+      cls:      "s-ok"
+    },
+    {
+      label:    "SBA 7(a) — 10% down",
+      down:     Math.round(askPrice * 0.10),
+      loan:     Math.round(askPrice * 0.90),
+      annualDS: Math.round(askPrice * 0.90 * (0.095 / 12) / (1 - Math.pow(1 + 0.095/12, -300)) * 12),
+      membersToClose: Math.ceil(Math.round(askPrice * 0.10) / M.tiers[0].sharePx),
+      note:     "9.5% rate, 25-yr term [E]. Requires owner-occupied business use.",
+      cls:      "s-ok"
+    },
+    {
+      label:    "Seller financing — negotiated",
+      down:     275_000,
+      loan:     askPrice - 275_000,
+      annualDS: null,
+      membersToClose: Math.ceil(275_000 / M.tiers[0].sharePx),
+      note:     "Terms negotiated with seller. Rate and amortization unknown [G pending].",
+      cls:      "s-warn"
+    },
+  ];
+
+  c.appendChild(sEl('div','schart-title','Four structures — ranked by founding members required to close'));
+
+  const tbl = sEl('table','gono-tbl');
+  tbl.innerHTML = `
+    <thead><tr>
+      <th>Structure</th>
+      <th>Down / equity</th>
+      <th>Loan</th>
+      <th>Annual debt service</th>
+      <th>Founding members to close</th>
+    </tr></thead>
+    <tbody>
+      ${structures.map(s => `
+        <tr>
+          <td class="cond-col">${s.label}</td>
+          <td>${k(s.down)}</td>
+          <td>${s.loan === 0 ? '—' : k(s.loan)}</td>
+          <td>${s.annualDS === null ? 'TBD' : s.annualDS === 0 ? '—' : k(s.annualDS) + '/yr'}</td>
+          <td class="${s.cls}">${s.membersToClose} @ $${M.tiers[0].sharePx.toLocaleString()}</td>
+        </tr>`).join('')}
+    </tbody>`;
+  const cw = sWrap('schart-wrap');
+  cw.appendChild(tbl);
+  cw.appendChild(sNote('[E] Loan rates and terms are estimates requiring lender confirmation. Down payment covers acquisition only — renovation and carry still require additional capital or phased member sales post-close. Seller financing terms unknown until negotiated.'));
+  c.appendChild(cw);
+
+  c.appendChild(sEl('div','srisk',
+    '<span class="sbold">The tradeoff:</span> Debt reduces the members-to-close threshold dramatically — ' +
+    `SBA requires only ~${Math.ceil(275_000 / M.tiers[0].sharePx)} founding members vs. ${M.totalMembers} for all-equity — ` +
+    'but adds fixed annual debt service that dues must cover before the club breaks even. ' +
+    'The all-equity model eliminates that risk at the cost of a harder pre-launch sales requirement.'));
+}
+
+/* ── Slide 13: Go / No-Go ── */
 function slideGoNoGo(c) {
   const M = MODEL;
   const k = n => Math.round(n / 1000);
