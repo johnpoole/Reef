@@ -334,41 +334,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -123.0754825,
-          48.9732752
-        ]
-      },
-      "properties": {
-        "name": "Oceanview Apartments",
-        "address": "1459 Edwards Drive, Point Roberts",
-        "category": "Other",
-        "color": "#5a6a7a",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJc2tR6l3vhVQRaP78Z_DQj4I",
-        "rating": 2.5,
-        "source": "google",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -123.063118,
           48.97733699999999
         ]
@@ -622,76 +587,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -123.0685671,
-          48.98492879999999
-        ]
-      },
-      "properties": {
-        "name": "Breast Forms",
-        "address": "1582 Gulf Road, Point Roberts",
-        "category": "Other",
-        "color": "#5a6a7a",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJ__-PVvjlhVQRuZLrgWLYHWM",
-        "rating": 5,
-        "source": "google+assessor",
-        "owner": "KWONG & CHOI LLC",
-        "mkt_value": 360055,
-        "land_value": 132021,
-        "impr_value": 228034,
-        "yr_blt": 1984,
-        "sqft": 2688,
-        "zoning": "SMALL TOWN COM",
-        "legal": "PTN OF LOT 3 GLADU SHORT AS REC BOOK 3 SHORT PLATS PG 90-THAT PTN OF NE SW DAF-BEG AT SE COR OF LOT 4-TH NLY 130 FT-TH E",
-        "prop_id": 153955,
-        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153955"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.052556,
-          48.9813532
-        ]
-      },
-      "properties": {
-        "name": "Harmony Web Designs",
-        "address": "1880 APA Road, Point Roberts",
-        "category": "Other",
-        "color": "#5a6a7a",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJ6UWnelPvhVQRaC5QSqot-MA",
-        "rating": 5,
-        "source": "google",
-        "owner": null,
-        "mkt_value": null,
-        "land_value": null,
-        "impr_value": null,
-        "yr_blt": null,
-        "sqft": null,
-        "zoning": null,
-        "legal": null,
-        "prop_id": null,
-        "county_url": null
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -123.0795426,
           48.98407859999999
         ]
@@ -721,76 +616,6 @@
         "legal": "TOWNSITE OF POINT ROBERTS E 212 FT OF LOTS 13 THRU 24 BLK 3- EXC W 3 FT OF N 84 FT THEREOF",
         "prop_id": 154547,
         "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=154547"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.0693107,
-          48.98493209999999
-        ]
-      },
-      "properties": {
-        "name": "Strip-Curtains.com",
-        "address": "1574 Gulf Road #75, Point Roberts",
-        "category": "Other",
-        "color": "#5a6a7a",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJe6DBxAnmhVQR3GIaMOPOwsM",
-        "rating": 4.8,
-        "source": "google+assessor",
-        "owner": "DARYL & ROBERTA MARQUETTE",
-        "mkt_value": 331282,
-        "land_value": 105616,
-        "impr_value": 225666,
-        "yr_blt": 1970,
-        "sqft": 3000,
-        "zoning": "SMALL TOWN COM",
-        "legal": "LOT 4 GLADU SHORT PLAT AS REC BOOK 3 SHORT PLATS PG 90-EXC PTN TO WHATCOM CO FOR RD DESC AF 1304926-1304928",
-        "prop_id": 153948,
-        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153948"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.068481,
-          48.999463
-        ]
-      },
-      "properties": {
-        "name": "Key Interlocking",
-        "address": "1591 McKenzie Way, Point Roberts",
-        "category": "Other",
-        "color": "#5a6a7a",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJOaXzhwnmhVQRDUN1q4QHgsY",
-        "rating": null,
-        "source": "google+assessor",
-        "owner": "GORDON D NIELSON",
-        "mkt_value": 351205,
-        "land_value": 108513,
-        "impr_value": 242692,
-        "yr_blt": 2010,
-        "sqft": 7876,
-        "zoning": "GENERAL COMM",
-        "legal": "SUNRISE TERRACE DIV NO 2 LOT 20",
-        "prop_id": 159947,
-        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=159947"
       }
     },
     {
@@ -1051,41 +876,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -123.0795426,
-          48.98407859999999
-        ]
-      },
-      "properties": {
-        "name": "Advanced Simulation Corporation",
-        "address": "1385 Gulf Road # 201, Point Roberts",
-        "category": "Other",
-        "color": "#5a6a7a",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJ92w5yPblhVQRPGEqSLLD1J4",
-        "rating": null,
-        "source": "google+assessor",
-        "owner": "MARK HOLUB & TENNESSEE BRIAND",
-        "mkt_value": 417475,
-        "land_value": 165857,
-        "impr_value": 251618,
-        "yr_blt": 1913,
-        "sqft": 2996,
-        "zoning": "SMALL TOWN COM",
-        "legal": "TOWNSITE OF POINT ROBERTS E 212 FT OF LOTS 13 THRU 24 BLK 3- EXC W 3 FT OF N 84 FT THEREOF",
-        "prop_id": 154547,
-        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=154547"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -123.0631496,
           48.9772754
         ]
@@ -1297,41 +1087,6 @@
         "legal": "GOVT LOT 4-LESS RD-DITCHES-EXC MIN RTS AS RES AF 942458-SUBJ TO REVERSION CLAUSE CVL 43804",
         "prop_id": 154659,
         "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=154659"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.0685343,
-          48.98743520000001
-        ]
-      },
-      "properties": {
-        "name": "Data-Recovery-Vancouver.com",
-        "address": "423 Tyee Drive #416, Point Roberts",
-        "category": "Other",
-        "color": "#5a6a7a",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJzxCUW_nlhVQRXEDIKm6TVIU",
-        "rating": 1,
-        "source": "google+assessor",
-        "owner": "KALLU ENTERPRISES LLC",
-        "mkt_value": 892409,
-        "land_value": 524962,
-        "impr_value": 367447,
-        "yr_blt": 1986,
-        "sqft": 4067,
-        "zoning": "SMALL TOWN COM",
-        "legal": "N 276 FT OF E 358.24 FT OF NE SW-S 155 FT OF N 431 FT OF E 250 FT OF NE SW-EXC W 80.5 FT OF E 209.5 FT OF N 119 FT OF NE",
-        "prop_id": 153963,
-        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153963"
       }
     },
     {
@@ -1680,41 +1435,6 @@
           "establishment"
         ],
         "place_id": "ChIJ06ou3fvlhVQRTY3U_5e1lnk",
-        "rating": null,
-        "source": "google+assessor",
-        "owner": "PT ROBERTS MINI AND MOBILE STORAGE LLC",
-        "mkt_value": 426143,
-        "land_value": 194430,
-        "impr_value": 231713,
-        "yr_blt": 1970,
-        "sqft": 5712,
-        "zoning": "SMALL TOWN COM",
-        "legal": "BEG AT CTR OF SW 1/4-TH NLY 20 FT-TH W 103 FT TO TPOB-TH N 244 FT-TH E 3 FT-TH N 285 FT-TH W 138 FT-TH S 529 FT-TH E 135",
-        "prop_id": 153807,
-        "county_url": "https://property.whatcomcounty.us/propertyaccess/Property.aspx?cid=0&year=2025&prop_id=153807"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -123.0742627,
-          48.9849699
-        ]
-      },
-      "properties": {
-        "name": "Airline Broker",
-        "address": "1480 Gulf Road, Point Roberts",
-        "category": "Other",
-        "color": "#5a6a7a",
-        "is_reef": false,
-        "is_strategic": false,
-        "g_types": [
-          "point_of_interest",
-          "establishment"
-        ],
-        "place_id": "ChIJVVVpXfflhVQRjqVM5DbZQWI",
         "rating": null,
         "source": "google+assessor",
         "owner": "PT ROBERTS MINI AND MOBILE STORAGE LLC",

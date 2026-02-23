@@ -66,6 +66,20 @@ SKIP_TYPES = {"locality", "political", "neighborhood", "natural_feature",
               "administrative_area_level_1", "administrative_area_level_2",
               "country", "route", "street_address", "premise"}
 
+# Entries that appear in Google Places but are not real Point Roberts businesses
+# (residential buildings, online-only businesses, non-local services).
+# Keyed by place_id so renaming on Google's side doesn't resurrect them.
+SKIP_PLACE_IDS = {
+    "ChIJc2tR6l3vhVQRaP78Z_DQj4I",  # Oceanview Apartments — residential
+    "ChIJ__-PVvjlhVQRuZLrgWLYHWM",  # Breast Forms — online only
+    "ChIJ6UWnelPvhVQRaC5QSqot-MA",  # Harmony Web Designs — remote business
+    "ChIJe6DBxAnmhVQR3GIaMOPOwsM",  # Strip-Curtains.com — online only
+    "ChIJOaXzhwnmhVQRDUN1q4QHgsY",  # Key Interlocking — no physical PR presence
+    "ChIJ92w5yPblhVQRPGEqSLLD1J4",  # Advanced Simulation Corporation — no physical PR presence
+    "ChIJzxCUW_nlhVQRXEDIKm6TVIU",  # Data-Recovery-Vancouver.com — online only
+    "ChIJVVVpXfflhVQRjqVM5DbZQWI",  # Airline Broker — no physical PR presence
+}
+
 def infer_category(types):
     for keys, cat in TYPE_MAP:
         if any(t in types for t in keys):
@@ -139,6 +153,11 @@ for place in all_places:
     types = place.get("types", [])
     # Skip pure administrative/geo entries
     if all(t in SKIP_TYPES for t in types):
+        continue
+
+    # Skip explicitly excluded place_ids (residential, online-only, non-PR businesses)
+    if place.get("place_id") in SKIP_PLACE_IDS:
+        print(f"  SKIP (excluded): {place.get('name')} | {place.get('place_id')}")
         continue
 
     # Skip Canadian businesses (vicinity contains a Canadian city name)
