@@ -66,19 +66,6 @@ SKIP_TYPES = {"locality", "political", "neighborhood", "natural_feature",
               "administrative_area_level_1", "administrative_area_level_2",
               "country", "route", "street_address", "premise"}
 
-# Entries that appear in Google Places but are not real Point Roberts businesses
-# (residential buildings, online-only businesses, non-local services).
-# Keyed by place_id so renaming on Google's side doesn't resurrect them.
-SKIP_PLACE_IDS = {
-    "ChIJc2tR6l3vhVQRaP78Z_DQj4I",  # Oceanview Apartments — residential
-    "ChIJ__-PVvjlhVQRuZLrgWLYHWM",  # Breast Forms — online only
-    "ChIJ6UWnelPvhVQRaC5QSqot-MA",  # Harmony Web Designs — remote business
-    "ChIJe6DBxAnmhVQR3GIaMOPOwsM",  # Strip-Curtains.com — online only
-    "ChIJOaXzhwnmhVQRDUN1q4QHgsY",  # Key Interlocking — no physical PR presence
-    "ChIJ92w5yPblhVQRPGEqSLLD1J4",  # Advanced Simulation Corporation — no physical PR presence
-    "ChIJzxCUW_nlhVQRXEDIKm6TVIU",  # Data-Recovery-Vancouver.com — online only
-    "ChIJVVVpXfflhVQRjqVM5DbZQWI",  # Airline Broker — no physical PR presence
-}
 
 def infer_category(types):
     for keys, cat in TYPE_MAP:
@@ -155,15 +142,22 @@ for place in all_places:
     if all(t in SKIP_TYPES for t in types):
         continue
 
-    # Skip explicitly excluded place_ids (residential, online-only, non-PR businesses)
-    if place.get("place_id") in SKIP_PLACE_IDS:
-        print(f"  SKIP (excluded): {place.get('name')} | {place.get('place_id')}")
-        continue
-
     # Skip Canadian businesses (vicinity contains a Canadian city name)
     vicinity_lower = (place.get("vicinity") or "").lower()
     if any(city in vicinity_lower for city in CANADIAN_CITIES):
         print(f"  SKIP (Canada): {place.get('name')} | {place.get('vicinity')}")
+        continue
+
+    # Skip entries with no real street address — these don't have a map pin on Google Maps.
+    # A real address starts with a street number (digits, optional letter suffix, then a space).
+    vicinity = place.get("vicinity") or ""
+    if not re.match(r"\d+\w*\s+\w", vicinity.strip()):
+        print(f"  SKIP (no address): {place.get('name')} | '{vicinity}'")
+        continue
+
+    # Skip entries with zero reviews — ghost listings not visible as pins on Google Maps.
+    if not place.get("user_ratings_total"):
+        print(f"  SKIP (no reviews): {place.get('name')} | '{vicinity}'")
         continue
 
     name    = place.get("name", "")
